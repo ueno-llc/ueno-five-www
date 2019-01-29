@@ -1,6 +1,6 @@
 @import '~styles/config';
 
-.wrapper {
+.player {
   position: fixed;
   top: 0;
   right: 0;
@@ -12,6 +12,9 @@
 
   &__header {
     display: block;
+
+    position: relative;
+    z-index: 5;
 
     background-color: #fff;
   }
@@ -33,11 +36,6 @@
     &Svg {
       display: block;
     }
-  }
-
-  &__navigation {
-    display: flex;
-    margin-left: auto;
   }
 
   &__bottom {

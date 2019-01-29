@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import s from './Screen.scss';
+import s from './Intro.scss';
 
 interface IProps {
   children: React.ReactNode;
@@ -8,14 +8,14 @@ interface IProps {
   backgroundColor: string;
 }
 
-export const Screen = ({ children, illustration, backgroundColor }: IProps) => (
-  <div className={s.screen}>
-    <div className={s.screen__row}>
+export const Intro = ({ children, illustration, backgroundColor }: IProps) => (
+  <div className={s.intro}>
+    <div className={s.intro__row}>
       {children}
     </div>
 
     <div
-      className={s.screen__illustration}
+      className={s.intro__illustration}
       style={{ backgroundColor }}
     >
       <img src={illustration} />
