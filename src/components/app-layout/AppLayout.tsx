@@ -1,7 +1,6 @@
 import React from 'react';
 import Helmet from 'react-helmet';
 
-import { Header } from 'components/header/Header';
 import { Devtools } from 'components/devtools/Devtools';
 
 import s from './AppLayout.scss';
@@ -22,7 +21,6 @@ export default ({ children }: IProps) => (
       <html lang="en" />
     </Helmet>
 
-    <Header />
     {children}
     <Devtools />
   </div>

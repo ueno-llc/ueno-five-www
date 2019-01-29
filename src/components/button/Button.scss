@@ -1,7 +1,6 @@
 @import '~styles/config';
 
-$btn-height: 40px;
-$btn-border-width: 2px;
+$btn-height: 54px;
 
 .button {
   @include reset-button;
@@ -9,12 +8,12 @@ $btn-border-width: 2px;
   display: inline-flex;
   position: relative;
 
-  padding: 0 $gutter;
+  padding: 0 65px;
 
   height: $btn-height;
 
   font-size: $font-size;
-  line-height: ($btn-height - 2 * $btn-border-width);
+  line-height: $btn-height;
   vertical-align: middle;
   text-align: center;
   text-decoration: none;
@@ -22,10 +21,9 @@ $btn-border-width: 2px;
 
   cursor: pointer;
 
-  border: $btn-border-width solid transparent;
-  border-radius: $btn-border-width;
+  border-radius: 27px;
 
-  background: $color-primary;
+  background: #000;
 
   transition: 180ms;
   transition-property: border-color, background-color, color, opacity;
@@ -40,7 +38,7 @@ $btn-border-width: 2px;
   }
 
   &:hover {
-    background-color: darken($color-primary, 10%);
+    background-color: lighten(#000, 20%);
   }
 
   &.disabled {

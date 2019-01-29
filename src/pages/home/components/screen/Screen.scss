@@ -1,0 +1,27 @@
+@import '~styles/config';
+
+.screen {
+  @include container;
+
+  &__row {
+    @include grid-row;
+
+    position: relative;
+    z-index: 2;
+
+    height: 100vh;
+  }
+
+  &__illustration {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+
+    width: 50%;
+  }
+}

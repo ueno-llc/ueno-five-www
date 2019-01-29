@@ -1,0 +1,53 @@
+@import '~styles/config';
+
+.wrapper {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 5;
+
+  border: 20px solid #fff;
+
+  &__header {
+    display: block;
+
+    background-color: #fff;
+  }
+
+  &__container {
+    @include container;
+  }
+
+  &__content {
+    display: flex;
+    align-items: center;
+
+    padding: 8px 0 26px;
+  }
+
+  &__logo {
+    @include reset-anchor;
+
+    &Svg {
+      display: block;
+    }
+  }
+
+  &__navigation {
+    display: flex;
+    margin-left: auto;
+  }
+
+  &__bottom {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    height: 52px;
+
+    background-color: #fff;
+  }
+}

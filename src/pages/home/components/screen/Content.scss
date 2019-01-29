@@ -1,0 +1,19 @@
+@import '~styles/config';
+
+.content {
+  @include grid-col(6);
+
+  align-self: center;
+
+  &__heading {
+    @include heading(28, 44);
+
+    margin-bottom: 5px;
+  }
+
+  &__subheading {
+    @include subheading(28, 44);
+
+    margin-bottom: 35px;
+  }
+}
