@@ -11133,6 +11133,11 @@ vm-browserify@0.0.4:
   dependencies:
     indexof "0.0.1"
 
+vtt-to-json@^0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/vtt-to-json/-/vtt-to-json-0.1.1.tgz#a67bb276a0f245bd4d71267014028b65b1f465a8"
+  integrity sha1-pnuydqDyRb1NcSZwFAKLZbH0Zag=
+
 warning@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/warning/-/warning-3.0.0.tgz#32e5377cb572de4ab04753bdf8821c01ed605b7c"

@@ -15,7 +15,8 @@
     "test": "tsc && npm run lint && npm run stylelint",
     "lint": "tslint --fix 'src/**/*.{ts,tsx}' -p .",
     "stylelint": "stylelint 'src/**/*.scss' --syntax scss",
-    "dev": "gatsby develop"
+    "dev": "gatsby develop",
+    "webvtt-to-json": "node ./src/scripts/webvtt-to-json"
   },
   "dependencies": {
     "gatsby": "2.0.91",
@@ -34,7 +35,8 @@
     "gsap-tools": "1.0.3",
     "react": "16.8.0-alpha.0",
     "react-dom": "16.8.0-alpha.0",
-    "react-helmet": "5.2.0"
+    "react-helmet": "5.2.0",
+    "vtt-to-json": "^0.1.1"
   },
   "devDependencies": {
     "@babel/core": "7.2.2",
