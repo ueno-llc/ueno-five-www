@@ -1,6 +1,8 @@
 @import '~styles/config';
 
 $btn-height: 54px;
+$blue: #4051b6;
+$yellow: #ffc600;
 
 .button {
   @include reset-button;
@@ -23,8 +25,6 @@ $btn-height: 54px;
 
   border-radius: 27px;
 
-  background-color: $color-blue;
-
   transition: 180ms;
   transition-property: border-color, background-color, color, opacity;
 
@@ -37,8 +37,32 @@ $btn-height: 54px;
     outline: none;
   }
 
-  &:hover {
-    background-color: darken($color-blue, 10%);
+  &.blue {
+    background-color: $blue;
+
+    &:hover {
+      background-color: darken($blue, 5%);
+    }
+  }
+
+  &.yellow {
+    color: #000;
+
+    background-color: $yellow;
+
+    &:hover {
+      background-color: darken($yellow, 2%);
+    }
+  }
+
+  &.white {
+    color: #000;
+
+    background-color: #fff;
+
+    &:hover {
+      background-color: darken(#fff, 5%);
+    }
   }
 
   &.disabled {

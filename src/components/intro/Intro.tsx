@@ -1,24 +1,38 @@
 import * as React from 'react';
 
+import Logo from 'assets/svg/logo.svg';
+
 import s from './Intro.scss';
+
+interface IBackground {
+  left: string;
+  right: string;
+}
 
 interface IProps {
   children: React.ReactNode;
+  introRef: any;
   cover: string;
   cover2x: string;
-  backgroundColor: string;
-  introRef: any;
+  background: IBackground;
 }
 
-export const Intro = ({ children, cover, cover2x, backgroundColor, introRef }: IProps) => {
+export const Intro = ({ children, introRef, cover, cover2x, background }: IProps) => {
   const srcSet = cover2x && `${cover} 1x, ${cover2x} 2x`;
 
   return (
     <div
       ref={introRef}
       className={s.intro}
+      style={{ backgroundColor: background.left }}
     >
       <div className={s.intro__borders}>
+        <div className={s.intro__top}>
+          <div className={s.intro__topContainer}>
+            <Logo className={s.intro__logo} />
+          </div>
+        </div>
+
         <div className={s.intro__bottom} />
       </div>
 
@@ -29,7 +43,7 @@ export const Intro = ({ children, cover, cover2x, backgroundColor, introRef }: I
 
         <div
           className={s.intro__illustration}
-          style={{ backgroundColor }}
+          style={{ backgroundColor: background.right }}
         >
           <img
             src={cover}
@@ -39,4 +53,4 @@ export const Intro = ({ children, cover, cover2x, backgroundColor, introRef }: I
       </div>
     </div>
   );
-}
+};

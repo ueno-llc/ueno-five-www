@@ -1,8 +1,11 @@
 import * as React from 'react';
 import { TweenLite } from 'gsap';
 
-import { useTimeUpdate } from 'hooks/use-timeupdate';
+import { useVideoUpdate } from 'hooks/use-video-update';
+import { useVideoEnd } from 'hooks/use-video-end';
 import { useMouseMove } from 'hooks/use-mousemove';
+
+import Logo from 'assets/svg/logo.svg';
 
 import s from './Video.scss';
 
@@ -10,27 +13,38 @@ interface IProps {
   src: string;
   poster: string;
   play: boolean;
+  onVideoEnd(): void;
 }
 
-export const Video = ({ src, poster, play }: IProps) => {
+export const Video = ({ src, poster, play, onVideoEnd }: IProps) => {
   const videoRef = React.useRef<HTMLDivElement>(null);
   const videoSrcRef = React.useRef<HTMLVideoElement>(null);
   const handleRef = React.useRef<HTMLDivElement>(null);
   const progressRef = React.useRef<HTMLDivElement>(null);
-  const videoStats = useTimeUpdate(videoSrcRef);
+  const videoProgress = useVideoUpdate(videoSrcRef);
+  const isVideoEnd = useVideoEnd(videoSrcRef);
   const isMouseMoving = useMouseMove(videoRef);
 
   React.useEffect(() => {
-    if (play && videoSrcRef.current) {
+    if (!videoSrcRef.current) {
+      return;
+    }
+
+    if (play) {
       videoSrcRef.current.play();
-    } else if (!play && videoSrcRef.current) {
+    } else {
       videoSrcRef.current.pause();
     }
+
+    // if (isVideoEnd) {
+    //   videoSrcRef.current.pause();
+    //   onVideoEnd();
+    // }
   });
 
   React.useEffect(() => {
     if (handleRef.current && progressRef.current) {
-      const left = (videoStats.currentTime * (window.innerWidth - 40)) / videoStats.duration;
+      const left = (videoProgress.currentTime * (window.innerWidth - 40)) / videoProgress.duration;
 
       if (isNaN(left)) {
         return;
@@ -68,6 +82,12 @@ export const Video = ({ src, poster, play }: IProps) => {
       </div>
 
       <div className={s.video__hover}>
+        <div className={s.video__header}>
+          <div className={s.video__container}>
+            <Logo className={s.video__logo} />
+          </div>
+        </div>
+
         <div className={s.video__controls}>
           <div className={s.video__length}>
             <div

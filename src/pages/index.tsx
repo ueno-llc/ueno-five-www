@@ -2,70 +2,119 @@ import * as React from 'react';
 import Helmet from 'react-helmet';
 import { TimelineLite, Power4 } from 'gsap';
 
-import { Header } from 'components/header/Header';
 import { Intro } from 'components/intro/Intro';
 import { Content } from 'components/intro/Content';
 import { Video } from 'components/video/Video';
 
 export default () => {
-  const headerRef = React.useRef<React.ReactNode>(null);
   const introRef = React.useRef<React.ReactNode>(null);
   const [play, playVideo] = React.useState(false);
+  const [screen, setScreen] = React.useState('opening');
+  const timeline = new TimelineLite();
 
   const onClick = () => {
-    if (!introRef.current || !headerRef.current) {
+    if (!introRef.current) {
       return;
     }
-
-    const timeline = new TimelineLite();
-    const ease = Power4.easeInOut;
 
     timeline.to(
       introRef.current,
       0.75,
       {
         autoAlpha: 0,
-        ease,
+        ease: Power4.easeInOut,
       },
-    );
-
-    timeline.to(
-      headerRef.current,
-      0.75,
-      {
-        autoAlpha: 0,
-        ease,
-      },
-      '-=1',
     );
 
     playVideo(true);
   };
 
+  const onVideoEnd = () => {
+    if (!introRef.current) {
+      return;
+    }
+
+    timeline.to(
+      introRef.current,
+      0.75,
+      {
+        autoAlpha: 1,
+        ease: Power4.easeInOut,
+      },
+    );
+  };
+
+  const onReplay = () => {
+
+  };
+
+  const onTwitterShare = () => {
+
+  };
+
+  const states = [
+    {
+      id: 'opening',
+      background: {
+        left: '#002430',
+        right: '#4051b6',
+      },
+      heading: {
+        text: 'Introducing',
+        color: '#fff',
+      },
+      subheading: {
+        text: 'Tory Satins (and friends)',
+        color: '#abb4c2',
+      },
+      buttons: [
+        { text: 'Show me!', action: onClick },
+      ],
+    },
+    {
+      id: 'closing',
+      background: {
+        left: '#c99d06',
+        right: '#ffc600',
+      },
+      heading: {
+        text: 'That was sort of fun?',
+        color: '#4d4015',
+      },
+      subheading: {
+        text: 'Right?',
+        color: '#ffc600',
+      },
+      buttons: [
+        { text: 'Watch again', action: onReplay, color: 'yellow' },
+        { text: 'Share on Twitter', action: onTwitterShare, color: 'white' },
+      ],
+    },
+  ];
+
+  const active = states.find((s) => s.id === screen)!;
+
   return (
     <>
       <Helmet title="Home" />
-      <Header headerRef={headerRef} />
 
       <Intro
         introRef={introRef}
         cover={require('assets/images/cover.png')}
         cover2x={require('assets/images/cover@2x.png')}
-        backgroundColor="#4051b6"
+        background={active.background}
       >
         <Content
-          heading="Introducing"
-          subheading="Tory Satins (and friends)"
-          button={{
-            text: 'Show me!',
-            action: onClick,
-          }}
+          heading={active.heading}
+          subheading={active.subheading}
+          buttons={active.buttons}
         />
       </Intro>
 
       <Video
         src={require('assets/videos/song.mp4')}
         poster={require('assets/images/poster.jpg')}
+        onVideoEnd={onVideoEnd}
         play={play}
       />
     </>

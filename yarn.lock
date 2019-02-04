@@ -811,10 +811,10 @@
     stylelint-config-primer "3.0.1"
     stylelint-order "2.0.0"
 
-"@ueno/tslint-config@1.0.2":
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/@ueno/tslint-config/-/tslint-config-1.0.2.tgz#72e408398204e565d4c40484867b5a69e01880c7"
-  integrity sha512-ZLxGmBk5c2xhEiY6zvZya6q04Cj0GeFIIdPm6mwfaUawwRbuPt5RzgWEAsxklcOS65FhHBsseXezfhA/0fPOTA==
+"@ueno/tslint-config@1.0.3":
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/@ueno/tslint-config/-/tslint-config-1.0.3.tgz#871999330299389b565dd81ea157e5616691c5f9"
+  integrity sha512-KvFyIcF4XDLYTaWW+ClxRwlqDO4gEXv1ccci8wsudHOA8O5a/jd9bKwUmocojgcLdwFU78XKUbL4Z1qs2+OKYw==
   dependencies:
     tslint "5.12.1"
     tslint-config-airbnb "5.11.1"

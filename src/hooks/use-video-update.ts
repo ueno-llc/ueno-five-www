@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-export const useTimeUpdate = (ref: React.RefObject<HTMLVideoElement>) => {
+export const useVideoUpdate = (ref: React.RefObject<HTMLVideoElement>) => {
   const [currentTime, setCurrentTime] = React.useState<number>(0);
   const [duration, setDuration] = React.useState<number>(0);
 

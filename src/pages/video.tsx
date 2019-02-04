@@ -28,7 +28,7 @@ export default () => {
       if (audioEl) {
         audioEl.removeEventListener('timeupdate', update);
       }
-    }
+    };
   });
 
   console.log(subs);
@@ -65,4 +65,4 @@ export default () => {
       </ul>
     </>
   );
-}
+};
