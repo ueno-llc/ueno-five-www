@@ -12,14 +12,11 @@ interface IBackground {
 interface IProps {
   children: React.ReactNode;
   introRef: any;
-  cover: string;
-  cover2x: string;
   background: IBackground;
+  image: React.ReactNode;
 }
 
-export const Intro = ({ children, introRef, cover, cover2x, background }: IProps) => {
-  const srcSet = cover2x && `${cover} 1x, ${cover2x} 2x`;
-
+export const Intro = ({ children, introRef, background, image }: IProps) => {
   return (
     <div
       ref={introRef}
@@ -48,11 +45,7 @@ export const Intro = ({ children, introRef, cover, cover2x, background }: IProps
           className={s.intro__illustration}
           style={{ backgroundColor: background.right }}
         >
-          <img
-            className={s.intro__source}
-            src={cover}
-            srcSet={srcSet}
-          />
+          {image}
         </div>
       </div>
     </div>

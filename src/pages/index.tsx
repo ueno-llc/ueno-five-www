@@ -6,6 +6,22 @@ import { Intro } from 'components/intro/Intro';
 import { Content } from 'components/intro/Content';
 import { Video } from 'components/video/Video';
 
+const Cover = () => (
+  <img
+    style={{ padding: 60 }}
+    src={require('assets/images/cover.png')}
+    srcSet={`${require('assets/images/cover.png')} 1x, ${require('assets/images/cover@2x.png')} 2x`}
+  />
+);
+
+const Tory = () => (
+  <img
+    style={{ alignSelf: 'flex-end', height: '80%', objectFit: 'cover' }}
+    src={require('assets/images/tory.png')}
+    srcSet={`${require('assets/images/tory.png')} 1x, ${require('assets/images/tory@2x.png')} 2x`}
+  />
+);
+
 export default () => {
   const introRef = React.useRef<React.ReactNode>(null);
   const [play, playVideo] = React.useState(false);
@@ -71,6 +87,7 @@ export default () => {
         left: '#002430',
         right: '#4051b6',
       },
+      image: <Cover />,
       heading: {
         text: 'Introducing',
         color: '#fff',
@@ -89,6 +106,7 @@ export default () => {
         left: '#c99d06',
         right: '#ffc600',
       },
+      image: <Tory />,
       heading: {
         text: 'That was sort of fun?',
         color: '#4d4015',
@@ -112,8 +130,7 @@ export default () => {
 
       <Intro
         introRef={introRef}
-        cover={require('assets/images/cover.png')}
-        cover2x={require('assets/images/cover@2x.png')}
+        image={active.image}
         background={active.background}
       >
         <Content
