@@ -12,11 +12,10 @@ import s from './Video.scss';
 interface IProps {
   src: string;
   poster: string;
-  play: boolean;
   onVideoEnd(): void;
 }
 
-export const Video = ({ src, poster, play, onVideoEnd }: IProps) => {
+export const Video = ({ src, poster, onVideoEnd }: IProps) => {
   const videoRef = React.useRef<HTMLDivElement>(null);
   const videoSrcRef = React.useRef<HTMLVideoElement>(null);
   const handleRef = React.useRef<HTMLDivElement>(null);
@@ -26,20 +25,9 @@ export const Video = ({ src, poster, play, onVideoEnd }: IProps) => {
   const isMouseMoving = useMouseMove(videoRef);
 
   React.useEffect(() => {
-    if (!videoSrcRef.current) {
-      return;
+    if (isVideoEnd) {
+      onVideoEnd();
     }
-
-    if (play) {
-      videoSrcRef.current.play();
-    } else {
-      videoSrcRef.current.pause();
-    }
-
-    // if (isVideoEnd) {
-    //   videoSrcRef.current.pause();
-    //   onVideoEnd();
-    // }
   });
 
   React.useEffect(() => {
@@ -72,6 +60,7 @@ export const Video = ({ src, poster, play, onVideoEnd }: IProps) => {
         className={s.video__src}
         src={src}
         poster={poster}
+        autoPlay
         playsInline
         muted
       />

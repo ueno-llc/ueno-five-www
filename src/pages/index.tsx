@@ -34,6 +34,9 @@ export default () => {
       return;
     }
 
+    setScreen('closing');
+    playVideo(false);
+
     timeline.to(
       introRef.current,
       0.75,
@@ -45,7 +48,7 @@ export default () => {
   };
 
   const onReplay = () => {
-
+    onClick();
   };
 
   const onTwitterShare = () => {
@@ -111,12 +114,13 @@ export default () => {
         />
       </Intro>
 
-      <Video
-        src={require('assets/videos/song.mp4')}
-        poster={require('assets/images/poster.jpg')}
-        onVideoEnd={onVideoEnd}
-        play={play}
-      />
+      {play && (
+        <Video
+          src={require('assets/videos/song.mp4')}
+          poster={require('assets/images/poster.jpg')}
+          onVideoEnd={onVideoEnd}
+        />
+      )}
     </>
   );
 };
