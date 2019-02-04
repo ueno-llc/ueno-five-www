@@ -1,7 +1,25 @@
 @import '~styles/config';
 
 .intro {
-  @include container;
+  @include fit;
+
+  z-index: 9970;
+
+  background-color: #002430;
+
+  &__borders {
+    @include fit;
+
+    z-index: 9990;
+
+    box-shadow: inset 0 0 0 20px #fff;
+
+    pointer-events: none;
+  }
+
+  &__container {
+    @include container;
+  }
 
   &__row {
     @include grid-row;
@@ -23,5 +41,16 @@
     bottom: 0;
 
     width: 50%;
+  }
+
+  &__bottom {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    height: 72px;
+
+    background-color: #fff;
   }
 }

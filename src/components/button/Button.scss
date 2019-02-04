@@ -23,7 +23,7 @@ $btn-height: 54px;
 
   border-radius: 27px;
 
-  background: #000;
+  background-color: $color-blue;
 
   transition: 180ms;
   transition-property: border-color, background-color, color, opacity;
@@ -38,7 +38,7 @@ $btn-height: 54px;
   }
 
   &:hover {
-    background-color: lighten(#000, 20%);
+    background-color: darken($color-blue, 10%);
   }
 
   &.disabled {

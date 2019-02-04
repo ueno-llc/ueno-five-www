@@ -9,11 +9,15 @@
     @include heading(28, 44);
 
     margin-bottom: 5px;
+
+    color: #fff;
   }
 
   &__subheading {
     @include subheading(28, 44);
 
     margin-bottom: 35px;
+
+    color: #abb4c2;
   }
 }

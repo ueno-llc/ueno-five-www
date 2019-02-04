@@ -1,0 +1,30 @@
+@import '~styles/config';
+
+.header {
+  display: flex;
+  align-items: center;
+
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 9999;
+
+  height: 74px;
+
+  background-color: #fff;
+
+  &__container {
+    @include container;
+
+    width: 100%;
+  }
+
+  &__logo {
+    @include reset-anchor;
+
+    &Svg {
+      display: block;
+    }
+  }
+}
