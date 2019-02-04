@@ -66,7 +66,7 @@ export const Video = ({ src, poster, onVideoEnd }: IProps) => {
       />
 
       <div className={s.video__lyrics}>
-        <div className={s.video__pointer} />
+        {/* <div className={s.video__pointer} /> */}
         <p className={s.video__text}>Five years, that’s not too long, but it’s half a decade on</p>
       </div>
 
