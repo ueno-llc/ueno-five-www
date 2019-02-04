@@ -49,7 +49,8 @@ export default () => {
 
       <Intro
         introRef={introRef}
-        illustration={require('assets/images/illustration.png')}
+        cover={require('assets/images/cover.png')}
+        cover2x={require('assets/images/cover@2x.png')}
         backgroundColor="#4051b6"
       >
         <Content
