@@ -9,9 +9,11 @@ export const useMouseMove = (ref: React.RefObject<HTMLDivElement>) => {
 
     moveTimer = setTimeout(() => {
       setMove(false);
-    }, 300);
+    }, 400);
 
-    setMove(true);
+    setTimeout(() => {
+      setMove(true);
+    }, 100);
   };
 
   React.useEffect(() => {

@@ -21,8 +21,20 @@ export const Video = ({ src, poster, play }: IProps) => {
   const isMouseMoving = useMouseMove(videoRef);
 
   React.useEffect(() => {
+    if (play && videoSrcRef.current) {
+      videoSrcRef.current.play();
+    } else if (!play && videoSrcRef.current) {
+      videoSrcRef.current.pause();
+    }
+  });
+
+  React.useEffect(() => {
     if (handleRef.current && progressRef.current) {
       const left = (videoStats.currentTime * (window.innerWidth - 40)) / videoStats.duration;
+
+      if (isNaN(left)) {
+        return;
+      }
 
       TweenLite.set(
         handleRef.current,
@@ -33,12 +45,6 @@ export const Video = ({ src, poster, play }: IProps) => {
         progressRef.current,
         { width: left },
       );
-    }
-
-    if (play && videoSrcRef.current) {
-      videoSrcRef.current.play();
-    } else if (!play && videoSrcRef.current) {
-      videoSrcRef.current.pause();
     }
   });
 
