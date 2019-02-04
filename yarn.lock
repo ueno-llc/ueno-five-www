@@ -728,6 +728,11 @@
   version "14.0.4"
   resolved "https://registry.yarnpkg.com/@types/graphql/-/graphql-14.0.4.tgz#d71a75967cd93c33eaea32b626b362ce0f2b2ae9"
 
+"@types/gsap@1.20.1":
+  version "1.20.1"
+  resolved "https://registry.yarnpkg.com/@types/gsap/-/gsap-1.20.1.tgz#3dfc3370f464ca3e8991bf9458c4358d02ddf4c9"
+  integrity sha512-sm5ulN20NKx1fkPkJuwkMhIGZWH5s1vFsV2Y/30YuIVdL55VsR0b4yzCvxQy3E1Dmosw4aag1GwzSLMONitxXQ==
+
 "@types/history@*":
   version "4.7.2"
   resolved "https://registry.yarnpkg.com/@types/history/-/history-4.7.2.tgz#0e670ea254d559241b6eeb3894f8754991e73220"
