@@ -37,14 +37,16 @@ export const Content = ({ heading, subheading, buttons }: IProps) => (
       {subheading.text}
     </h2>
 
-    {buttons.map((button: IButton) => (
-      <Button
-        key={button.text}
-        onClick={button.action}
-        color={button.color}
-      >
-        {button.text}
-      </Button>
-    ))}
+    <div className={s.content__buttons}>
+      {buttons.map((button: IButton) => (
+        <Button
+          key={button.text}
+          onClick={button.action}
+          color={button.color}
+        >
+          {button.text}
+        </Button>
+      ))}
+    </div>
   </div>
 );
