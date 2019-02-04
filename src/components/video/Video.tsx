@@ -2,6 +2,7 @@ import * as React from 'react';
 import { TweenLite } from 'gsap';
 
 import { useTimeUpdate } from 'hooks/use-timeupdate';
+import { useMouseMove } from 'hooks/use-mousemove';
 
 import s from './Video.scss';
 
@@ -16,11 +17,12 @@ export const Video = ({ src, poster, play }: IProps) => {
   const videoSrcRef = React.useRef<HTMLVideoElement>(null);
   const handleRef = React.useRef<HTMLDivElement>(null);
   const progressRef = React.useRef<HTMLDivElement>(null);
-  const stats = useTimeUpdate(videoSrcRef);
+  const videoStats = useTimeUpdate(videoSrcRef);
+  const isMouseMoving = useMouseMove(videoRef);
 
   React.useEffect(() => {
     if (handleRef.current && progressRef.current) {
-      const left = (stats.currentTime * (window.innerWidth - 40)) / stats.duration;
+      const left = (videoStats.currentTime * (window.innerWidth - 40)) / videoStats.duration;
 
       TweenLite.set(
         handleRef.current,
@@ -43,7 +45,7 @@ export const Video = ({ src, poster, play }: IProps) => {
   return (
     <div
       ref={videoRef}
-      className={s.video}
+      className={s(s.video, { show: isMouseMoving })}
     >
       <video
         ref={videoSrcRef}

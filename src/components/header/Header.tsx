@@ -7,7 +7,7 @@ import Logo from 'assets/svg/logo.svg';
 import s from './Header.scss';
 
 interface IProps {
-  headerRef(): void;
+  headerRef: any;
 }
 
 export const Header = ({ headerRef }: IProps) => (

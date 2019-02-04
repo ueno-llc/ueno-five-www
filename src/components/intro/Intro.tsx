@@ -6,7 +6,7 @@ interface IProps {
   children: React.ReactNode;
   illustration: string;
   backgroundColor: string;
-  introRef(): void;
+  introRef: any;
 }
 
 export const Intro = ({ children, illustration, backgroundColor, introRef }: IProps) => (

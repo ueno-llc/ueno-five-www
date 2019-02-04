@@ -7,9 +7,9 @@
 
   overflow: hidden;
 
-  // &:hover &__hover {
-  //   opacity: 1;
-  // }
+  &.show &__hover {
+    opacity: 1;
+  }
 
   &__src {
     width: 100%;
@@ -53,11 +53,11 @@
   &__hover {
     @include fit;
 
-    // opacity: 0;
+    opacity: 0;
 
     box-shadow: inset 0 0 0 20px #fff;
 
-    transition: opacity 400ms ease-in-out;
+    transition: opacity 500ms ease-in-out;
   }
 
   &__controls {
