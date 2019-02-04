@@ -47,7 +47,7 @@ export default () => {
       <Helmet title="Home" />
       <Header headerRef={headerRef} />
 
-      {/* <Intro
+      <Intro
         introRef={introRef}
         illustration={require('assets/images/illustration.png')}
         backgroundColor="#4051b6"
@@ -60,12 +60,12 @@ export default () => {
             action: onClick,
           }}
         />
-      </Intro> */}
+      </Intro>
 
       <Video
         src={require('assets/videos/song.mp4')}
         poster={require('assets/images/poster.jpg')}
-        autoPlay={play}
+        play={play}
       />
     </>
   );

@@ -1,15 +1,15 @@
 import * as React from 'react';
+import { TweenLite } from 'gsap';
 
 import s from './Video.scss';
-import { TweenLite } from 'gsap';
 
 interface IProps {
   src: string;
   poster: string;
-  autoPlay: boolean;
+  play: boolean;
 }
 
-export const Video = ({ src, poster, autoPlay }: IProps) => {
+export const Video = ({ src, poster, play }: IProps) => {
   const videoRef = React.useRef<HTMLDivElement>(null);
   const videoSrcRef = React.useRef<HTMLVideoElement>(null);
   const handleRef = React.useRef<HTMLDivElement>(null);
@@ -20,14 +20,16 @@ export const Video = ({ src, poster, autoPlay }: IProps) => {
       return;
     }
 
-    // console.log('-videoSrcRef', videoSrcRef.current.currentTime = x);
-    // console.log('-videoSrcRef', videoSrcRef.current.duration = 100);
-
-    const left = (100 * videoSrcRef.current.duration) / videoSrcRef.current.currentTime;
+    const left = (videoSrcRef.current.currentTime * (window.innerWidth - 40)) / videoSrcRef.current.duration;
 
     TweenLite.set(
       handleRef.current,
       { left },
+    );
+
+    TweenLite.set(
+      progressRef.current,
+      { width: left },
     );
   };
 
@@ -47,6 +49,14 @@ export const Video = ({ src, poster, autoPlay }: IProps) => {
     };
   }, []);
 
+  React.useEffect(() => {
+    if (play && videoSrcRef.current) {
+      videoSrcRef.current.play();
+    } else if (!play && videoSrcRef.current) {
+      videoSrcRef.current.pause();
+    }
+  });
+
   return (
     <div
       ref={videoRef}
@@ -57,10 +67,8 @@ export const Video = ({ src, poster, autoPlay }: IProps) => {
         className={s.video__src}
         src={src}
         poster={poster}
-        // autoPlay={autoPlay}
-        autoPlay
-        muted
         playsInline
+        muted
       />
 
       <div className={s.video__lyrics}>
