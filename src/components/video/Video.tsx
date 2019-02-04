@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { TweenLite } from 'gsap';
 
+import { useTimeUpdate } from 'hooks/use-timeupdate';
+
 import s from './Video.scss';
 
 interface IProps {
@@ -14,42 +16,23 @@ export const Video = ({ src, poster, play }: IProps) => {
   const videoSrcRef = React.useRef<HTMLVideoElement>(null);
   const handleRef = React.useRef<HTMLDivElement>(null);
   const progressRef = React.useRef<HTMLDivElement>(null);
-
-  const onUpdate = () => {
-    if (!videoSrcRef.current || !handleRef.current || !progressRef.current) {
-      return;
-    }
-
-    const left = (videoSrcRef.current.currentTime * (window.innerWidth - 40)) / videoSrcRef.current.duration;
-
-    TweenLite.set(
-      handleRef.current,
-      { left },
-    );
-
-    TweenLite.set(
-      progressRef.current,
-      { width: left },
-    );
-  };
+  const stats = useTimeUpdate(videoSrcRef);
 
   React.useEffect(() => {
-    if (!videoSrcRef.current) {
-      return;
+    if (handleRef.current && progressRef.current) {
+      const left = (stats.currentTime * (window.innerWidth - 40)) / stats.duration;
+
+      TweenLite.set(
+        handleRef.current,
+        { left },
+      );
+
+      TweenLite.set(
+        progressRef.current,
+        { width: left },
+      );
     }
 
-    videoSrcRef.current.addEventListener('timeupdate', onUpdate);
-
-    return () => {
-      if (!videoSrcRef.current) {
-        return;
-      }
-
-      videoSrcRef.current.removeEventListener('timeupdate', onUpdate);
-    };
-  }, []);
-
-  React.useEffect(() => {
     if (play && videoSrcRef.current) {
       videoSrcRef.current.play();
     } else if (!play && videoSrcRef.current) {
