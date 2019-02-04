@@ -108,7 +108,7 @@ export default () => {
 
   return (
     <>
-      <Helmet title="Home" />
+      <Helmet title="Tory Satins and friends" />
 
       <Intro
         introRef={introRef}

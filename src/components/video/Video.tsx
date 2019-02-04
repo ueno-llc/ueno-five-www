@@ -54,10 +54,18 @@ export const Video = ({ src, poster, subtitles, onVideoEnd }: IProps) => {
     }
   });
 
+
+
   return (
     <div
       ref={videoRef}
       className={s(s.video, { show: isMouseMoving })}
+      onClick={() => {
+        const v = videoSrcRef.current;
+        if (v) {
+          v.paused ? v.play() : v.pause();
+        }
+      }}
     >
       <video
         ref={videoSrcRef}
@@ -66,8 +74,6 @@ export const Video = ({ src, poster, subtitles, onVideoEnd }: IProps) => {
         poster={poster}
         autoPlay
         playsInline
-        muted
-        controls
       />
 
       <div className={s.video__subtitles}>

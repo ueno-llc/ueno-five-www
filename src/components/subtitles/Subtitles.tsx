@@ -28,7 +28,7 @@ export const Subtitles = ({ currentTime, subtitles }: IProps) => {
               const isCurrent = currentTime >= start && currentTime <= end;
 
               return (
-                <span style={isCurrent ? { textDecoration: 'underline' } : {}}>{part} </span>
+                <span style={isCurrent ? {} : {}}>{part} </span>
               );
             })}
           </p>
