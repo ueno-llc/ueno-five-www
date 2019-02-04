@@ -29,7 +29,12 @@ $yellow: #ffc600;
   transition-property: border-color, background-color, color, opacity;
 
   & + & {
-    margin-left: $gutter / 2;
+    margin-top: $gutter / 2;
+
+    @media (min-width: $min-1200) {
+      margin-top: 0;
+      margin-left: $gutter / 2;
+    }
   }
 
   &:hover,

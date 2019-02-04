@@ -27,7 +27,10 @@ export const Intro = ({ children, introRef, cover, cover2x, background }: IProps
       style={{ backgroundColor: background.left }}
     >
       <div className={s.intro__borders}>
-        <div className={s.intro__top}>
+        <div
+          className={s.intro__top}
+          style={{ backgroundColor: background.left }}
+        >
           <div className={s.intro__topContainer}>
             <Logo className={s.intro__logo} />
           </div>
@@ -46,6 +49,7 @@ export const Intro = ({ children, introRef, cover, cover2x, background }: IProps
           style={{ backgroundColor: background.right }}
         >
           <img
+            className={s.intro__source}
             src={cover}
             srcSet={srcSet}
           />
