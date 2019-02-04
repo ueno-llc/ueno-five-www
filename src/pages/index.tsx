@@ -128,6 +128,7 @@ export default () => {
           src={require('assets/videos/song.mp4')}
           poster={require('assets/images/poster.jpg')}
           onVideoEnd={onVideoEnd}
+          subtitles={require('subs/subs.json')}
         />
       )}
     </>

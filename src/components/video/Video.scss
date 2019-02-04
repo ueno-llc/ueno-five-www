@@ -18,36 +18,8 @@
     background-color: #000;
   }
 
-  &__lyrics {
-    position: absolute;
-    bottom: 140px;
-
-    width: 100%;
-  }
-
-  &__pointer {
-    position: absolute;
-    top: 0;
-    left: 0;
-
-    width: 13px;
-    height: 13px;
-
-    background-color: $color-yellow;
-    border-radius: 50%;
-  }
-
-  &__text {
-    @include reset-paragraph;
-    @include responsive-font(32, 46);
-
-    font-family: $font-family-akagi;
-    color: $color-yellow;
-    font-weight: 700;
-    line-height: 0.783;
-    text-align: center;
-
-    white-space: nowrap;
+  &__subtitles {
+    position: relative;
   }
 
   &__hover {

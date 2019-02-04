@@ -7,15 +7,19 @@ import { useMouseMove } from 'hooks/use-mousemove';
 
 import Logo from 'assets/svg/logo.svg';
 
+import ISubtitles from 'interfaces/ISubtitles';
+import { Subtitles } from 'components/subtitles/Subtitles';
+
 import s from './Video.scss';
 
 interface IProps {
   src: string;
   poster: string;
+  subtitles: Array<Array<ISubtitles>>;
   onVideoEnd(): void;
 }
 
-export const Video = ({ src, poster, onVideoEnd }: IProps) => {
+export const Video = ({ src, poster, subtitles, onVideoEnd }: IProps) => {
   const videoRef = React.useRef<HTMLDivElement>(null);
   const videoSrcRef = React.useRef<HTMLVideoElement>(null);
   const handleRef = React.useRef<HTMLDivElement>(null);
@@ -63,11 +67,11 @@ export const Video = ({ src, poster, onVideoEnd }: IProps) => {
         autoPlay
         playsInline
         muted
+        controls
       />
 
-      <div className={s.video__lyrics}>
-        {/* <div className={s.video__pointer} /> */}
-        <p className={s.video__text}>Five years, that’s not too long, but it’s half a decade on</p>
+      <div className={s.video__subtitles}>
+        <Subtitles subtitles={subtitles} currentTime={videoProgress.currentTime * 1000} />
       </div>
 
       <div className={s.video__hover}>

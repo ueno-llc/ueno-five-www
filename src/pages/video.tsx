@@ -31,38 +31,33 @@ export default () => {
     };
   });
 
-  console.log(subs);
-
-  const limit = 3000;
-
   return (
     <>
       <video controls src={require('assets/videos/song.mp4')} ref={audioRef} />
-      <p>{currentTime}</p>
       <p>
-        Current:
-        {subs.map(({ start, end, part }: ISubtitle) => {
-          const inRange = currentTime >= start - limit && currentTime <= end + limit;
+        {subs.map((segment: Array<ISubtitle>) => {
+          const first = segment[0];
+          const last = segment[segment.length - 1];
+
+          const inRange = currentTime >= first.start && currentTime <= last.end;
 
           if (!inRange) {
             return null;
           }
 
-          const isCurrent = currentTime >= start && currentTime <= end;
-
           return (
-            <span style={isCurrent ? { backgroundColor: 'pink' } : {}}>{part} </span>
+            <p>
+              {segment.map(({ start, end, part}: ISubtitle) => {
+                const isCurrent = currentTime >= start && currentTime <= end;
+
+                return (
+                  <span style={isCurrent ? { backgroundColor: 'pink' } : {}}>{part} </span>
+                );
+              })}
+            </p>
           );
         })}
       </p>
-      <ul>
-        {subs.map(({ start, end, part }: ISubtitle) => {
-          const isCurrent = currentTime >= start && currentTime <= end;
-          return (
-            <li style={isCurrent ? { backgroundColor: 'pink' } : {}}>{start}–{end}: {part}</li>
-          );
-        })}
-      </ul>
     </>
   );
 };

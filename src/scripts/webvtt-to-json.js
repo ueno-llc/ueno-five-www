@@ -9,7 +9,11 @@ async function main() {
   const vtt = await readFileAsync('./src/subs/subs.vtt');
 
   const json = await vttToJson(vtt.toString('utf8'));
-  console.log(json)
+
+  const jsonShrunk = json.map((i) => {
+    delete i.words;
+    return i;
+  });
 
   await writeFileAsync('./src/subs/subs.json', JSON.stringify(json));
 }
