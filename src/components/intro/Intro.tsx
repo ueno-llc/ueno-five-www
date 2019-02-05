@@ -5,28 +5,35 @@ import Logo from 'assets/svg/logo.svg';
 import s from './Intro.scss';
 
 interface IBackground {
-  left: string;
-  right: string;
+  left: {
+    color: string;
+    image?: string;
+  };
+
+  right: {
+    color: string;
+    image?: string;
+  };
 }
 
 interface IProps {
   children: React.ReactNode;
   introRef: any;
   background: IBackground;
-  image: React.ReactNode;
+  rightImage: React.ReactNode;
 }
 
-export const Intro = ({ children, introRef, background, image }: IProps) => {
+export const Intro = ({ children, introRef, background, rightImage }: IProps) => {
   return (
     <div
       ref={introRef}
       className={s.intro}
-      style={{ backgroundColor: background.left }}
+      style={{ backgroundColor: background.left.color }}
     >
       <div className={s.intro__borders}>
         <div
           className={s.intro__top}
-          style={{ backgroundColor: background.left }}
+          style={{ backgroundColor: background.left.color }}
         >
           <div className={s.intro__topContainer}>
             <Logo className={s.intro__logo} />
@@ -42,11 +49,18 @@ export const Intro = ({ children, introRef, background, image }: IProps) => {
         </div>
 
         <div
-          className={s.intro__illustration}
-          style={{ backgroundColor: background.right }}
+          className={s.intro__imageRight}
+          style={{ backgroundColor: background.right.color }}
         >
-          {image}
+          {rightImage}
         </div>
+
+        {background.left.image && (
+          <img
+            className={s.intro__imageLeft}
+            src={background.left.image}
+          />
+        )}
       </div>
     </div>
   );

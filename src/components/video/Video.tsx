@@ -54,8 +54,6 @@ export const Video = ({ src, poster, subtitles, onVideoEnd }: IProps) => {
     }
   });
 
-
-
   return (
     <div
       ref={videoRef}

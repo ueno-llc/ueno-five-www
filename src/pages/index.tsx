@@ -17,8 +17,8 @@ const Cover = () => (
 const Tory = () => (
   <img
     style={{ alignSelf: 'flex-end', height: '80%', objectFit: 'cover' }}
-    src={require('assets/images/tory.png')}
-    srcSet={`${require('assets/images/tory.png')} 1x, ${require('assets/images/tory@2x.png')} 2x`}
+    src={require('assets/images/tory.jpg')}
+    srcSet={`${require('assets/images/tory.jpg')} 1x, ${require('assets/images/tory@2x.jpg')} 2x`}
   />
 );
 
@@ -83,46 +83,76 @@ export default () => {
   const states = [
     {
       id: 'opening',
-      background: {
-        left: '#002430',
-        right: '#4051b6',
+
+      leftSide: {
+        background: {
+          color: '#fea7a2',
+          image: require('assets/images/flower.jpg'),
+        },
+
+        heading: {
+          text: 'Introducing',
+          color: '#f8faf0',
+        },
+
+        subheading: {
+          text: 'Tory Satins (and friends)',
+          color: '#f8faf0',
+        },
+
+        buttons: [
+          { text: 'Show me!', action: onClick, color: 'white' },
+        ],
       },
-      image: <Cover />,
-      heading: {
-        text: 'Introducing',
-        color: '#fff',
+
+      rightSide: {
+        background: {
+          color: '#ed8781',
+        },
+
+        image: <Cover />,
       },
-      subheading: {
-        text: 'Tory Satins (and friends)',
-        color: '#abb4c2',
-      },
-      buttons: [
-        { text: 'Show me!', action: onClick },
-      ],
     },
     {
       id: 'closing',
-      background: {
-        left: '#c99d06',
-        right: '#ffc600',
+
+      leftSide: {
+        background: {
+          color: '#fda8a3',
+        },
+
+        heading: {
+          text: 'That was sort of fun?',
+          color: '#f8faf0',
+        },
+
+        subheading: {
+          text: 'Right?',
+          color: '#f8faf0',
+        },
+
+        buttons: [
+          { text: 'Watch again', action: onReplay, color: 'pink' },
+          { text: 'Share on Twitter', action: onTwitterShare, color: 'white' },
+        ],
       },
-      image: <Tory />,
-      heading: {
-        text: 'That was sort of fun?',
-        color: '#4d4015',
+
+      rightSide: {
+        background: {
+          color: '#eb6a64',
+        },
+
+        image: <Tory />,
       },
-      subheading: {
-        text: 'Right?',
-        color: '#ffc600',
-      },
-      buttons: [
-        { text: 'Watch again', action: onReplay, color: 'yellow' },
-        { text: 'Share on Twitter', action: onTwitterShare, color: 'white' },
-      ],
     },
   ];
 
   const active = states.find((s) => s.id === screen)!;
+
+  const background = {
+    left: active.leftSide.background,
+    right: active.rightSide.background,
+  };
 
   return (
     <>
@@ -130,13 +160,13 @@ export default () => {
 
       <Intro
         introRef={introRef}
-        image={active.image}
-        background={active.background}
+        rightImage={active.rightSide.image}
+        background={background}
       >
         <Content
-          heading={active.heading}
-          subheading={active.subheading}
-          buttons={active.buttons}
+          heading={active.leftSide.heading}
+          subheading={active.leftSide.subheading}
+          buttons={active.leftSide.buttons}
         />
       </Intro>
 
@@ -144,8 +174,8 @@ export default () => {
         <Video
           src={require('assets/videos/song.mp4')}
           poster={require('assets/images/poster.jpg')}
-          onVideoEnd={onVideoEnd}
           subtitles={require('subs/subs.json')}
+          onVideoEnd={onVideoEnd}
         />
       )}
     </>

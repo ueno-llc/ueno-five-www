@@ -54,6 +54,19 @@
     }
   }
 
+  &__bottom {
+    @media (min-width: $min-768) {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      left: 0;
+
+      height: 72px;
+
+      background-color: #fff;
+    }
+  }
+
   &__container {
     @include container;
 
@@ -75,7 +88,7 @@
     }
   }
 
-  &__illustration {
+  &__imageRight {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -83,6 +96,7 @@
     position: absolute;
     right: 0;
     bottom: 0;
+    z-index: 10;
 
     width: 100%;
     height: 65%;
@@ -95,16 +109,9 @@
     }
   }
 
-  &__bottom {
-    @media (min-width: $min-768) {
-      position: absolute;
-      right: 0;
-      bottom: 0;
-      left: 0;
-
-      height: 72px;
-
-      background-color: #fff;
-    }
+  &__imageLeft {
+    position: absolute;
+    top: 0;
+    right: 50%;
   }
 }
