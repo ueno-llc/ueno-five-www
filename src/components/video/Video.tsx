@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { TweenLite } from 'gsap';
+import Helmet from 'react-helmet';
 
 import Logo from 'assets/svg/logo.svg';
 
@@ -66,6 +67,11 @@ export const Video = ({ src, poster, subtitles, onVideoEnd }: IProps) => {
       className={s(s.video, { show: isMouseMoving })}
       onClick={onClick}
     >
+      <Helmet
+        bodyAttributes={{
+          class: 'black',
+        }}
+      />
       <video
         ref={videoSrcRef}
         className={s.video__src}

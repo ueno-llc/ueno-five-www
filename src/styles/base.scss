@@ -44,6 +44,10 @@ body {
   background: $color-background;
 }
 
+body.black {
+  background-color: #000;
+}
+
 html {
   -webkit-overflow-scrolling: touch;
   overflow: hidden;
