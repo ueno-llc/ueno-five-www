@@ -1,4 +1,6 @@
 import React, { useRef, useEffect } from 'react';
+
+// @ts-ignore
 import subs from 'subs/subs.json';
 
 interface ISubtitle {
@@ -34,8 +36,9 @@ export default () => {
   return (
     <>
       <video controls src={require('assets/videos/song.mp4')} ref={audioRef} />
+
       <p>
-        {subs.map((segment: Array<ISubtitle>) => {
+        {subs.map((segment: ISubtitle[], index: number) => {
           const first = segment[0];
           const last = segment[segment.length - 1];
 
@@ -46,12 +49,12 @@ export default () => {
           }
 
           return (
-            <p>
-              {segment.map(({ start, end, part}: ISubtitle) => {
+            <p key={index}>
+              {segment.map(({ start, end, part}: ISubtitle, i: number) => {
                 const isCurrent = currentTime >= start && currentTime <= end;
 
                 return (
-                  <span style={isCurrent ? { backgroundColor: 'pink' } : {}}>{part} </span>
+                  <span key={i} style={isCurrent ? { backgroundColor: 'pink' } : {}}>{part} </span>
                 );
               })}
             </p>

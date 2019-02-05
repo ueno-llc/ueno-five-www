@@ -6,28 +6,34 @@
 
   width: 100%;
 
-  &__pointer {
-    position: absolute;
-    top: 0;
-    left: 0;
-
-    width: 13px;
-    height: 13px;
-
-    background-color: $color-yellow;
-    border-radius: 50%;
-  }
-
   &__text {
     @include reset-paragraph;
     @include responsive-font(32, 46);
 
     font-family: $font-family-akagi;
-    color: $color-yellow;
+    color: $color-orange;
     font-weight: 700;
     line-height: 0.783;
     text-align: center;
 
     white-space: nowrap;
+  }
+
+  &__pointer {
+    position: absolute;
+    top: -18px;
+
+    width: 8px;
+    height: 8px;
+
+    background-color: $color-orange;
+    border-radius: 50%;
+
+    @media (min-width: $min-768) {
+      top: -28px;
+
+      width: 14px;
+      height: 14px;
+    }
   }
 }

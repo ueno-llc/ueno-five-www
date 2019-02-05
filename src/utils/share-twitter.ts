@@ -9,4 +9,4 @@ export const shareTwitter = () => {
   const res = `https://twitter.com/intent/tweet?text=${encodeURIComponent(concat)}&via=${encodeURIComponent(twitter)}`;
 
   return window.open(res, '', popupConfig);
-}
+};
