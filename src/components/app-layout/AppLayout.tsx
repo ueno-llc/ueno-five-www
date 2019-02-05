@@ -30,6 +30,9 @@ export default ({ children }: IProps) => (
         { name: 'twitter:image', content: shareImage },
         { name: 'twitter:card', content: 'summary' },
         { name: 'twitter:site', content: '@uenodotco' },
+        { name: 'theme-color', content: '#000' },
+        { name: 'msapplication-navbutton-color', content: '#000' },
+        { name: 'apple-mobile-web-app-status-bar-style', content: 'black-translucent' },
       ]}
     >
       <html lang="en" />
