@@ -32,7 +32,7 @@ export default ({ children }: IProps) => (
         { name: 'twitter:site', content: '@uenodotco' },
         { name: 'theme-color', content: '#000' },
         { name: 'msapplication-navbutton-color', content: '#000' },
-        { name: 'apple-mobile-web-app-status-bar-style', content: 'black-translucent' },
+        { name: 'apple-mobile-web-app-status-bar-style', content: 'black' },
       ]}
     >
       <html lang="en" />
