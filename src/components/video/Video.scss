@@ -9,7 +9,7 @@
 
   &.show &__hover {
 
-    @media (min-width: $min-tablet), (pointer: fine) {
+    @media (min-width: $min-tablet) and (pointer: fine) {
       transition-delay: 0s;
       transform: scale(1);
     }
@@ -28,9 +28,13 @@
   }
 
   &__hover {
-    display: none;
 
-    @media (min-width: $min-tablet), (pointer: fine) {
+    @media (max-height: $max-420) {
+      display: none;
+    }
+
+
+    @media (min-width: $min-tablet) and (pointer: fine) {
       @include fit;
       display: block;
 

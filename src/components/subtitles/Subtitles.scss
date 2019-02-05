@@ -1,6 +1,10 @@
 @import '~styles/config';
 
 .subtitles {
+  @media (max-height: $max-420) {
+    bottom: 70px;
+  }
+
   position: absolute;
   bottom: 140px;
 
