@@ -55,39 +55,31 @@ export const Subtitles = ({ currentTime, subtitles }: IProps) => {
   };
 
   React.useEffect(() => {
-    if (!ballRef.current) {
+    const ball = ballRef.current;
+
+    if (!ball) {
       return;
     }
 
     const active = sentences.filter((el: IRect) => el.active)[0];
 
     if (!active) {
-      timeline.set(
-        ballRef.current,
-        { opacity: 0 },
-      );
-
       return;
     }
 
     timeline.to(
-      ballRef.current,
-      0.2,
+      ball,
+      active.i === 0 ? 0 : 0.2,
       {
         opacity: 1,
         x: active.x + (active.w / 2) - (isMobile ? 4 : 7),
         ease: Back.easeInOut.config(0.75),
       },
     );
-  });
+  }, [sentences]);
 
   return (
     <div className={s.subtitles}>
-      <span
-        ref={ballRef}
-        className={s.subtitles__pointer}
-      />
-
       {subtitles.map((segment: ISubtitles[], i: number) => {
         const [first] = segment;
         const last = segment[segment.length - 1];
@@ -98,20 +90,27 @@ export const Subtitles = ({ currentTime, subtitles }: IProps) => {
         }
 
         return (
-          <p key={`${first.part}-${i}`} className={s.subtitles__text}>
-            {segment.filter((sub: ISubtitles) => sub.part).map(({ start, end, part }: ISubtitles, ii: number) => {
-              const isCurrent = currentTime >= start && currentTime <= end;
+          <>
+            <span
+              ref={ballRef}
+              className={s.subtitles__pointer}
+            />
 
-              return (
-                <span
-                  ref={(el: HTMLSpanElement) => registerPart(el, ii, isCurrent)}
-                  key={`${part}-${ii}`}
-                >
-                  {`${part} `}
-                </span>
-              );
-            })}
-          </p>
+            <p key={`${first.part}-${i}`} className={s.subtitles__text}>
+              {segment.filter((sub: ISubtitles) => sub.part).map(({ start, end, part }: ISubtitles, ii: number) => {
+                const isCurrent = currentTime >= start && currentTime <= end;
+
+                return (
+                  <span
+                    ref={(el: HTMLSpanElement) => registerPart(el, ii, isCurrent)}
+                    key={`${part}-${ii}`}
+                  >
+                    {`${part} `}
+                  </span>
+                );
+              })}
+            </p>
+          </>
         );
       })}
     </div>
