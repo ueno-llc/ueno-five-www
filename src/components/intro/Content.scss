@@ -20,7 +20,11 @@
 
     margin-bottom: 5px;
 
-    color: #fff;
+    color: #000;
+
+    @media (min-width: $min-768) {
+      color: #f8faf0;
+    }
   }
 
   &__subheading {
@@ -28,7 +32,11 @@
 
     margin-bottom: 35px;
 
-    color: #abb4c2;
+    color: #999;
+
+    @media (min-width: $min-768) {
+      color: #f8faf0;
+    }
   }
 
   &__buttons {

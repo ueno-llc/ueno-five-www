@@ -1,33 +1,35 @@
 import * as React from 'react';
 
+import { useResize } from 'hooks/use-resize';
+
 import Logo from 'assets/svg/logo.svg';
 
 import s from './Intro.scss';
 
-interface IBackground {
-  left: string;
-  right: string;
+interface IRight {
+  color: string;
+  imagePosition: string;
+  image: string;
+  image2x: string;
 }
 
 interface IProps {
   children: React.ReactNode;
   introRef: any;
-  background: IBackground;
-  image: React.ReactNode;
+  left?: string;
+  right: IRight;
 }
 
-export const Intro = ({ children, introRef, background, image }: IProps) => {
+export const Intro = ({ children, introRef, left, right }: IProps) => {
+  const [isMobile] = useResize();
+
   return (
     <div
       ref={introRef}
       className={s.intro}
-      style={{ backgroundColor: background.left }}
     >
       <div className={s.intro__borders}>
-        <div
-          className={s.intro__top}
-          style={{ backgroundColor: background.left }}
-        >
+        <div className={s.intro__top}>
           <div className={s.intro__topContainer}>
             <Logo className={s.intro__logo} />
           </div>
@@ -42,11 +44,24 @@ export const Intro = ({ children, introRef, background, image }: IProps) => {
         </div>
 
         <div
-          className={s.intro__illustration}
-          style={{ backgroundColor: background.right }}
+          className={s(s.intro__imageRight, { isMobile })}
+          style={{ backgroundColor: right.color }}
         >
-          {image}
+          {!isMobile && (
+            <img
+              className={s(s.intro__source, right.imagePosition)}
+              src={right.image}
+              srcSet={`${right.image} 1x, ${right.image2x} 2x`}
+            />
+          )}
         </div>
+
+        {left && (
+          <img
+            className={s.intro__imageLeft}
+            src={left}
+          />
+        )}
       </div>
     </div>
   );

@@ -35,5 +35,5 @@ export const Button = (props: IButtonProps) => {
 };
 
 Button.defaultProps = {
-  color: 'blue',
+  color: 'white',
 };

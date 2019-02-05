@@ -3,6 +3,7 @@
 $btn-height: 54px;
 $blue: #4051b6;
 $yellow: #ffc600;
+$pink: #ec8d87;
 
 .button {
   @include reset-button;
@@ -42,21 +43,13 @@ $yellow: #ffc600;
     outline: none;
   }
 
-  &.blue {
-    background-color: $blue;
-
-    &:hover {
-      background-color: darken($blue, 5%);
-    }
-  }
-
-  &.yellow {
+  &.pink {
     color: #000;
 
-    background-color: $yellow;
+    background-color: $pink;
 
     &:hover {
-      background-color: darken($yellow, 2%);
+      background-color: darken($pink, 2%);
     }
   }
 
@@ -67,6 +60,16 @@ $yellow: #ffc600;
 
     &:hover {
       background-color: darken(#fff, 5%);
+    }
+  }
+
+  &.orange {
+    color: #fff;
+
+    background-color: #ec6a62;
+
+    &:hover {
+      background-color: darken(#ec6a62, 5%);
     }
   }
 
