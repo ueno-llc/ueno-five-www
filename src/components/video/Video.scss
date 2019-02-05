@@ -8,7 +8,6 @@
   overflow: hidden;
 
   &.show &__hover {
-
     @media (min-width: $min-tablet) and (pointer: fine) {
       transition-delay: 0s;
       transform: scale(1);
@@ -28,14 +27,13 @@
   }
 
   &__hover {
-
     @media (max-height: $max-420) {
       display: none;
     }
 
-
     @media (min-width: $min-tablet) and (pointer: fine) {
       @include fit;
+
       display: block;
 
       box-shadow: inset 0 0 0 20px #fff;
@@ -100,34 +98,5 @@
 
       background-color: #fff;
     }
-  }
-
-  &__length {
-    width: 100%;
-    height: 1px;
-
-    background-color: #e7e7e7;
-  }
-
-  &__handle {
-    position: absolute;
-
-    width: 10px;
-    height: 10px;
-
-    margin-top: -4px;
-    margin-left: 20px;
-
-    background-color: #000;
-    border-radius: 10px;
-  }
-
-  &__progess {
-    position: absolute;
-
-    width: 0;
-    height: 1px;
-
-    background-color: #000;
   }
 }

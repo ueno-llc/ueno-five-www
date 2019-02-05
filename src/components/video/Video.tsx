@@ -1,6 +1,8 @@
+import 'styles/range.css';
+
 import * as React from 'react';
-import { TweenLite } from 'gsap';
 import Helmet from 'react-helmet';
+import InputRange from 'react-input-range';
 
 import Logo from 'assets/svg/logo.svg';
 
@@ -21,17 +23,29 @@ interface IProps {
 export const Video = ({ src, poster, subtitles, onVideoEnd }: IProps) => {
   const videoRef = React.useRef<HTMLDivElement>(null);
   const videoSrcRef = React.useRef<HTMLVideoElement>(null);
-  const handleRef = React.useRef<HTMLDivElement>(null);
-  const progressRef = React.useRef<HTMLDivElement>(null);
-  const videoProgress = useVideoUpdate(videoSrcRef);
+  const [rangeValue, setRangeValue] = React.useState(0);
+  const { currentTime, duration } = useVideoUpdate(videoSrcRef);
   const isVideoEnd = useVideoEnd(videoSrcRef);
   const isMouseMoving = useMouseMove(videoRef);
 
   const onClick = () => {
-    const v = videoSrcRef.current;
+    const video = videoSrcRef.current;
 
-    if (v) {
-      v.paused ? v.play() : v.pause();
+    if (video) {
+      video.paused ? video.play() : video.pause();
+    }
+  };
+
+  const onChange = (value: any) => {
+    const video = videoSrcRef.current;
+
+    if (video) {
+      video.pause();
+
+      const time = (value * duration) / 100;
+
+      video.currentTime = time;
+      setRangeValue(value);
     }
   };
 
@@ -39,27 +53,17 @@ export const Video = ({ src, poster, subtitles, onVideoEnd }: IProps) => {
     if (isVideoEnd) {
       onVideoEnd();
     }
-  });
+  }, [isVideoEnd]);
 
   React.useEffect(() => {
-    if (handleRef.current && progressRef.current) {
-      const left = (videoProgress.currentTime * (window.innerWidth - 40)) / videoProgress.duration;
+    const progress = (currentTime / duration) * 100;
 
-      if (isNaN(left)) {
-        return;
-      }
-
-      TweenLite.set(
-        handleRef.current,
-        { left },
-      );
-
-      TweenLite.set(
-        progressRef.current,
-        { width: left },
-      );
+    if (isNaN(progress) || progress > 100) {
+      return;
     }
-  });
+
+    setRangeValue(progress);
+  }, [currentTime]);
 
   return (
     <div
@@ -67,11 +71,8 @@ export const Video = ({ src, poster, subtitles, onVideoEnd }: IProps) => {
       className={s(s.video, { show: isMouseMoving })}
       onClick={onClick}
     >
-      <Helmet
-        bodyAttributes={{
-          class: 'black',
-        }}
-      />
+      <Helmet bodyAttributes={{ class: 'black' }} />
+
       <video
         ref={videoSrcRef}
         className={s.video__src}
@@ -84,7 +85,7 @@ export const Video = ({ src, poster, subtitles, onVideoEnd }: IProps) => {
       <div className={s.video__subtitles}>
         <Subtitles
           subtitles={subtitles}
-          currentTime={videoProgress.currentTime * 1000}
+          currentTime={currentTime * 1000}
         />
       </div>
 
@@ -96,17 +97,13 @@ export const Video = ({ src, poster, subtitles, onVideoEnd }: IProps) => {
         </div>
 
         <div className={s.video__controls}>
-          <div className={s.video__length}>
-            <div
-              ref={handleRef}
-              className={s.video__handle}
-            />
-
-            <div
-              ref={progressRef}
-              className={s.video__progess}
-            />
-          </div>
+          <InputRange
+            maxValue={100}
+            step={0.01}
+            value={rangeValue}
+            onChange={onChange}
+            formatLabel={() => ''}
+          />
         </div>
       </div>
     </div>
