@@ -64,10 +64,15 @@
   }
 
   &__container {
-    @include container;
+    @media (max-height: 823px) {
+      height: 50%;
+    }
 
-    @media (max-width: $max-768) {
-      height: 35%;
+    @include container;
+    height: 35%;
+
+    @media (min-width: $min-768) {
+      height: 100%;
     }
   }
 
@@ -85,6 +90,10 @@
   }
 
   &__imageRight {
+    @media (max-height: 823px) {
+      height: 50%;
+    }
+
     display: flex;
     align-items: center;
     justify-content: center;
@@ -110,6 +119,8 @@
 
       background-image: none;
     }
+
+
   }
 
   &__source {
