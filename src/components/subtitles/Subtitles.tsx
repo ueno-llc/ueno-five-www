@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { TimelineLite, Back } from 'gsap';
+import { TimelineLite, Back, TweenLite } from 'gsap';
 
 import { useResize } from 'hooks/use-resize';
 
@@ -11,7 +11,12 @@ export interface ISubtitles {
   part: string;
 }
 
-interface IRect {
+interface ISegment {
+  i: number;
+  w: number;
+}
+
+interface IPart {
   i: number;
   x: number;
   y: number;
@@ -25,10 +30,33 @@ interface IProps {
 }
 
 export const Subtitles = ({ currentTime, subtitles }: IProps) => {
+  const subtitlesRef = React.useRef<HTMLDivElement>(null);
   const ballRef = React.useRef<HTMLSpanElement>(null);
-  const sentences: IRect[] = [];
+  const segments: ISegment[] = [];
+  const parts: IPart[] = [];
   const timeline = new TimelineLite();
-  const [isMobile] = useResize();
+  const [isMobile, windowWidth] = useResize();
+
+  const registerSegment = (el: HTMLParagraphElement, index: number) => {
+    let item = { i: 0, w: 0 };
+
+    if (!el) {
+      return;
+    }
+
+    if (segments[index]) {
+      item = segments[index];
+    }
+
+    if (item.w === 0) {
+      segments[index] = item;
+
+      const { width } = el.getBoundingClientRect() as any;
+
+      item.i = index;
+      item.w = width;
+    }
+  };
 
   const registerPart = (el: HTMLSpanElement, index: number, active: boolean) => {
     let item = { i: 0, x: 0, y: 0, w: 0, active: false };
@@ -37,12 +65,12 @@ export const Subtitles = ({ currentTime, subtitles }: IProps) => {
       return;
     }
 
-    if (sentences[index]) {
-      item = sentences[index];
+    if (parts[index]) {
+      item = parts[index];
     }
 
     if (item.w === 0) {
-      sentences[index] = item;
+      parts[index] = item;
 
       const { x, y, width } = el.getBoundingClientRect() as any;
 
@@ -55,13 +83,49 @@ export const Subtitles = ({ currentTime, subtitles }: IProps) => {
   };
 
   React.useEffect(() => {
+    console.log('-segments', segments);
+    // console.log('-windowWidth', windowWidth);
+
+    if (!subtitlesRef.current) {
+      return;
+    }
+
+    // console.log('-segments[0]', segments[0]);
+
+    // if (segments[0].w > windowWidth) {
+    //   const diff =  segments[0].w - Number(windowWidth);
+
+    //   console.log('-diff', diff);
+
+    //   // TweenLite.to(
+    //   //   subtitlesRef.current,
+    //   //   1.5,
+    //   //   {  }
+    //   // );
+    // }
+
+    const p = subtitlesRef.current.querySelector('p')
+    // console.log('-p', subtitlesRef.current.querySelector('p'));
+
+    if (!p) {
+      return;
+    }
+
+    TweenLite.to(
+      subtitlesRef.current.querySelector('p'),
+      1.5,
+      { x: -140 },
+    );
+  }, [segments]);
+
+  React.useEffect(() => {
     const ball = ballRef.current;
 
     if (!ball) {
       return;
     }
 
-    const active = sentences.filter((el: IRect) => el.active)[0];
+    const active = parts.filter((el: IPart) => el.active)[0];
 
     if (!active) {
       return;
@@ -76,14 +140,27 @@ export const Subtitles = ({ currentTime, subtitles }: IProps) => {
         ease: Back.easeInOut.config(0.75),
       },
     );
-  }, [sentences]);
+  }, [parts]);
 
   return (
-    <div className={s.subtitles}>
+    <div
+      ref={subtitlesRef}
+      className={s.subtitles}
+    >
       {subtitles.map((segment: ISubtitles[], i: number) => {
         const [first] = segment;
         const last = segment[segment.length - 1];
         const inRange = currentTime >= first.start && currentTime <= last.end;
+        // console.log('-segment', segment);
+
+        // console.log('-first', first);
+
+        const duration = first.start + last.end;
+        // console.log('-duration', duration / 1000);
+
+        // const duration = segment.reduce(acc, cur => {
+        //   return cur.
+        // }, 0);
 
         if (!inRange) {
           return null;
@@ -96,7 +173,11 @@ export const Subtitles = ({ currentTime, subtitles }: IProps) => {
               className={s.subtitles__pointer}
             />
 
-            <p key={`${first.part}-${i}`} className={s.subtitles__text}>
+            <p
+              ref={(el: HTMLParagraphElement) => registerSegment(el, i)}
+              key={`${first.part}-${i}`}
+              className={s.subtitles__text}
+            >
               {segment.filter((sub: ISubtitles) => sub.part).map(({ start, end, part }: ISubtitles, ii: number) => {
                 const isCurrent = currentTime >= start && currentTime <= end;
 

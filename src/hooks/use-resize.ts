@@ -1,12 +1,8 @@
 import * as React from 'react';
 
-interface ISizes {
-  width: number;
-  height: number;
-}
-
 export const useResize = () => {
-  const [sizes, setSizes] = React.useState<ISizes>({ width: 0, height: 0 });
+  const [windowWidth, setWidth] = React.useState<number>(0);
+  const [windowHeight, setHeight] = React.useState<number>(0);
   const [mobile, setMobile] = React.useState<boolean>(false);
 
   const onResize = () => {
@@ -14,7 +10,8 @@ export const useResize = () => {
       return;
     }
 
-    setSizes({ width: window.innerWidth, height: window.innerHeight });
+    setWidth(window.innerWidth);
+    setHeight(window.innerHeight);
     setMobile(window.matchMedia('(max-width: 767px)').matches);
   };
 
@@ -33,6 +30,7 @@ export const useResize = () => {
 
   return [
     mobile,
-    sizes,
+    windowWidth,
+    windowHeight,
   ];
 };
