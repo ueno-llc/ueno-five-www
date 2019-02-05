@@ -1,21 +1,19 @@
 import * as React from 'react';
 import { TweenLite } from 'gsap';
 
+import Logo from 'assets/svg/logo.svg';
+
 import { useVideoUpdate } from 'hooks/use-video-update';
 import { useVideoEnd } from 'hooks/use-video-end';
 import { useMouseMove } from 'hooks/use-mousemove';
-
-import Logo from 'assets/svg/logo.svg';
-
-import ISubtitles from 'interfaces/ISubtitles';
-import { Subtitles } from 'components/subtitles/Subtitles';
+import { Subtitles, ISubtitles } from 'components/subtitles/Subtitles';
 
 import s from './Video.scss';
 
 interface IProps {
   src: string;
   poster: string;
-  subtitles: Array<Array<ISubtitles>>;
+  subtitles: ISubtitles[][];
   onVideoEnd(): void;
 }
 
@@ -27,6 +25,14 @@ export const Video = ({ src, poster, subtitles, onVideoEnd }: IProps) => {
   const videoProgress = useVideoUpdate(videoSrcRef);
   const isVideoEnd = useVideoEnd(videoSrcRef);
   const isMouseMoving = useMouseMove(videoRef);
+
+  const onClick = () => {
+    const v = videoSrcRef.current;
+
+    if (v) {
+      v.paused ? v.play() : v.pause();
+    }
+  };
 
   React.useEffect(() => {
     if (isVideoEnd) {
@@ -58,12 +64,7 @@ export const Video = ({ src, poster, subtitles, onVideoEnd }: IProps) => {
     <div
       ref={videoRef}
       className={s(s.video, { show: isMouseMoving })}
-      onClick={() => {
-        const v = videoSrcRef.current;
-        if (v) {
-          v.paused ? v.play() : v.pause();
-        }
-      }}
+      onClick={onClick}
     >
       <video
         ref={videoSrcRef}
@@ -75,7 +76,10 @@ export const Video = ({ src, poster, subtitles, onVideoEnd }: IProps) => {
       />
 
       <div className={s.video__subtitles}>
-        <Subtitles subtitles={subtitles} currentTime={videoProgress.currentTime * 1000} />
+        <Subtitles
+          subtitles={subtitles}
+          currentTime={videoProgress.currentTime * 1000}
+        />
       </div>
 
       <div className={s.video__hover}>

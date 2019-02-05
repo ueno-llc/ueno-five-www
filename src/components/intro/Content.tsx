@@ -43,4 +43,4 @@ export const Content = ({ heading, subheading, buttons }: IProps) => {
       </div>
     </div>
   );
-}
+};
