@@ -1,40 +1,35 @@
 import * as React from 'react';
 
+import { useResize } from 'hooks/use-resize';
+
 import Logo from 'assets/svg/logo.svg';
 
 import s from './Intro.scss';
 
-interface IBackground {
-  left: {
-    color: string;
-    image?: string;
-  };
-
-  right: {
-    color: string;
-    image?: string;
-  };
+interface IRight {
+  color: string;
+  imagePosition: string;
+  image: string;
+  image2x: string;
 }
 
 interface IProps {
   children: React.ReactNode;
   introRef: any;
-  background: IBackground;
-  rightImage: React.ReactNode;
+  left?: string;
+  right: IRight;
 }
 
-export const Intro = ({ children, introRef, background, rightImage }: IProps) => {
+export const Intro = ({ children, introRef, left, right }: IProps) => {
+  const [isMobile] = useResize();
+
   return (
     <div
       ref={introRef}
       className={s.intro}
-      style={{ backgroundColor: background.left.color }}
     >
       <div className={s.intro__borders}>
-        <div
-          className={s.intro__top}
-          style={{ backgroundColor: background.left.color }}
-        >
+        <div className={s.intro__top}>
           <div className={s.intro__topContainer}>
             <Logo className={s.intro__logo} />
           </div>
@@ -49,16 +44,22 @@ export const Intro = ({ children, introRef, background, rightImage }: IProps) =>
         </div>
 
         <div
-          className={s.intro__imageRight}
-          style={{ backgroundColor: background.right.color }}
+          className={s(s.intro__imageRight, { isMobile })}
+          style={{ backgroundColor: right.color }}
         >
-          {rightImage}
+          {!isMobile && (
+            <img
+              className={s(s.intro__source, right.imagePosition)}
+              src={right.image}
+              srcSet={`${right.image} 1x, ${right.image2x} 2x`}
+            />
+          )}
         </div>
 
-        {background.left.image && (
+        {left && (
           <img
             className={s.intro__imageLeft}
-            src={background.left.image}
+            src={left}
           />
         )}
       </div>

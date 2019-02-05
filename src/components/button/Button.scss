@@ -43,14 +43,6 @@ $pink: #ec8d87;
     outline: none;
   }
 
-  &.blue {
-    background-color: $blue;
-
-    &:hover {
-      background-color: darken($blue, 5%);
-    }
-  }
-
   &.pink {
     color: #000;
 
@@ -68,6 +60,16 @@ $pink: #ec8d87;
 
     &:hover {
       background-color: darken(#fff, 5%);
+    }
+  }
+
+  &.orange {
+    color: #fff;
+
+    background-color: #ec6a62;
+
+    &:hover {
+      background-color: darken(#ec6a62, 5%);
     }
   }
 
