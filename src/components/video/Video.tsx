@@ -3,6 +3,7 @@ import 'styles/range.css';
 import * as React from 'react';
 import Helmet from 'react-helmet';
 import InputRange from 'react-input-range';
+import { TimelineLite, Power4 } from 'gsap';
 
 import Logo from 'assets/svg/logo.svg';
 
@@ -23,10 +24,109 @@ interface IProps {
 export const Video = ({ src, poster, subtitles, onVideoEnd }: IProps) => {
   const videoRef = React.useRef<HTMLDivElement>(null);
   const videoSrcRef = React.useRef<HTMLVideoElement>(null);
+  const topEl = React.useRef<HTMLDivElement>(null);
+  const rightEl = React.useRef<HTMLDivElement>(null);
+  const leftEl = React.useRef<HTMLDivElement>(null);
+  const bottomEl = React.useRef<HTMLDivElement>(null);
   const [rangeValue, setRangeValue] = React.useState(0);
   const { currentTime, duration } = useVideoUpdate(videoSrcRef);
   const isVideoEnd = useVideoEnd(videoSrcRef);
   const isMouseMoving = useMouseMove(videoRef);
+  const timeline = new TimelineLite();
+
+  const animateOut = () => {
+
+    if (
+      !topEl.current &&
+      !bottomEl.current &&
+      !leftEl.current &&
+      !rightEl.current
+    ) {
+      return;
+    }
+
+    const time = 0.7;
+
+    timeline.to(
+      topEl.current,
+      time,
+      {
+        y: 0,
+        ease: Power4.easeInOut,
+      },
+    ).to(
+      bottomEl.current,
+      time,
+      {
+        y: 0,
+        ease: Power4.easeInOut,
+      },
+      `-=${time}`,
+    ).to(
+      rightEl.current,
+      time,
+      {
+        x: 0,
+        ease: Power4.easeInOut,
+      },
+      `-=${time}`,
+    ).to(
+      leftEl.current,
+      time,
+      {
+        x: 0,
+        ease: Power4.easeInOut,
+      },
+      `-=${time}`,
+    );
+  };
+
+  const animateIn = () => {
+
+    if (
+      !topEl.current &&
+      !bottomEl.current &&
+      !leftEl.current &&
+      !rightEl.current
+    ) {
+      return;
+    }
+
+    const time = 0.7;
+
+    timeline.to(
+      topEl.current,
+      time,
+      {
+        y: 74,
+        ease: Power4.easeInOut,
+      },
+    ).to(
+      bottomEl.current,
+      time,
+      {
+        y: -74,
+        ease: Power4.easeInOut,
+      },
+      `-=${time}`,
+    ).to(
+      rightEl.current,
+      time,
+      {
+        x: -20,
+        ease: Power4.easeInOut,
+      },
+      `-=${time}`,
+    ).to(
+      leftEl.current,
+      time,
+      {
+        x: 20,
+        ease: Power4.easeInOut,
+      },
+      `-=${time}`,
+    );
+  };
 
   const onClick = () => {
     const video = videoSrcRef.current;
@@ -56,6 +156,14 @@ export const Video = ({ src, poster, subtitles, onVideoEnd }: IProps) => {
   }, [isVideoEnd]);
 
   React.useEffect(() => {
+    if (isMouseMoving) {
+      animateIn();
+    } else {
+      animateOut();
+    }
+  }, [isMouseMoving]);
+
+  React.useEffect(() => {
     const progress = (currentTime / duration) * 100;
 
     if (isNaN(progress) || progress > 100) {
@@ -68,7 +176,7 @@ export const Video = ({ src, poster, subtitles, onVideoEnd }: IProps) => {
   return (
     <div
       ref={videoRef}
-      className={s(s.video, { show: isMouseMoving })}
+      className={s.video}
       onClick={onClick}
     >
       <Helmet bodyAttributes={{ class: 'black' }} />
@@ -90,13 +198,16 @@ export const Video = ({ src, poster, subtitles, onVideoEnd }: IProps) => {
       </div>
 
       <div className={s.video__hover}>
-        <div className={s.video__header}>
+        <div className={s.video__header} ref={topEl}>
           <div className={s.video__container}>
             <Logo className={s.video__logo} />
           </div>
         </div>
 
-        <div className={s.video__controls}>
+        <div className={s.video__right} ref={rightEl} />
+        <div className={s.video__left} ref={leftEl} />
+
+        <div className={s.video__controls} ref={bottomEl} >
           <InputRange
             maxValue={100}
             step={0.01}

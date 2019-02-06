@@ -34,7 +34,6 @@ export const Intro = ({ children, introRef, left, right }: IProps) => {
             <Logo className={s.intro__logo} />
           </div>
         </div>
-
         <div className={s.intro__bottom} />
       </div>
 
