@@ -1,6 +1,6 @@
 export const shareTwitter = () => {
-  const title = 'Introducing Tory Satins (and friends)';
-  const description = 'Ueno is turning 5, we made a music for that special moment!';
+  const title = 'Tory Satins';
+  const description = 'The flowers of my youth';
   const href = 'https://5.ueno.co';
   const twitter = 'uenodotco';
 

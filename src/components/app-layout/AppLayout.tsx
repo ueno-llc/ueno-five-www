@@ -11,7 +11,7 @@ interface IProps {
 }
 
 const seoTitle = 'Tory Satins';
-const seoDescription = 'Tory Satins - The flower of my youth.';
+const seoDescription = 'The flowers of my youth';
 
 export default ({ children }: IProps) => (
   <div className={s.layout}>
