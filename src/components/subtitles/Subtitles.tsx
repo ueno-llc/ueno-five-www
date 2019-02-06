@@ -1,7 +1,6 @@
 import * as React from 'react';
-import { TimelineLite, Back } from 'gsap';
-
-import { useResize } from 'hooks/use-resize';
+import { TweenMax, Linear } from 'gsap';
+import { isEmpty, flatten } from 'lodash';
 
 import s from './Subtitles.scss';
 
@@ -12,11 +11,9 @@ export interface ISubtitles {
 }
 
 interface IRect {
-  i: number;
   x: number;
-  y: number;
-  w: number;
-  active: boolean;
+  width: number;
+  active?: boolean;
 }
 
 interface IProps {
@@ -24,61 +21,98 @@ interface IProps {
   subtitles: ISubtitles[][];
 }
 
+interface ILyrics {
+  index: number;
+  spans: IRect[];
+  duration: number;
+  registered: boolean;
+}
+
 export const Subtitles = ({ currentTime, subtitles }: IProps) => {
   const ballRef = React.useRef<HTMLSpanElement>(null);
-  const sentences: IRect[] = [];
-  const timeline = new TimelineLite();
-  const [isMobile] = useResize();
+  const offset = -200;
 
-  const registerPart = (el: HTMLSpanElement, index: number, active: boolean) => {
-    let item = { i: 0, x: 0, y: 0, w: 0, active: false };
+  const [currentLyrics, setCurrentLyrics] = React.useState<ILyrics>({
+    index: -1,
+    spans: [],
+    duration: 0,
+    registered: false,
+  });
 
-    if (!el) {
+  const registerLyrics = (el: HTMLParagraphElement, duration: number, index: number) => {
+    if ((currentLyrics.index === index && currentLyrics.registered) || !el) {
       return;
     }
 
-    if (sentences[index]) {
-      item = sentences[index];
-    }
+    const spans = Array.from(el.querySelectorAll('span')).map((span) => {
+      const { x, width } = span.getBoundingClientRect() as any;
 
-    if (item.w === 0) {
-      sentences[index] = item;
+      return {
+        x,
+        width,
+      };
+    });
 
-      const { x, y, width } = el.getBoundingClientRect() as any;
-
-      item.i = index;
-      item.x = x;
-      item.y = y;
-      item.w = width;
-      item.active = active;
-    }
+    setCurrentLyrics({
+      index,
+      spans,
+      duration,
+      registered: true,
+    });
   };
 
   React.useEffect(() => {
     const ball = ballRef.current;
+    const { spans } = currentLyrics;
 
     if (!ball) {
       return;
     }
 
-    const active = sentences.filter((el: IRect) => el.active)[0];
+    if (isEmpty(spans)) {
+      TweenMax.set(
+        ball,
+        {
+          opacity: 0,
+        },
+      );
 
-    if (!active) {
       return;
     }
 
-    timeline.to(
+    TweenMax.set(
       ball,
-      active.i === 0 ? 0 : 0.2,
       {
         opacity: 1,
-        x: active.x + (active.w / 2) - (isMobile ? 4 : 7),
-        ease: Back.easeInOut.config(0.75),
+        x: spans[0].x + (spans[0].width / 2),
       },
     );
-  }, [sentences]);
 
-  const offset = -200;
+    const values = spans.map((span, index) => {
+      if (!spans[index + 1]) {
+        return;
+      }
+
+      return [
+        { x: span.x + ((span.width + spans[index + 1].width) / 2), y: -80 },
+        { x: spans[index + 1].x + (spans[index + 1].width / 2), y: 0 },
+        { x: spans[index + 1].x + (spans[index + 1].width / 2), y: 0 },
+      ];
+    }).filter((val) => val);
+
+    TweenMax.to(
+      ball,
+      currentLyrics.duration / 1000,
+      {
+        bezier: {
+          type: 'soft',
+          values: flatten(values as any),
+          autoRotate: true,
+        },
+        ease: Linear.easeNone,
+      },
+    );
+  }, [currentLyrics]);
 
   return (
     <div className={s.subtitles}>
@@ -86,6 +120,7 @@ export const Subtitles = ({ currentTime, subtitles }: IProps) => {
         const [first] = segment;
         const last = segment[segment.length - 1];
         const inRange = currentTime >= (first.start + offset) && currentTime <= (last.end + offset);
+        const duration = last.end - first.start;
 
         if (!inRange) {
           return null;
@@ -98,14 +133,17 @@ export const Subtitles = ({ currentTime, subtitles }: IProps) => {
               className={s.subtitles__pointer}
             />
 
-            <p className={s.subtitles__text}>
+            <p
+              ref={(el: HTMLParagraphElement) => registerLyrics(el, duration, i)}
+              className={s.subtitles__text}
+            >
               {segment.filter((sub: ISubtitles) => sub.part).map(({ start, end, part }: ISubtitles, ii: number) => {
                 const isCurrent = currentTime >= (start + offset) && currentTime <= (end + offset);
 
                 return (
                   <span
-                    ref={(el: HTMLSpanElement) => registerPart(el, ii, isCurrent)}
                     key={`${part}-${ii}`}
+                    // style={{ color: isCurrent ? '#fff' : '' }}
                   >
                     {`${part} `}
                   </span>

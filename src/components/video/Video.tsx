@@ -191,6 +191,7 @@ export const Video = ({ src, srcMobile, poster, subtitles, onVideoEnd }: IProps)
         poster={poster}
         autoPlay
         playsInline
+        muted
       />
 
       <div className={s.video__subtitles}>

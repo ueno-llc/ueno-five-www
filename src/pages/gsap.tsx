@@ -20,7 +20,7 @@ export default () => {
       return;
     }
 
-    const spans = Array.from(p.querySelectorAll('span')).map(span => {
+    const spans = Array.from(p.querySelectorAll('span')).map((span) => {
       const { x, width } = span.getBoundingClientRect();
 
       return {
