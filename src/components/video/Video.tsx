@@ -34,13 +34,13 @@ export const Video = ({ src, srcMobile, poster, subtitles, onVideoEnd }: IProps)
   const isVideoEnd = useVideoEnd(videoSrcRef);
   const isMouseMoving = useMouseMove(videoRef);
   const timeline = new TimelineLite();
+  const isMobile = window.matchMedia('(max-width: 920px)').matches;
 
   const animateOut = () => {
-
     if (
-      !topEl.current &&
-      !bottomEl.current &&
-      !leftEl.current &&
+      !topEl.current ||
+      !bottomEl.current ||
+      !leftEl.current ||
       !rightEl.current
     ) {
       return;
@@ -83,11 +83,10 @@ export const Video = ({ src, srcMobile, poster, subtitles, onVideoEnd }: IProps)
   };
 
   const animateIn = () => {
-
     if (
-      !topEl.current &&
-      !bottomEl.current &&
-      !leftEl.current &&
+      !topEl.current ||
+      !bottomEl.current ||
+      !leftEl.current ||
       !rightEl.current
     ) {
       return;
@@ -173,8 +172,6 @@ export const Video = ({ src, srcMobile, poster, subtitles, onVideoEnd }: IProps)
 
     setRangeValue(progress);
   }, [currentTime]);
-
-  const isMobile = window.matchMedia('(max-width: 920px)').matches;
 
   return (
     <div
