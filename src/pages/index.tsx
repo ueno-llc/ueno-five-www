@@ -111,8 +111,10 @@ export default () => {
 
       {play && (
         <Video
-          src={require('assets/videos/song.mp4')}
-          srcMobile={require('assets/videos/song_480.mp4')}
+          // src={require('assets/videos/song.mp4')}
+          src="https://cdn.ueno.co/song.mp4"
+          // srcMobile={require('assets/videos/song_480.mp4')}
+          srcMobile="https://cdn.ueno.co/song_480.mp4"
           poster={require('assets/images/poster.jpg')}
           subtitles={require('subs/subs.json')}
           subtitlesMobile={require('subs/subs-mobile.json')}
