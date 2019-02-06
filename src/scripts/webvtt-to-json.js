@@ -15,7 +15,7 @@ async function main() {
     return i;
   });
 
-  await writeFileAsync('./src/subs/subs.json', JSON.stringify(json));
+  await writeFileAsync('./src/subs/subs.json', JSON.stringify(json, null, 2));
 }
 
 main().catch(e => console.error(e));

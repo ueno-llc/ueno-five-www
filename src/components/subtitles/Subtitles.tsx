@@ -78,12 +78,14 @@ export const Subtitles = ({ currentTime, subtitles }: IProps) => {
     );
   }, [sentences]);
 
+  const offset = -200;
+
   return (
     <div className={s.subtitles}>
       {subtitles.map((segment: ISubtitles[], i: number) => {
         const [first] = segment;
         const last = segment[segment.length - 1];
-        const inRange = currentTime >= first.start && currentTime <= last.end;
+        const inRange = currentTime >= (first.start + offset) && currentTime <= (last.end + offset);
 
         if (!inRange) {
           return null;
@@ -98,7 +100,7 @@ export const Subtitles = ({ currentTime, subtitles }: IProps) => {
 
             <p className={s.subtitles__text}>
               {segment.filter((sub: ISubtitles) => sub.part).map(({ start, end, part }: ISubtitles, ii: number) => {
-                const isCurrent = currentTime >= start && currentTime <= end;
+                const isCurrent = currentTime >= (start + offset) && currentTime <= (end + offset);
 
                 return (
                   <span

@@ -16,12 +16,13 @@ import s from './Video.scss';
 
 interface IProps {
   src: string;
+  srcMobile: string;
   poster: string;
   subtitles: ISubtitles[][];
   onVideoEnd(): void;
 }
 
-export const Video = ({ src, poster, subtitles, onVideoEnd }: IProps) => {
+export const Video = ({ src, srcMobile, poster, subtitles, onVideoEnd }: IProps) => {
   const videoRef = React.useRef<HTMLDivElement>(null);
   const videoSrcRef = React.useRef<HTMLVideoElement>(null);
   const topEl = React.useRef<HTMLDivElement>(null);
@@ -173,6 +174,8 @@ export const Video = ({ src, poster, subtitles, onVideoEnd }: IProps) => {
     setRangeValue(progress);
   }, [currentTime]);
 
+  const isMobile = window.matchMedia('(max-width: 920px)').matches;
+
   return (
     <div
       ref={videoRef}
@@ -184,7 +187,7 @@ export const Video = ({ src, poster, subtitles, onVideoEnd }: IProps) => {
       <video
         ref={videoSrcRef}
         className={s.video__src}
-        src={src}
+        src={isMobile ? srcMobile : src}
         poster={poster}
         autoPlay
         playsInline

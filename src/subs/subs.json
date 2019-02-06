@@ -1,1096 +1,1504 @@
 [
   [
     {
-      "start":1640,
-      "end":1963,
-      "part":"Ladies"
+      "start": 1640,
+      "end": 1963,
+      "part": "Ladies"
     },
     {
-      "start":1640,
-      "end":1963,
-      "part":""
+      "start": 1640,
+      "end": 1963,
+      "part": ""
     },
     {
-      "start":1963,
-      "end":2285,
-      "part":"and"
+      "start": 1963,
+      "end": 2285,
+      "part": "and"
     },
     {
-      "start":2285,
-      "end":2930,
-      "part":"gentlefolk."
-    },
-    {
-      "start":2930,
-      "end":3284,
-      "part":"Girls"
-    },
-    {
-      "start":3284,
-      "end":3638,
-      "part":"and"
-    },
-    {
-      "start":3638,
-      "end":4045,
-      "part":"boys."
+      "start": 2285,
+      "end": 2930,
+      "part": "gentlefolk."
     }
   ],
   [
     {
-      "start":4090,
-      "end":4526,
-      "part":"It is my"
+      "start": 2930,
+      "end": 3284,
+      "part": "Girls"
     },
     {
-      "start":4572,
-      "end":5333,
-      "part":"exquisite"
+      "start": 3284,
+      "end": 3638,
+      "part": "and"
     },
     {
-      "start":5348,
-      "end":5773,
-      "part":"pleasure"
-    },
-    {
-      "start":5773,
-      "end":6350,
-      "part":"to introduce"
+      "start": 3638,
+      "end": 4045,
+      "part": "boys."
     }
   ],
   [
     {
-      "start":6390,
-      "end":7039,
-      "part":"to you a man"
+      "start": 4090,
+      "end": 4199,
+      "part": "It"
     },
     {
-      "start":7185,
-      "end":7930,
-      "part":"who needs"
+      "start": 4199,
+      "end": 4308,
+      "part": "is"
     },
     {
-      "start":7930,
-      "end":9145,
-      "part":"no introduction."
+      "start": 4308,
+      "end": 4526,
+      "part": "my"
+    },
+    {
+      "start": 4572,
+      "end": 5333,
+      "part": "exquisite"
+    },
+    {
+      "start": 5348,
+      "end": 5718,
+      "part": "pleasure"
     }
   ],
   [
     {
-      "start":9420,
-      "end":10230,
-      "part":"The man whose"
+      "start": 5743,
+      "end": 5832,
+      "part": "to"
     },
     {
-      "start":10240,
-      "end":10810,
-      "part":"musical"
+      "start": 5832,
+      "end": 6350,
+      "part": "introduce"
     },
     {
-      "start":10810,
-      "end":11695,
-      "part":"machinations"
+      "start": 6390,
+      "end": 6553,
+      "part": "to"
     },
     {
-      "start":11755,
-      "end":12188,
-      "part":"will take"
+      "start": 6553,
+      "end": 6715,
+      "part": "you"
     },
     {
-      "start":12188,
-      "end":12620,
-      "part":"your ears"
+      "start": 6715,
+      "end": 6877,
+      "part": "a"
+    },
+    {
+      "start": 6877,
+      "end": 7039,
+      "part": "man"
     }
   ],
   [
     {
-      "start":12620,
-      "end":13375,
-      "part":"on a journey"
+      "start": 7185,
+      "end": 7408,
+      "part": "who"
     },
     {
-      "start":13375,
-      "end":14240,
-      "part":"to the center"
+      "start": 7408,
+      "end": 8055,
+      "part": "needs"
     },
     {
-      "start":14280,
-      "end":15445,
-      "part":"of your soul."
+      "start": 8055,
+      "end": 8238,
+      "part": "no"
+    },
+    {
+      "start": 8238,
+      "end": 8990,
+      "part": "introduction."
     }
   ],
   [
     {
-      "start":15760,
-      "end":16425,
-      "part":"Straight from"
+      "start": 9420,
+      "end": 9623,
+      "part": "The"
     },
     {
-      "start":16430,
-      "end":17465,
-      "part":"Humboldt County."
+      "start": 9623,
+      "end": 9825,
+      "part": "man"
+    },
+    {
+      "start": 9825,
+      "end": 10230,
+      "part": "whose"
+    },
+    {
+      "start": 10240,
+      "end": 10810,
+      "part": "musical"
+    },
+    {
+      "start": 10810,
+      "end": 11695,
+      "part": "machinations"
     }
   ],
   [
     {
-      "start":17570,
-      "end":17860,
-      "part":"It's"
+      "start": 11725,
+      "end": 11812,
+      "part": "will"
     },
     {
-      "start":17905,
-      "end":18285,
-      "part":"my"
+      "start": 11812,
+      "end": 11993,
+      "part": "take"
     },
     {
-      "start":18355,
-      "end":19125,
-      "part":"man"
+      "start": 11993,
+      "end": 12214,
+      "part": "your"
     },
     {
-      "start":19125,
-      "end":19573,
-      "part":"Tory"
+      "start": 12214,
+      "end": 12620,
+      "part": "ears"
     },
     {
-      "start":19633,
-      "end":20410,
-      "part":"Satins."
+      "start": 12620,
+      "end": 12734,
+      "part": "on"
+    },
+    {
+      "start": 12734,
+      "end": 12898,
+      "part": "a"
+    },
+    {
+      "start": 12928,
+      "end": 13545,
+      "part": "journey"
     }
   ],
   [
     {
-      "start":24105,
-      "end":24962,
-      "part":"Five"
+      "start": 13545,
+      "end": 13592,
+      "part": "to"
     },
     {
-      "start":25013,
-      "end":25732,
-      "part":"years"
+      "start": 13592,
+      "end": 13808,
+      "part": "the"
     },
     {
-      "start":25753,
-      "end":26006,
-      "part":"that’s"
+      "start": 13808,
+      "end": 14280,
+      "part": "center"
     },
     {
-      "start":26046,
-      "end":26309,
-      "part":"not"
+      "start": 14280,
+      "end": 14407,
+      "part": "of"
     },
     {
-      "start":26309,
-      "end":26652,
-      "part":"too"
+      "start": 14407,
+      "end": 14548,
+      "part": "your"
     },
     {
-      "start":26682,
-      "end":27294,
-      "part":"long"
+      "start": 14558,
+      "end": 15370,
+      "part": "soul."
     }
   ],
   [
     {
-      "start":27330,
-      "end":27729,
-      "part":"But it's"
+      "start": 15760,
+      "end": 16323,
+      "part": "Straight"
     },
     {
-      "start":27729,
-      "end":28128,
-      "part":"half"
+      "start": 16323,
+      "end": 16425,
+      "part": "from"
     },
     {
-      "start":28128,
-      "end":29505,
-      "part":"a decade"
+      "start": 16430,
+      "end": 16763,
+      "part": "Humboldt"
     },
     {
-      "start":29565,
-      "end":30893,
-      "part":"on"
+      "start": 16763,
+      "end": 17465,
+      "part": "County."
     }
   ],
   [
     {
-      "start":31025,
-      "end":31588,
-      "part":"Since a"
+      "start": 17570,
+      "end": 17860,
+      "part": "It's"
     },
     {
-      "start":31628,
-      "end":32224,
-      "part":"lonely"
+      "start": 17905,
+      "end": 18285,
+      "part": "my"
     },
     {
-      "start":32239,
-      "end":32850,
-      "part":"man"
+      "start": 18355,
+      "end": 19125,
+      "part": "man"
+    },
+    {
+      "start": 19125,
+      "end": 19573,
+      "part": "Tory"
+    },
+    {
+      "start": 19633,
+      "end": 20410,
+      "part": "Satins."
     }
   ],
   [
     {
-      "start":32870,
-      "end":33283,
-      "part":"With a"
+      "start": 24105,
+      "end": 24962,
+      "part": "Five"
     },
     {
-      "start":33303,
-      "end":33999,
-      "part":"half-baked"
-    },
-    {
-      "start":33999,
-      "end":34375,
-      "part":"plan"
-    },
-    {
-      "start":34375,
-      "end":35137,
-      "part":"started"
-    },
-    {
-      "start":35137,
-      "end":36623,
-      "part":"Ueno"
+      "start": 25013,
+      "end": 25732,
+      "part": "years"
     }
   ],
   [
     {
-      "start":38428,
-      "end":38966,
-      "part":"With a"
+      "start": 25753,
+      "end": 26006,
+      "part": "that’s"
     },
     {
-      "start":38981,
-      "end":39559,
-      "part":"keen"
+      "start": 26046,
+      "end": 26309,
+      "part": "not"
     },
     {
-      "start":39559,
-      "end":40304,
-      "part":"eye"
+      "start": 26309,
+      "end": 26652,
+      "part": "too"
     },
     {
-      "start":40304,
-      "end":40467,
-      "part":"for"
-    },
-    {
-      "start":40467,
-      "end":41140,
-      "part":"classy"
-    },
-    {
-      "start":41140,
-      "end":42021,
-      "part":"design"
+      "start": 26682,
+      "end": 27294,
+      "part": "long"
     }
   ],
   [
     {
-      "start":42021,
-      "end":42522,
-      "part":"he was"
+      "start": 27330,
+      "end": 27465,
+      "part": "But"
     },
     {
-      "start":42522,
-      "end":43253,
-      "part":"working"
+      "start": 27530,
+      "end": 27814,
+      "part": "it's"
     },
     {
-      "start":43313,
-      "end":43664,
-      "part":"all"
+      "start": 27814,
+      "end": 28318,
+      "part": "half"
     },
     {
-      "start":43664,
-      "end":44824,
-      "part":"alone"
+      "start": 28318,
+      "end": 28572,
+      "part": "a"
+    },
+    {
+      "start": 28572,
+      "end": 29505,
+      "part": "decade"
+    },
+    {
+      "start": 29565,
+      "end": 30893,
+      "part": "on"
     }
   ],
   [
     {
-      "start":45844,
-      "end":46150,
-      "part":"But the"
+      "start": 31025,
+      "end": 31442,
+      "part": "Since"
     },
     {
-      "start":46295,
-      "end":46660,
-      "part":"clients"
+      "start": 31442,
+      "end": 31588,
+      "part": "a"
     },
     {
-      "start":46705,
-      "end":47485,
-      "part":"rolled in"
+      "start": 31628,
+      "end": 32224,
+      "part": "lonely"
+    },
+    {
+      "start": 32239,
+      "end": 32850,
+      "part": "man"
     }
   ],
   [
     {
-      "start":47660,
-      "end":48143,
-      "part":"So he"
+      "start": 32870,
+      "end": 33167,
+      "part": "With"
     },
     {
-      "start":48143,
-      "end":48567,
-      "part":"hired"
+      "start": 33177,
+      "end": 33283,
+      "part": "a"
     },
     {
-      "start":48636,
-      "end":49122,
-      "part":"a friend"
+      "start": 33303,
+      "end": 33999,
+      "part": "half-baked"
+    },
+    {
+      "start": 33999,
+      "end": 34375,
+      "part": "plan"
     }
   ],
   [
     {
-      "start":49622,
-      "end":50026,
-      "part":"And you"
+      "start": 34375,
+      "end": 35137,
+      "part": "started"
     },
     {
-      "start":50026,
-      "end":50688,
-      "part":"wouldn't"
-    },
-    {
-      "start":50688,
-      "end":51284,
-      "part":"believe"
-    },
-    {
-      "start":51284,
-      "end":51517,
-      "part":"how"
-    },
-    {
-      "start":51517,
-      "end":51834,
-      "part":"we've"
-    },
-    {
-      "start":51834,
-      "end":53220,
-      "part":"grown."
+      "start": 35137,
+      "end": 36623,
+      "part": "Ueno"
     }
   ],
   [
     {
-      "start":53220,
-      "end":53502,
-      "part":"Now"
+      "start": 38428,
+      "end": 38697,
+      "part": "With"
     },
     {
-      "start":53502,
-      "end":53808,
-      "part":"we're"
+      "start": 38697,
+      "end": 38966,
+      "part": "a"
     },
     {
-      "start":53808,
-      "end":54175,
-      "part":"living"
+      "start": 38981,
+      "end": 39559,
+      "part": "keen"
     },
     {
-      "start":54195,
-      "end":55313,
-      "part":"the dream"
-    },
-    {
-      "start":55338,
-      "end":55599,
-      "part":"and"
-    },
-    {
-      "start":55599,
-      "end":56172,
-      "part":"building"
-    },
-    {
-      "start":56197,
-      "end":56720,
-      "part":"a team"
+      "start": 39559,
+      "end": 40304,
+      "part": "eye"
     }
   ],
   [
     {
-      "start":56860,
-      "end":57180,
-      "part":"Yeah,"
+      "start": 40304,
+      "end": 40467,
+      "part": "for"
     },
     {
-      "start":57215,
-      "end":57478,
-      "part":"we're"
+      "start": 40467,
+      "end": 41140,
+      "part": "classy"
     },
     {
-      "start":57498,
-      "end":58080,
-      "part":"on a"
-    },
-    {
-      "start":58085,
-      "end":59028,
-      "part":"golden"
-    },
-    {
-      "start":59073,
-      "end":60640,
-      "part":"road"
+      "start": 41140,
+      "end": 42021,
+      "part": "design"
     }
   ],
   [
     {
-      "start":60935,
-      "end":61194,
-      "part":"With"
+      "start": 42021,
+      "end": 42342,
+      "part": "he"
     },
     {
-      "start":61194,
-      "end":61408,
-      "part":"lots"
+      "start": 42342,
+      "end": 42562,
+      "part": "was"
     },
     {
-      "start":61483,
-      "end":61750,
-      "part":"new"
+      "start": 42562,
+      "end": 43253,
+      "part": "working"
     },
     {
-      "start":61815,
-      "end":62722,
-      "part":"faces"
+      "start": 43313,
+      "end": 43664,
+      "part": "all"
     },
     {
-      "start":62722,
-      "end":62948,
-      "part":"and"
-    },
-    {
-      "start":62948,
-      "end":63175,
-      "part":"new"
-    },
-    {
-      "start":63190,
-      "end":63520,
-      "part":"office"
-    },
-    {
-      "start":63520,
-      "end":64476,
-      "part":"spaces"
+      "start": 43664,
+      "end": 44824,
+      "part": "alone"
     }
   ],
   [
     {
-      "start":64476,
-      "end":65431,
-      "part":"Creators"
+      "start": 45844,
+      "end": 45997,
+      "part": "But"
     },
     {
-      "start":65431,
-      "end":65567,
-      "part":"of"
+      "start": 45997,
+      "end": 46150,
+      "part": "the"
     },
     {
-      "start":65567,
-      "end":66105,
-      "part":"things"
+      "start": 46295,
+      "end": 46780,
+      "part": "clients"
     },
     {
-      "start":66125,
-      "end":67253,
-      "part":"a-la-mode"
+      "start": 46780,
+      "end": 47095,
+      "part": "rolled"
+    },
+    {
+      "start": 47095,
+      "end": 47485,
+      "part": "in"
     }
   ],
   [
     {
-      "start":68120,
-      "end":68470,
-      "part":"we're"
+      "start": 47660,
+      "end": 47867,
+      "part": "So"
     },
     {
-      "start":68475,
-      "end":69893,
-      "part":"energized"
+      "start": 47902,
+      "end": 48143,
+      "part": "he"
     },
     {
-      "start":69893,
-      "end":70169,
-      "part":"by our"
+      "start": 48143,
+      "end": 48567,
+      "part": "hired"
     },
     {
-      "start":70334,
-      "end":71732,
-      "part":"KPIs"
+      "start": 48636,
+      "end": 48879,
+      "part": "a"
+    },
+    {
+      "start": 48879,
+      "end": 49122,
+      "part": "friend"
     }
   ],
   [
     {
-      "start":71828,
-      "end":72099,
-      "part":"We're"
+      "start": 49622,
+      "end": 49824,
+      "part": "And"
     },
     {
-      "start":72114,
-      "end":72857,
-      "part":"clearly"
+      "start": 49824,
+      "end": 50026,
+      "part": "you"
     },
     {
-      "start":72987,
-      "end":73309,
-      "part":"on"
+      "start": 50026,
+      "end": 50688,
+      "part": "wouldn't"
     },
     {
-      "start":73339,
-      "end":73607,
-      "part":"a"
+      "start": 50688,
+      "end": 51284,
+      "part": "believe"
     },
     {
-      "start":73607,
-      "end":75470,
-      "part":"roll"
+      "start": 51284,
+      "end": 51517,
+      "part": "how"
+    },
+    {
+      "start": 51517,
+      "end": 51834,
+      "part": "we've"
+    },
+    {
+      "start": 51834,
+      "end": 53220,
+      "part": "grown!"
     }
   ],
   [
     {
-      "start":75490,
-      "end":75760,
-      "part":"There’s"
+      "start": 53220,
+      "end": 53502,
+      "part": "Now"
     },
     {
-      "start":75780,
-      "end":77220,
-      "part":"harmonizing"
+      "start": 53502,
+      "end": 53808,
+      "part": "we're"
     },
     {
-      "start":77240,
-      "end":77680,
-      "part":"and"
+      "start": 53808,
+      "end": 54175,
+      "part": "living"
     },
     {
-      "start":77700,
-      "end":79210,
-      "part":"strategizing"
+      "start": 54195,
+      "end": 54414,
+      "part": "the"
+    },
+    {
+      "start": 54414,
+      "end": 55313,
+      "part": "dream"
     }
   ],
   [
     {
-      "start":79210,
-      "end":79570,
-      "part":"yes,"
+      "start": 55338,
+      "end": 55599,
+      "part": "and"
     },
     {
-      "start":79570,
-      "end":80155,
-      "part":"Ueno"
+      "start": 55599,
+      "end": 56137,
+      "part": "building"
     },
     {
-      "start":80155,
-      "end":80305,
-      "part":"is"
+      "start": 56147,
+      "end": 56244,
+      "part": "a"
     },
     {
-      "start":80305,
-      "end":81093,
-      "part":"breaking"
-    },
-    {
-      "start":81118,
-      "end":81343,
-      "part":"the"
-    },
-    {
-      "start":81378,
-      "end":82768,
-      "part":"mold!"
+      "start": 56259,
+      "end": 56720,
+      "part": "team"
     }
   ],
   [
     {
-      "start":82768,
-      "end":82981,
-      "part":"Now"
+      "start": 56860,
+      "end": 57180,
+      "part": "Yeah,"
     },
     {
-      "start":83006,
-      "end":83099,
-      "part":"the"
+      "start": 57215,
+      "end": 57478,
+      "part": "we're"
     },
     {
-      "start":83099,
-      "end":83719,
-      "part":"slacks"
+      "start": 57498,
+      "end": 57864,
+      "part": "on"
     },
     {
-      "start":83729,
-      "end":83972,
-      "part":"and"
+      "start": 57864,
+      "end": 58080,
+      "part": "a"
     },
     {
-      "start":83972,
-      "end":84626,
-      "part":"E-mails"
+      "start": 58085,
+      "end": 59028,
+      "part": "golden"
+    },
+    {
+      "start": 59073,
+      "end": 60640,
+      "part": "road"
     }
   ],
   [
     {
-      "start":84626,
-      "end":85100,
-      "part":"and"
+      "start": 60935,
+      "end": 61194,
+      "part": "With"
     },
     {
-      "start":85113,
-      "end":85650,
-      "part":"meeting"
+      "start": 61194,
+      "end": 61408,
+      "part": "lots"
     },
     {
-      "start":85675,
-      "end":86303,
-      "part":"alerts"
+      "start": 61483,
+      "end": 61750,
+      "part": "new"
     },
     {
-      "start":86633,
-      "end":86869,
-      "part":"are"
+      "start": 61815,
+      "end": 62722,
+      "part": "faces"
     },
     {
-      "start":86889,
-      "end":87470,
-      "part":"greeted"
-    },
-    {
-      "start":87595,
-      "end":88400,
-      "part":"with a"
-    },
-    {
-      "start":88455,
-      "end":89900,
-      "part":"smile"
+      "start": 62722,
+      "end": 62948,
+      "part": "and"
     }
   ],
   [
     {
-      "start":90180,
-      "end":90620,
-      "part":"Caus the"
+      "start": 62948,
+      "end": 63175,
+      "part": "new"
     },
     {
-      "start":90655,
-      "end":91189,
-      "part":"Ueno"
+      "start": 63190,
+      "end": 63520,
+      "part": "office"
     },
     {
-      "start":91189,
-      "end":91858,
-      "part":"way"
-    },
-    {
-      "start":92168,
-      "end":92402,
-      "part":"is"
-    },
-    {
-      "start":92447,
-      "end":92910,
-      "part":"NEVER to"
-    },
-    {
-      "start":92965,
-      "end":93519,
-      "part":"STOP!"
+      "start": 63520,
+      "end": 64476,
+      "part": "spaces"
     }
   ],
   [
     {
-      "start":94000,
-      "end":95395,
-      "part":"[coughs]"
+      "start": 64476,
+      "end": 65431,
+      "part": "Creators"
     },
     {
-      "start":95395,
-      "end":96055,
-      "part":"Actually"
+      "start": 65431,
+      "end": 65567,
+      "part": "of"
     },
     {
-      "start":96520,
-      "end":96758,
-      "part":"can"
+      "start": 65567,
+      "end": 66105,
+      "part": "things"
     },
     {
-      "start":96758,
-      "end":97030,
-      "part":"somebody"
-    },
-    {
-      "start":97030,
-      "end":97290,
-      "part":"get me"
-    },
-    {
-      "start":97395,
-      "end":97740,
-      "part":"a drink"
+      "start": 66125,
+      "end": 67253,
+      "part": "a-la-mode"
     }
   ],
   [
     {
-      "start":99505,
-      "end":99818,
-      "part":"oh"
+      "start": 68120,
+      "end": 68470,
+      "part": "we're"
     },
     {
-      "start":100208,
-      "end":100457,
-      "part":"thank"
-    },
-    {
-      "start":100457,
-      "end":100720,
-      "part":"you"
+      "start": 68475,
+      "end": 69893,
+      "part": "energized"
     }
   ],
   [
     {
-      "start":117185,
-      "end":117524,
-      "part":"And"
+      "start": 69893,
+      "end": 70031,
+      "part": "by"
     },
     {
-      "start":117524,
-      "end":117529,
-      "part":"now"
+      "start": 70031,
+      "end": 70169,
+      "part": "our"
     },
     {
-      "start":117529,
-      "end":117821,
-      "part":"we're"
-    },
-    {
-      "start":117821,
-      "end":118403,
-      "part":"working"
-    },
-    {
-      "start":118408,
-      "end":118709,
-      "part":"like"
-    },
-    {
-      "start":118714,
-      "end":119314,
-      "part":"hell"
+      "start": 70334,
+      "end": 71732,
+      "part": "KPIs"
     }
   ],
   [
     {
-      "start":119319,
-      "end":119759,
-      "part":"at a"
+      "start": 71828,
+      "end": 72099,
+      "part": "We're"
     },
     {
-      "start":119769,
-      "end":120394,
-      "part":"feverish"
+      "start": 72114,
+      "end": 72857,
+      "part": "clearly"
     },
     {
-      "start":120409,
-      "end":120930,
-      "part":"pace"
+      "start": 72987,
+      "end": 73309,
+      "part": "on"
+    },
+    {
+      "start": 73339,
+      "end": 73607,
+      "part": "a"
+    },
+    {
+      "start": 73607,
+      "end": 75470,
+      "part": "roll"
     }
   ],
   [
     {
-      "start":121410,
-      "end":121638,
-      "part":"We"
+      "start": 75490,
+      "end": 75760,
+      "part": "There’s"
     },
     {
-      "start":121638,
-      "end":122050,
-      "part":"love"
+      "start": 75780,
+      "end": 77220,
+      "part": "harmonizing"
     },
     {
-      "start":122050,
-      "end":122320,
-      "part":"the"
+      "start": 77240,
+      "end": 77680,
+      "part": "and"
     },
     {
-      "start":122320,
-      "end":123180,
-      "part":"agency"
-    },
-    {
-      "start":123230,
-      "end":124600,
-      "part":"life"
+      "start": 77700,
+      "end": 79210,
+      "part": "strategizing"
     }
   ],
   [
     {
-      "start":124845,
-      "end":125100,
-      "part":"Cause"
+      "start": 79210,
+      "end": 79570,
+      "part": "yes,"
     },
     {
-      "start":125100,
-      "end":125335,
-      "part":"we're"
+      "start": 79570,
+      "end": 80155,
+      "part": "Ueno"
     },
     {
-      "start":125335,
-      "end":125735,
-      "part":"in it"
+      "start": 80155,
+      "end": 80305,
+      "part": "is"
     },
     {
-      "start":125745,
-      "end":125850,
-      "part":"to"
+      "start": 80305,
+      "end": 81093,
+      "part": "breaking"
     },
     {
-      "start":125850,
-      "end":126475,
-      "part":"Uen"
+      "start": 81118,
+      "end": 81343,
+      "part": "the"
     },
     {
-      "start":126490,
-      "end":126700,
-      "part":"it!"
+      "start": 81378,
+      "end": 82768,
+      "part": "mold!"
     }
   ],
   [
     {
-      "start":127150,
-      "end":127785,
-      "part":"A mile"
+      "start": 82768,
+      "end": 82981,
+      "part": "Now"
     },
     {
-      "start":127895,
-      "end":128565,
-      "part":"a minute!"
+      "start": 83006,
+      "end": 83099,
+      "part": "the"
     },
     {
-      "start":128805,
-      "end":129048,
-      "part":"We'll"
+      "start": 83099,
+      "end": 83719,
+      "part": "slacks"
     },
     {
-      "start":129063,
-      "end":129344,
-      "part":"do"
+      "start": 83729,
+      "end": 83972,
+      "part": "and"
     },
     {
-      "start":129369,
-      "end":129680,
-      "part":"it"
-    },
-    {
-      "start":129923,
-      "end":130394,
-      "part":"until"
-    },
-    {
-      "start":130544,
-      "end":130860,
-      "part":"we"
-    },
-    {
-      "start":130870,
-      "end":131660,
-      "part":"die!"
+      "start": 83972,
+      "end": 84626,
+      "part": "E-mails"
     }
   ],
   [
     {
-      "start":132245,
-      "end":132498,
-      "part":"Now"
+      "start": 84626,
+      "end": 85100,
+      "part": "and"
     },
     {
-      "start":132498,
-      "end":132714,
-      "part":"that"
+      "start": 85100,
+      "end": 85650,
+      "part": "meeting"
     },
     {
-      "start":132714,
-      "end":133220,
-      "part":"Ueno"
-    },
-    {
-      "start":133220,
-      "end":133417,
-      "part":"is"
-    },
-    {
-      "start":133417,
-      "end":134199,
-      "part":"five"
+      "start": 85675,
+      "end": 86303,
+      "part": "alerts"
     }
   ],
   [
     {
-      "start":134199,
-      "end":134616,
-      "part":"We"
+      "start": 86633,
+      "end": 86869,
+      "part": "are"
     },
     {
-      "start":134616,
-      "end":134837,
-      "part":"hope"
+      "start": 86889,
+      "end": 87470,
+      "part": "greeted"
     },
     {
-      "start":134837,
-      "end":134990,
-      "part":"to"
+      "start": 87595,
+      "end": 87998,
+      "part": "with"
     },
     {
-      "start":134990,
-      "end":135936,
-      "part":"survive"
+      "start": 87998,
+      "end": 88400,
+      "part": "a"
+    },
+    {
+      "start": 88455,
+      "end": 89900,
+      "part": "smile"
     }
   ],
   [
     {
-      "start":135936,
-      "end":136159,
-      "part":"for"
+      "start": 90180,
+      "end": 90400,
+      "part": "Cause"
     },
     {
-      "start":136159,
-      "end":136382,
-      "part":"at"
+      "start": 90400,
+      "end": 90620,
+      "part": "the"
     },
     {
-      "start":136382,
-      "end":136860,
-      "part":"least"
+      "start": 90655,
+      "end": 91189,
+      "part": "Ueno"
     },
     {
-      "start":136860,
-      "end":138047,
-      "part":"a thousand"
-    },
-    {
-      "start":138057,
-      "end":139204,
-      "part":"years."
+      "start": 91189,
+      "end": 91858,
+      "part": "way"
     }
   ],
   [
     {
-      "start":139600,
-      "end":139891,
-      "part":"Let"
+      "start": 92168,
+      "end": 92402,
+      "part": "is"
     },
     {
-      "start":139906,
-      "end":140059,
-      "part":"me"
+      "start": 92447,
+      "end": 92679,
+      "part": "NEVER"
     },
     {
-      "start":140059,
-      "end":140307,
-      "part":"tell"
+      "start": 92679,
+      "end": 92910,
+      "part": "to"
     },
     {
-      "start":140327,
-      "end":140538,
-      "part":"you"
-    },
-    {
-      "start":140573,
-      "end":140750,
-      "part":"for"
-    },
-    {
-      "start":140785,
-      "end":141091,
-      "part":"sure"
+      "start": 92965,
+      "end": 93519,
+      "part": "STOP"
     }
   ],
   [
     {
-      "start":141466,
-      "end":141942,
-      "part":"It'll"
-    },
-    {
-      "start":141942,
-      "end":142448,
-      "part":"always"
-    },
-    {
-      "start":142448,
-      "end":143314,
-      "part":"endure"
+      "start": 94000,
+      "end": 95395,
+      "part": "[coughs]"
     }
   ],
   [
     {
-      "start":143569,
-      "end":143760,
-      "part":"So"
+      "start": 95395,
+      "end": 96055,
+      "part": "Actually,"
     },
     {
-      "start":143760,
-      "end":144250,
-      "part":"dry"
+      "start": 96520,
+      "end": 96758,
+      "part": "can"
     },
     {
-      "start":144250,
-      "end":144570,
-      "part":"your"
+      "start": 96758,
+      "end": 97030,
+      "part": "somebody"
     },
     {
-      "start":144570,
-      "end":145238,
-      "part":"eyes"
+      "start": 97030,
+      "end": 97160,
+      "part": "give"
+    },
+    {
+      "start": 97160,
+      "end": 97290,
+      "part": "me"
+    },
+    {
+      "start": 97305,
+      "end": 97423,
+      "part": "a"
+    },
+    {
+      "start": 97423,
+      "end": 97740,
+      "part": "drink?"
     }
   ],
   [
     {
-      "start":145238,
-      "end":145572,
-      "part":"It'll"
+      "start": 99505,
+      "end": 99818,
+      "part": "Oh,"
     },
     {
-      "start":145572,
-      "end":146150,
-      "part":"always"
+      "start": 100208,
+      "end": 100457,
+      "part": "thank"
     },
     {
-      "start":146150,
-      "end":146963,
-      "part":"abide"
+      "start": 100457,
+      "end": 100720,
+      "part": "you."
     }
   ],
   [
     {
-      "start":146998,
-      "end":147312,
-      "part":"Yes,"
+      "start": 101080,
+      "end": 103170,
+      "part": "Brrrrrrrrrrruuuuuuuh"
+    }
+  ],
+  [
+    {
+      "start": 103170,
+      "end": 103890,
+      "part": "Schweeee"
     },
     {
-      "start":147312,
-      "end":148605,
-      "part":"Ueno"
+      "start": 103890,
+      "end": 104795,
+      "part": "Deeee!"
     },
     {
-      "start":148790,
-      "end":149350,
-      "part":"will"
+      "start": 104805,
+      "end": 105275,
+      "part": "Booo"
     },
     {
-      "start":149350,
-      "end":151675,
-      "part":"always"
+      "start": 105275,
+      "end": 105475,
+      "part": "bah"
     },
     {
-      "start":152105,
-      "end":152363,
-      "part":"be"
+      "start": 105475,
+      "end": 105720,
+      "part": "dah"
+    },
+    {
+      "start": 105720,
+      "end": 106630,
+      "part": "dooooo"
+    }
+  ],
+  [
+    {
+      "start": 106905,
+      "end": 107339,
+      "part": "Frit"
+    },
+    {
+      "start": 107339,
+      "end": 107610,
+      "part": "dittly"
+    },
+    {
+      "start": 107615,
+      "end": 107793,
+      "part": "it"
+    },
+    {
+      "start": 107793,
+      "end": 108035,
+      "part": "dit"
+    },
+    {
+      "start": 108035,
+      "end": 108460,
+      "part": "uhh"
+    },
+    {
+      "start": 108460,
+      "end": 109159,
+      "part": "squeee"
+    },
+    {
+      "start": 109159,
+      "end": 109597,
+      "part": "boppy"
+    },
+    {
+      "start": 109647,
+      "end": 110061,
+      "part": "op"
+    },
+    {
+      "start": 110061,
+      "end": 110474,
+      "part": "dooby"
+    }
+  ],
+  [
+    {
+      "start": 110474,
+      "end": 111015,
+      "part": "Yeah"
+    },
+    {
+      "start": 111015,
+      "end": 111103,
+      "part": "shoo"
+    },
+    {
+      "start": 111103,
+      "end": 111190,
+      "part": "bah"
+    },
+    {
+      "start": 111190,
+      "end": 111278,
+      "part": "doo"
+    },
+    {
+      "start": 111278,
+      "end": 111365,
+      "part": "ba"
+    },
+    {
+      "start": 111365,
+      "end": 111525,
+      "part": "thrb"
+    },
+    {
+      "start": 111525,
+      "end": 111685,
+      "part": "ah"
+    },
+    {
+      "start": 111685,
+      "end": 111845,
+      "part": "bum"
+    },
+    {
+      "start": 111845,
+      "end": 112005,
+      "part": "ip"
+    },
+    {
+      "start": 112005,
+      "end": 112198,
+      "part": "brp"
+    },
+    {
+      "start": 112198,
+      "end": 112390,
+      "part": "mm"
+    },
+    {
+      "start": 112390,
+      "end": 112630,
+      "part": "zip"
+    }
+  ],
+  [
+    {
+      "start": 112630,
+      "end": 114730,
+      "part": "B-D-B-D-B-D-B-D-B-D-B"
+    },
+    {
+      "start": 114740,
+      "end": 114825,
+      "part": "Deee"
+    }
+  ],
+  [
+    {
+      "start": 114825,
+      "end": 115430,
+      "part": "Poodly"
+    },
+    {
+      "start": 115430,
+      "end": 115885,
+      "part": "oooodle"
+    },
+    {
+      "start": 115885,
+      "end": 116795,
+      "part": "doodle"
+    },
+    {
+      "start": 116795,
+      "end": 117185,
+      "part": "doo"
+    }
+  ],
+  [
+    {
+      "start": 117185,
+      "end": 117524,
+      "part": "And"
+    },
+    {
+      "start": 117524,
+      "end": 117529,
+      "part": "now"
+    },
+    {
+      "start": 117529,
+      "end": 117821,
+      "part": "we're"
+    },
+    {
+      "start": 117821,
+      "end": 118403,
+      "part": "working"
+    },
+    {
+      "start": 118408,
+      "end": 118709,
+      "part": "like"
+    },
+    {
+      "start": 118714,
+      "end": 119314,
+      "part": "hell!"
+    }
+  ],
+  [
+    {
+      "start": 119319,
+      "end": 119759,
+      "part": "at a"
+    },
+    {
+      "start": 119769,
+      "end": 120394,
+      "part": "feverish"
+    },
+    {
+      "start": 120409,
+      "end": 120930,
+      "part": "pace!"
+    }
+  ],
+  [
+    {
+      "start": 121410,
+      "end": 121638,
+      "part": "We"
+    },
+    {
+      "start": 121638,
+      "end": 122050,
+      "part": "love"
+    },
+    {
+      "start": 122050,
+      "end": 122320,
+      "part": "the"
+    },
+    {
+      "start": 122320,
+      "end": 123180,
+      "part": "agency"
+    },
+    {
+      "start": 123230,
+      "end": 124600,
+      "part": "life!"
+    }
+  ],
+  [
+    {
+      "start": 124845,
+      "end": 125100,
+      "part": "Cause"
+    },
+    {
+      "start": 125100,
+      "end": 125335,
+      "part": "we're"
+    },
+    {
+      "start": 125335,
+      "end": 125735,
+      "part": "in it"
+    },
+    {
+      "start": 125745,
+      "end": 125850,
+      "part": "to"
+    },
+    {
+      "start": 125850,
+      "end": 126475,
+      "part": "Uen"
+    },
+    {
+      "start": 126490,
+      "end": 126700,
+      "part": "it!"
+    }
+  ],
+  [
+    {
+      "start": 127150,
+      "end": 127785,
+      "part": "A mile"
+    },
+    {
+      "start": 127895,
+      "end": 128565,
+      "part": "a minute!"
+    }
+  ],
+  [
+    {
+      "start": 128805,
+      "end": 129048,
+      "part": "We'll"
+    },
+    {
+      "start": 129063,
+      "end": 129344,
+      "part": "do"
+    },
+    {
+      "start": 129369,
+      "end": 129680,
+      "part": "it"
+    },
+    {
+      "start": 129923,
+      "end": 130394,
+      "part": "until"
+    },
+    {
+      "start": 130544,
+      "end": 130860,
+      "part": "we"
+    },
+    {
+      "start": 130870,
+      "end": 131660,
+      "part": "die!"
+    }
+  ],
+  [
+    {
+      "start": 132245,
+      "end": 132498,
+      "part": "Now"
+    },
+    {
+      "start": 132498,
+      "end": 132714,
+      "part": "that"
+    },
+    {
+      "start": 132714,
+      "end": 133220,
+      "part": "Ueno"
+    },
+    {
+      "start": 133220,
+      "end": 133417,
+      "part": "is"
+    },
+    {
+      "start": 133417,
+      "end": 134199,
+      "part": "five"
+    }
+  ],
+  [
+    {
+      "start": 134199,
+      "end": 134616,
+      "part": "We"
+    },
+    {
+      "start": 134616,
+      "end": 134837,
+      "part": "hope"
+    },
+    {
+      "start": 134837,
+      "end": 134990,
+      "part": "to"
+    },
+    {
+      "start": 134990,
+      "end": 135936,
+      "part": "survive"
+    }
+  ],
+  [
+    {
+      "start": 135936,
+      "end": 136159,
+      "part": "for"
+    },
+    {
+      "start": 136159,
+      "end": 136382,
+      "part": "at"
+    },
+    {
+      "start": 136382,
+      "end": 136860,
+      "part": "least"
+    },
+    {
+      "start": 136860,
+      "end": 138047,
+      "part": "a thousand"
+    },
+    {
+      "start": 138057,
+      "end": 139204,
+      "part": "years."
+    }
+  ],
+  [
+    {
+      "start": 139600,
+      "end": 139891,
+      "part": "Let"
+    },
+    {
+      "start": 139906,
+      "end": 140059,
+      "part": "me"
+    },
+    {
+      "start": 140059,
+      "end": 140307,
+      "part": "tell"
+    },
+    {
+      "start": 140327,
+      "end": 140538,
+      "part": "you"
+    },
+    {
+      "start": 140573,
+      "end": 140750,
+      "part": "for"
+    },
+    {
+      "start": 140785,
+      "end": 141091,
+      "part": "sure"
+    }
+  ],
+  [
+    {
+      "start": 141466,
+      "end": 141942,
+      "part": "It'll"
+    },
+    {
+      "start": 141942,
+      "end": 142448,
+      "part": "always"
+    },
+    {
+      "start": 142448,
+      "end": 143314,
+      "part": "endure"
+    }
+  ],
+  [
+    {
+      "start": 143569,
+      "end": 143760,
+      "part": "So"
+    },
+    {
+      "start": 143760,
+      "end": 144250,
+      "part": "dry"
+    },
+    {
+      "start": 144250,
+      "end": 144570,
+      "part": "your"
+    },
+    {
+      "start": 144570,
+      "end": 145238,
+      "part": "eyes"
+    }
+  ],
+  [
+    {
+      "start": 145238,
+      "end": 145572,
+      "part": "It'll"
+    },
+    {
+      "start": 145572,
+      "end": 146150,
+      "part": "always"
+    },
+    {
+      "start": 146150,
+      "end": 146963,
+      "part": "abide"
+    }
+  ],
+  [
+    {
+      "start": 146998,
+      "end": 147312,
+      "part": "Yes,"
+    },
+    {
+      "start": 147312,
+      "end": 148605,
+      "part": "Ueno"
+    },
+    {
+      "start": 148790,
+      "end": 149350,
+      "part": "will"
+    },
+    {
+      "start": 149350,
+      "end": 151675,
+      "part": "always"
+    },
+    {
+      "start": 152105,
+      "end": 152363,
+      "part": "be"
     },
     {
       "start":152363,
