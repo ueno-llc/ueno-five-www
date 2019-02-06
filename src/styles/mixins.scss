@@ -164,3 +164,20 @@
     }
   }
 }
+
+// Retina background images
+@mixin imgRetina($image, $extension, $width, $height, $position: center, $repeat: no-repeat) {
+  background: url($image + '.' + $extension) $repeat $position;
+
+  @media
+  screen and (-webkit-min-device-pixel-ratio: 2),
+  screen and (   min--moz-device-pixel-ratio: 2),
+  screen and (   -moz-min-device-pixel-ratio: 2),
+  screen and (     -o-min-device-pixel-ratio: 2/1),
+  screen and (        min-device-pixel-ratio: 2),
+  screen and (             min-resolution: 192dpi),
+  screen and (             min-resolution: 2dppx) {
+     background: url($image + '@2x' + '.' + $extension) $repeat $position;
+     background-size: cover;
+  }
+}

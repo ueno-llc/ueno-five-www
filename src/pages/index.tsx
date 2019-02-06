@@ -65,8 +65,8 @@ export default () => {
       rightSide: {
         color: '#ed8781',
         imagePosition: 'center',
-        image: require('assets/images/cover.png'),
-        image2x: require('assets/images/cover@2x.png'),
+        image: require('assets/images/cover.jpg'),
+        image2x: require('assets/images/cover@2x.jpg'),
       },
     },
     {
