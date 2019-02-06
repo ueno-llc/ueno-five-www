@@ -10,7 +10,7 @@ export interface ISubtitles {
   part: string;
 }
 
-interface IRect {
+interface ISpan {
   x: number;
   width: number;
   duration: number;
@@ -23,7 +23,7 @@ interface IProps {
 
 interface ILyrics {
   index: number;
-  spans: IRect[];
+  spans: ISpan[];
   registered: boolean;
 }
 
