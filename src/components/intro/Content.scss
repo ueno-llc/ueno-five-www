@@ -4,8 +4,12 @@
   @include grid-col(12);
 
   align-self: center;
+  margin-top: 35px;
 
-  margin-top: 45px;
+
+  @media (min-width: $min-420) {
+    margin-top: 85px;
+  }
 
   @media (min-width: $min-768) {
     @include grid-col(6);
@@ -16,7 +20,7 @@
   }
 
   &__heading {
-    @include heading(44,44);
+    @include heading(35,44);
 
     margin-bottom: 5px;
 
@@ -28,9 +32,9 @@
   }
 
   &__subheading {
-    @include subheading(44, 44);
+    @include subheading(35, 44);
 
-    margin-bottom: 35px;
+    margin-bottom: (28/44) * 1em;
 
     color: #999;
 

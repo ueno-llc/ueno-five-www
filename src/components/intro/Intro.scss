@@ -34,9 +34,23 @@
     right: 0;
     left: 0;
 
-    height: 72px;
+    height: 65px;
+
 
     background-color: #fff;
+
+    @media (min-width: $min-420) {
+      height: 135px;
+    }
+
+    @media (min-width: $min-768) {
+      height: 72px;
+    }
+
+    @media (max-height: $max-480) {
+      background-color: transparent;
+      height: 112px;
+    }
 
     &Container {
       @include container;
@@ -60,6 +74,7 @@
 
 
   &__bottom {
+
     @media (min-width: $min-768) {
       position: absolute;
       right: 0;
@@ -69,6 +84,10 @@
       height: 72px;
 
       background-color: #fff;
+    }
+
+    @media (max-height: $max-480) {
+      background-color: transparent;
     }
   }
 
@@ -127,6 +146,10 @@
     background-size: cover;
     background-color: #eb6860;
 
+    .hasTwoButtons & {
+      @include imgRetina('assets/images/tory', 'jpg', 767px, 837px, center top);
+    }
+
     @media (min-width: $min-768) {
       top: 0;
 
@@ -139,6 +162,7 @@
 
       .hasTwoButtons & {
         height: 100%;
+        background-image: none;
       }
     }
   }
@@ -173,6 +197,11 @@
       top: 0;
       bottom: 0;
       right: 50%;
+    }
+
+    @media (max-height: $max-480) {
+      top: -100px;
+      right: 40%;
     }
   }
 }
