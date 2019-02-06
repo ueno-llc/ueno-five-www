@@ -6,12 +6,7 @@ import subs from 'subs/subs.json';
 
 export default () => {
   if (process.env.NODE_ENV !== 'development') {
-    if (typeof window === undefined) {
-      return null;
-    }
-
-    // @ts-ignore
-    return window.location = '/';
+    return null;
   }
 
   const content = React.useRef(null);
