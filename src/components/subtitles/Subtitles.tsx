@@ -90,13 +90,13 @@ export const Subtitles = ({ currentTime, subtitles }: IProps) => {
         }
 
         return (
-          <>
+          <span key={`${first.part}-${i}`}>
             <span
               ref={ballRef}
               className={s.subtitles__pointer}
             />
 
-            <p key={`${first.part}-${i}`} className={s.subtitles__text}>
+            <p className={s.subtitles__text}>
               {segment.filter((sub: ISubtitles) => sub.part).map(({ start, end, part }: ISubtitles, ii: number) => {
                 const isCurrent = currentTime >= start && currentTime <= end;
 
@@ -110,7 +110,7 @@ export const Subtitles = ({ currentTime, subtitles }: IProps) => {
                 );
               })}
             </p>
-          </>
+          </span>
         );
       })}
     </div>
