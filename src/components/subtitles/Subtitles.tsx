@@ -13,18 +13,18 @@ export interface ISubtitles {
 interface ISpan {
   x: number;
   width: number;
-  duration: number;
-}
-
-interface IProps {
-  currentTime: number;
-  subtitles: ISubtitles[][];
+  delay: number;
 }
 
 interface ILyrics {
   index: number;
   spans: ISpan[];
   registered: boolean;
+}
+
+interface IProps {
+  currentTime: number;
+  subtitles: ISubtitles[][];
 }
 
 export const Subtitles = ({ currentTime, subtitles }: IProps) => {
@@ -47,18 +47,12 @@ export const Subtitles = ({ currentTime, subtitles }: IProps) => {
 
     const spans = elms.map((span, i) => {
       const { x, width } = span.getBoundingClientRect() as any;
-      let duration = 0;
-
-      if (i === 0) {
-        duration = segment[i].end - segment[i].start;
-      } else if (i > 0 && i < elms.length - 1) {
-        duration = segment[i + 1].end - segment[i].end;
-      }
+      const delay = (segment[i].end - segment[i].start) / 1000;
 
       return {
         x,
         width,
-        duration,
+        delay,
       };
     });
 
@@ -101,12 +95,12 @@ export const Subtitles = ({ currentTime, subtitles }: IProps) => {
 
       timeline.to(
         ball,
-        span.duration / 1000,
+        0.15,
         {
           bezier: {
             type: 'soft',
             values: [
-              { x: span.x + ((span.width + spans[index + 1].width) / 2), y: -65 },
+              { x: span.x + ((span.width + spans[index + 1].width) / 2), y: -60 },
               { x: spans[index + 1].x + (spans[index + 1].width / 2), y: 0 },
               { x: spans[index + 1].x + (spans[index + 1].width / 2), y: 0 },
             ],
@@ -114,6 +108,7 @@ export const Subtitles = ({ currentTime, subtitles }: IProps) => {
           },
           ease: Linear.easeNone,
         },
+        `+=${span.delay - 0.1}`,
       );
     });
   }, [currentLyrics]);
@@ -142,12 +137,12 @@ export const Subtitles = ({ currentTime, subtitles }: IProps) => {
               className={s.subtitles__text}
             >
               {segments.map(({ start, end, part }: ISubtitles, ii: number) => {
-                // const isCurrent = currentTime >= (start + offset) && currentTime <= (end + offset);
+                const isCurrent = currentTime >= (start + offset) && currentTime <= (end + offset);
 
                 return (
                   <span
                     key={`${part}-${ii}`}
-                    // style={{ color: isCurrent ? '#fff' : '' }}
+                    style={{ color: isCurrent ? '' : '' }}
                   >
                     {`${part} `}
                   </span>
