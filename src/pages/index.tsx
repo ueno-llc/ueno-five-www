@@ -112,6 +112,7 @@ export default () => {
       {play && (
         <Video
           src={require('assets/videos/song.mp4')}
+          srcMobile={require('assets/videos/song_480.mp4')}
           poster={require('assets/images/poster.jpg')}
           subtitles={require('subs/subs.json')}
           onVideoEnd={onVideoEnd}
