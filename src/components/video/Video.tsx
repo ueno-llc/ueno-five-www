@@ -35,13 +35,13 @@ export const Video = ({ src, srcMobile, poster, subtitles, subtitlesMobile, onVi
   const isVideoEnd = useVideoEnd(videoSrcRef);
   const isMouseMoving = useMouseMove(videoRef);
   const timeline = new TimelineLite();
+  const isMobile = window.matchMedia('(max-width: 920px)').matches;
 
   const animateOut = () => {
-
     if (
-      !topEl.current &&
-      !bottomEl.current &&
-      !leftEl.current &&
+      !topEl.current ||
+      !bottomEl.current ||
+      !leftEl.current ||
       !rightEl.current
     ) {
       return;
@@ -84,11 +84,10 @@ export const Video = ({ src, srcMobile, poster, subtitles, subtitlesMobile, onVi
   };
 
   const animateIn = () => {
-
     if (
-      !topEl.current &&
-      !bottomEl.current &&
-      !leftEl.current &&
+      !topEl.current ||
+      !bottomEl.current ||
+      !leftEl.current ||
       !rightEl.current
     ) {
       return;
@@ -175,8 +174,6 @@ export const Video = ({ src, srcMobile, poster, subtitles, subtitlesMobile, onVi
     setRangeValue(progress);
   }, [currentTime]);
 
-  const isMobile = window.matchMedia('(max-width: 920px)').matches;
-
   return (
     <div
       ref={videoRef}
@@ -192,6 +189,7 @@ export const Video = ({ src, srcMobile, poster, subtitles, subtitlesMobile, onVi
         poster={poster}
         autoPlay
         playsInline
+        // muted
       />
 
       <div className={s.video__subtitles}>
