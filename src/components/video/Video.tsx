@@ -31,7 +31,7 @@ export const Video = ({ src, srcMobile, poster, subtitles, subtitlesMobile, onVi
   const leftEl = React.useRef<HTMLDivElement>(null);
   const bottomEl = React.useRef<HTMLDivElement>(null);
   const [rangeValue, setRangeValue] = React.useState(0);
-  const { currentTime, duration } = useVideoUpdate(videoSrcRef);
+  const { currentTime, duration, paused } = useVideoUpdate(videoSrcRef);
   const isVideoEnd = useVideoEnd(videoSrcRef);
   const isMouseMoving = useMouseMove(videoRef);
   const timeline = new TimelineLite();
@@ -196,6 +196,7 @@ export const Video = ({ src, srcMobile, poster, subtitles, subtitlesMobile, onVi
         <Subtitles
           subtitles={isMobile ? subtitlesMobile : subtitles}
           currentTime={currentTime * 1000}
+          paused={paused}
         />
       </div>
 

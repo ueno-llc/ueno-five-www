@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { TimelineLite, Linear } from 'gsap';
+import { TimelineLite, Linear, Power4 } from 'gsap';
 import { isEmpty } from 'lodash';
 
 import s from './Subtitles.scss';
@@ -14,6 +14,7 @@ interface ISpan {
   x: number;
   width: number;
   delay: number;
+  span: HTMLSpanElement;
 }
 
 interface ILyrics {
@@ -25,11 +26,11 @@ interface ILyrics {
 interface IProps {
   currentTime: number;
   subtitles: ISubtitles[][];
+  paused: boolean;
 }
 
-export const Subtitles = ({ currentTime, subtitles }: IProps) => {
+export const Subtitles = ({ currentTime, subtitles, paused }: IProps) => {
   const ballRef = React.useRef<HTMLSpanElement>(null);
-  const timeline = new TimelineLite();
   const offset = -200;
 
   const [currentLyrics, setCurrentLyrics] = React.useState<ILyrics>({
@@ -50,9 +51,10 @@ export const Subtitles = ({ currentTime, subtitles }: IProps) => {
       const delay = (segment[i].end - segment[i].start) / 1000;
 
       return {
-        x,
+        x: x - 8, // BALL_WIDTH
         width,
         delay,
+        span,
       };
     });
 
@@ -61,6 +63,7 @@ export const Subtitles = ({ currentTime, subtitles }: IProps) => {
       spans,
       registered: true,
     });
+
   };
 
   React.useEffect(() => {
@@ -71,10 +74,12 @@ export const Subtitles = ({ currentTime, subtitles }: IProps) => {
       return;
     }
 
+    const timeline = new TimelineLite();
+
     if (isEmpty(spans)) {
       timeline.set(
         ball,
-        { opacity: 0 },
+        { opacity: 0, x: -50 },
       );
 
       return;
@@ -84,12 +89,33 @@ export const Subtitles = ({ currentTime, subtitles }: IProps) => {
       ball,
       {
         opacity: 1,
-        x: spans[0].x + (spans[0].width / 2),
+        x:  spans[0].x + (spans[0].width / 2),
       },
     );
 
     spans.map((span, index) => {
+      timeline.to(
+        spans[index].span,
+        0.05,
+        {
+          y: 10,
+          rotationX: 40,
+          ease: Power4.easeIn,
+        },
+        '-=0.05',
+      );
+      timeline.to(
+        spans[index].span,
+        0.15,
+        {
+          y: 0,
+          rotationX: 0,
+          ease: Power4.easeIn,
+        },
+      );
+
       if (!spans[index + 1]) {
+        timeline.to(ball, 0.2, { opacity: 0 }, `+=${spans[spans.length - 1].delay - 0.4}`);
         return;
       }
 
@@ -107,14 +133,33 @@ export const Subtitles = ({ currentTime, subtitles }: IProps) => {
             autoRotate: true,
           },
           ease: Linear.easeNone,
+
         },
-        `+=${span.delay - 0.1}`,
+        `+=${span.delay - 0.2}`,
       );
     });
+
+    return () => {
+      timeline.pause();
+      timeline.clear();
+    };
   }, [currentLyrics]);
+
+  React.useEffect(() => {
+    // if (paused) {
+    //   timeline.pause();
+    // } else {
+    //   timeline.play();
+    // }
+  }, [paused]);
 
   return (
     <div className={s.subtitles}>
+      <span
+        key="samekey"
+        ref={ballRef}
+        className={s.subtitles__pointer}
+      />
       {subtitles.map((segment: ISubtitles[], i: number) => {
         const [first] = segment;
         const last = segment[segment.length - 1];
@@ -127,11 +172,6 @@ export const Subtitles = ({ currentTime, subtitles }: IProps) => {
 
         return (
           <span key={`${first.part}-${i}`}>
-            <span
-              ref={ballRef}
-              className={s.subtitles__pointer}
-            />
-
             <p
               ref={(el: HTMLParagraphElement) => registerLyrics(el, segments, i)}
               className={s.subtitles__text}
@@ -143,6 +183,7 @@ export const Subtitles = ({ currentTime, subtitles }: IProps) => {
                   <span
                     key={`${part}-${ii}`}
                     style={{ color: isCurrent ? '' : '' }}
+                    className={s.subtitles__word}
                   >
                     {`${part} `}
                   </span>
