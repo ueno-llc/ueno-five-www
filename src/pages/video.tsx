@@ -10,6 +10,10 @@ interface ISubtitle {
 }
 
 export default () => {
+  if (process.env.NODE_ENV !== 'development') {
+    return null;
+  }
+
   const audioRef = useRef<HTMLVideoElement>(null);
   const [currentTime, setCurrentTime] = React.useState(0);
 
