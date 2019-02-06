@@ -146,7 +146,7 @@ export const Subtitles = ({ currentTime, subtitles }: IProps) => {
                 return (
                   <span
                     key={`${part}-${ii}`}
-                    style={{ color: isCurrent ? '#fff' : '' }}
+                    // style={{ color: isCurrent ? '#fff' : '' }}
                   >
                     {`${part} `}
                   </span>
