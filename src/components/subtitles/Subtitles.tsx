@@ -51,7 +51,7 @@ export const Subtitles = ({ currentTime, subtitles, paused }: IProps) => {
       const delay = (segment[i].end - segment[i].start) / 1000;
 
       return {
-        x: x - 8, // BALL_WIDTH
+        x: i > 0 ? x - 12 : x, // space in words
         width,
         delay,
         span,
