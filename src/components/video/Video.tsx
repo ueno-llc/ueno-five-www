@@ -19,10 +19,11 @@ interface IProps {
   srcMobile: string;
   poster: string;
   subtitles: ISubtitles[][];
+  subtitlesMobile: ISubtitles[][];
   onVideoEnd(): void;
 }
 
-export const Video = ({ src, srcMobile, poster, subtitles, onVideoEnd }: IProps) => {
+export const Video = ({ src, srcMobile, poster, subtitles, subtitlesMobile, onVideoEnd }: IProps) => {
   const videoRef = React.useRef<HTMLDivElement>(null);
   const videoSrcRef = React.useRef<HTMLVideoElement>(null);
   const topEl = React.useRef<HTMLDivElement>(null);
@@ -195,7 +196,7 @@ export const Video = ({ src, srcMobile, poster, subtitles, onVideoEnd }: IProps)
 
       <div className={s.video__subtitles}>
         <Subtitles
-          subtitles={subtitles}
+          subtitles={isMobile ? subtitlesMobile : subtitles}
           currentTime={currentTime * 1000}
         />
       </div>

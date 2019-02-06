@@ -115,6 +115,7 @@ export default () => {
           srcMobile={require('assets/videos/song_480.mp4')}
           poster={require('assets/images/poster.jpg')}
           subtitles={require('subs/subs.json')}
+          subtitlesMobile={require('subs/subs-mobile.json')}
           onVideoEnd={onVideoEnd}
         />
       )}

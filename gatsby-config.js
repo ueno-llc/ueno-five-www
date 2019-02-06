@@ -1,3 +1,7 @@
+require('dotenv').config();
+
+const config = require('gatsby-plugin-config').default;
+
 module.exports = {
   siteMetadata: {
     title: 'Ueno Gatsby Starter',
@@ -8,6 +12,12 @@ module.exports = {
     'gatsby-plugin-typescript',
     'gatsby-plugin-sharp',
     'gatsby-transformer-sharp',
+    {
+      resolve: `gatsby-plugin-google-analytics`,
+      options: {
+        trackingId: config.GOOGLE_ID,
+      },
+    },
     {
       resolve: 'gatsby-plugin-manifest',
       options: {
