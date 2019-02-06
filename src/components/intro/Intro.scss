@@ -27,6 +27,7 @@
     display: flex;
     align-items: center;
     justify-content: flex-start;
+    pointer-events: auto;
 
     position: absolute;
     top: 0;
@@ -49,6 +50,14 @@
     width: 64px;
   }
 
+  &__link {
+    @include reset-anchor;
+    display: inline-flex;
+    padding: 15px 15px 15px 0;
+
+    cursor: pointer;
+  }
+
 
   &__bottom {
     @media (min-width: $min-768) {
@@ -64,12 +73,15 @@
   }
 
   &__container {
+
     @media (max-height: 823px) {
-      height: 50%;
+      .hasTwoButtons & {
+        height: 50%;
+      }
     }
 
     @include container;
-    height: 35%;
+    height: 40%;
 
     @media (min-width: $min-768) {
       height: 100%;
@@ -91,7 +103,9 @@
 
   &__imageRight {
     @media (max-height: 823px) {
-      height: 50%;
+      .hasTwoButtons & {
+        height: 50%;
+      }
     }
 
     display: flex;
@@ -104,7 +118,7 @@
     z-index: 10;
 
     width: 100%;
-    height: 65%;
+    height: 60%;
 
     background-image: url('assets/images/mobile-tory.jpg');
     background-repeat: no-repeat;

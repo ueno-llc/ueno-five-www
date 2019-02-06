@@ -52,27 +52,37 @@
   }
 
   &__left {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: -20px;
+    display: none;
 
-    width: 20px;
-    height: 100%;
+    @media (min-width: $min-tablet) {
+      display: block;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: -20px;
 
-    background-color: #fff;
+      width: 20px;
+      height: 100%;
+
+      background-color: #fff;
+    }
   }
 
   &__right {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    right: -20px;
+    display: none;
 
-    width: 20px;
-    height: 100%;
+    @media (min-width: $min-tablet) {
+      display: block;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      right: -20px;
 
-    background-color: #fff;
+      width: 20px;
+      height: 100%;
+
+      background-color: #fff;
+    }
   }
 
   &__container {
@@ -85,6 +95,15 @@
     display: block;
 
     width: 64px;
+  }
+
+  &__link {
+    @include reset-anchor;
+
+    display: inline-flex;
+    padding: 15px 15px 15px 0;
+
+    cursor: pointer;
   }
 
   &__controls {

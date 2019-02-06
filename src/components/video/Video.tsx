@@ -204,7 +204,9 @@ export const Video = ({ src, srcMobile, poster, subtitles, onVideoEnd }: IProps)
       <div className={s.video__hover}>
         <div className={s.video__header} ref={topEl}>
           <div className={s.video__container}>
-            <Logo className={s.video__logo} />
+            <a href="https://ueno.co/" className={s.video__link}>
+              <Logo className={s.video__logo} />
+            </a>
           </div>
         </div>
 
