@@ -22,16 +22,19 @@ interface IProps {
 
 export const Intro = ({ children, introRef, left, right }: IProps) => {
   const [isMobile] = useResize();
+  const buttonCount = children ? children.props.buttons.length : 0;
 
   return (
     <div
       ref={introRef}
-      className={s.intro}
+      className={s(s.intro, { ['hasTwoButtons']: buttonCount > 1 })}
     >
       <div className={s.intro__borders}>
         <div className={s.intro__top}>
           <div className={s.intro__topContainer}>
-            <Logo className={s.intro__logo} />
+            <a href="https://ueno.co/" className={s.intro__link}>
+              <Logo className={s.intro__logo} />
+            </a>
           </div>
         </div>
         <div className={s.intro__bottom} />

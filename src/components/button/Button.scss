@@ -9,13 +9,16 @@ $pink: #ec8d87;
   @include reset-button;
 
   display: inline-flex;
-  position: relative;
+  justify-content: center;
 
-  padding: 0 65px;
+  position: relative;
+  min-width: 195px;
+
+  padding: 0 38px;
 
   height: $btn-height;
 
-  font-size: $font-size;
+  font-size: 14px;
   line-height: $btn-height + 2;
   vertical-align: middle;
   text-align: center;
