@@ -124,6 +124,7 @@ export const Subtitles = ({ currentTime, subtitles }: IProps) => {
         const [first] = segment;
         const last = segment[segment.length - 1];
         const inRange = currentTime >= (first.start + offset) && currentTime <= (last.end + offset);
+        const segments = segment.filter((sub: ISubtitles) => sub.part);
 
         if (!inRange) {
           return null;
@@ -137,11 +138,11 @@ export const Subtitles = ({ currentTime, subtitles }: IProps) => {
             />
 
             <p
-              ref={(el: HTMLParagraphElement) => registerLyrics(el, segment, i)}
+              ref={(el: HTMLParagraphElement) => registerLyrics(el, segments, i)}
               className={s.subtitles__text}
             >
-              {segment.filter((sub: ISubtitles) => sub.part).map(({ start, end, part }: ISubtitles, ii: number) => {
-                const isCurrent = currentTime >= (start + offset) && currentTime <= (end + offset);
+              {segments.map(({ start, end, part }: ISubtitles, ii: number) => {
+                // const isCurrent = currentTime >= (start + offset) && currentTime <= (end + offset);
 
                 return (
                   <span
