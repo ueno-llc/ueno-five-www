@@ -102,7 +102,7 @@ export const Subtitles = ({ currentTime, subtitles, paused }: IProps) => {
           rotationX: 40,
           ease: Power4.easeIn,
         },
-        '-=0.05',
+        '-=0.1',
       );
       timeline.to(
         spans[index].span,
@@ -112,6 +112,7 @@ export const Subtitles = ({ currentTime, subtitles, paused }: IProps) => {
           rotationX: 0,
           ease: Power4.easeIn,
         },
+        '-=0.05',
       );
 
       if (!spans[index + 1]) {
@@ -135,7 +136,7 @@ export const Subtitles = ({ currentTime, subtitles, paused }: IProps) => {
           ease: Linear.easeNone,
 
         },
-        `+=${span.delay - 0.2}`,
+        `+=${span.delay - 0.25}`,
       );
     });
 
@@ -155,11 +156,6 @@ export const Subtitles = ({ currentTime, subtitles, paused }: IProps) => {
 
   return (
     <div className={s.subtitles}>
-      <span
-        key="samekey"
-        ref={ballRef}
-        className={s.subtitles__pointer}
-      />
       {subtitles.map((segment: ISubtitles[], i: number) => {
         const [first] = segment;
         const last = segment[segment.length - 1];
@@ -172,6 +168,10 @@ export const Subtitles = ({ currentTime, subtitles, paused }: IProps) => {
 
         return (
           <span key={`${first.part}-${i}`}>
+            <span
+              ref={ballRef}
+              className={s.subtitles__pointer}
+            />
             <p
               ref={(el: HTMLParagraphElement) => registerLyrics(el, segments, i)}
               className={s.subtitles__text}
