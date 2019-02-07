@@ -28,13 +28,14 @@ $index: 9970;
 
     pointer-events: auto;
 
-    background-color: #fff;
+
 
     @media (min-width: $min-420) {
       height: 135px;
     }
 
     @media (min-width: $min-960) {
+      background-color: #fff;
       height: 72px;
     }
 
@@ -133,6 +134,14 @@ $index: 9970;
         height: 50%;
       }
     }
+
+    @media (max-height: $max-600) and (min-width: $min-560) {
+      height: 100%;
+
+      .hasTwoButtons & {
+        height: 100%;
+      }
+    }
   }
 
   &__row {
@@ -174,6 +183,17 @@ $index: 9970;
     @media (max-height: 823px) {
       .hasTwoButtons & {
         height: 50%;
+      }
+    }
+
+    @media (max-height: $max-600) and (min-width: $min-560) {
+      left: 50%;
+      top: 0;
+      width: 50%;
+      height: 100%;
+
+      .hasTwoButtons & {
+        height: 100%;
       }
     }
 
