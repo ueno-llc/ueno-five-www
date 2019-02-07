@@ -4,7 +4,7 @@ import { TimelineLite, Power4 } from 'gsap';
 
 import { shareTwitter } from 'utils/share-twitter';
 import { Intro } from 'components/intro/Intro';
-import { Content } from 'components/intro/Content';
+import { Content } from 'components/content/Content';
 import { Video } from 'components/video/Video';
 
 export default () => {
