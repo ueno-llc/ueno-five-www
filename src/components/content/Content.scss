@@ -11,7 +11,7 @@
     margin-top: 85px;
   }
 
-  @media (min-width: $min-768) {
+  @media (min-width: $min-960) {
     @include grid-col(6);
 
     align-self: center;
@@ -26,7 +26,7 @@
 
     color: #000;
 
-    @media (min-width: $min-768) {
+    @media (min-width: $min-960) {
       color: #f8faf0;
     }
   }
@@ -38,7 +38,7 @@
 
     color: #999;
 
-    @media (min-width: $min-768) {
+    @media (min-width: $min-960) {
       color: #f8faf0;
     }
   }

@@ -7,12 +7,12 @@
 
   background-color: #fff;
 
-  @media (min-width: $min-768) {
+  @media (min-width: $min-960) {
     background-color: #fda8a3;
   }
 
   &__borders {
-    @media (min-width: $min-768) {
+    @media (min-width: $min-960) {
       @include fit;
 
       z-index: 9990;
@@ -36,14 +36,13 @@
 
     height: 65px;
 
-
     background-color: #fff;
 
     @media (min-width: $min-420) {
       height: 135px;
     }
 
-    @media (min-width: $min-768) {
+    @media (min-width: $min-960) {
       height: 72px;
     }
 
@@ -72,10 +71,8 @@
     cursor: pointer;
   }
 
-
   &__bottom {
-
-    @media (min-width: $min-768) {
+    @media (min-width: $min-960) {
       position: absolute;
       right: 0;
       bottom: 0;
@@ -92,18 +89,18 @@
   }
 
   &__container {
+    @include container;
+
+    height: 40%;
+
+    @media (min-width: $min-960) {
+      height: 100%;
+    }
 
     @media (max-height: 823px) {
       .hasTwoButtons & {
         height: 50%;
       }
-    }
-
-    @include container;
-    height: 40%;
-
-    @media (min-width: $min-768) {
-      height: 100%;
     }
   }
 
@@ -115,17 +112,13 @@
 
     height: 100%;
 
-    @media (min-width: $min-768) {
+    @media (min-width: $min-960) {
       height: 100vh;
     }
   }
 
   &__imageRight {
-    @media (max-height: 823px) {
-      .hasTwoButtons & {
-        height: 50%;
-      }
-    }
+    @include imgRetina('assets/images/mobile-troy', 'jpg', 767px, 837px, left top);
 
     display: flex;
     align-items: center;
@@ -139,9 +132,6 @@
     width: 100%;
     height: 60%;
 
-
-
-    @include imgRetina('assets/images/mobile-troy', 'jpg', 767px, 837px, left top);
     background-repeat: no-repeat;
     background-size: cover;
     background-color: #eb6860;
@@ -150,7 +140,13 @@
       @include imgRetina('assets/images/tory', 'jpg', 767px, 837px, center top);
     }
 
-    @media (min-width: $min-768) {
+    @media (max-height: 823px) {
+      .hasTwoButtons & {
+        height: 50%;
+      }
+    }
+
+    @media (min-width: $min-960) {
       top: 0;
 
       width: 50%;
@@ -190,7 +186,7 @@
   &__imageLeft {
     display: none;
 
-    @media (min-width: $min-768) {
+    @media (min-width: $min-960) {
       display: block;
 
       position: absolute;
