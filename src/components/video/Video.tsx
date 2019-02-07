@@ -190,7 +190,7 @@ export const Video = ({ src, srcMobile, poster, subtitles, subtitlesMobile, onVi
         poster={poster}
         autoPlay
         playsInline
-        // muted
+        muted
       />
 
       <div className={s.video__subtitles}>

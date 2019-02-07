@@ -6,46 +6,123 @@ import { shareTwitter } from 'utils/share-twitter';
 import { Intro } from 'components/intro/Intro';
 import { Content } from 'components/content/Content';
 import { Video } from 'components/video/Video';
+import { useResize } from 'hooks/use-resize';
 
 export default () => {
   const introRef = React.useRef<React.ReactNode>(null);
+  const topRef = React.useRef<HTMLDivElement>(null);
+  const rightRef = React.useRef<HTMLDivElement>(null);
+  const leftRef = React.useRef<HTMLDivElement>(null);
+  const bottomRef = React.useRef<HTMLDivElement>(null);
   const [play, playVideo] = React.useState(false);
   const [screen, setScreen] = React.useState('opening');
+  const [isMobile] = useResize();
   const timeline = new TimelineLite();
+  const duration = 0.75;
+  const ease = Power4.easeInOut;
 
   const onClick = () => {
-    if (!introRef.current) {
+    if (
+      !introRef.current ||
+      !topRef.current ||
+      !bottomRef.current ||
+      !leftRef.current ||
+      !rightRef.current
+    ) {
       return;
+    }
+
+    if (!isMobile) {
+      timeline.to(
+        topRef.current,
+        duration,
+        {
+          y: -74,
+          ease,
+        },
+      );
+
+      timeline.to(
+        bottomRef.current,
+        duration,
+        {
+          y: 74,
+          ease,
+        },
+        `-=${duration}`,
+      );
+
+      timeline.to(
+        rightRef.current,
+        duration,
+        {
+          x: 20,
+          ease,
+        },
+        `-=${duration}`,
+      );
+
+      timeline.to(
+        leftRef.current,
+        duration,
+        {
+          x: -20,
+          ease,
+        },
+        `-=${duration}`,
+      );
     }
 
     timeline.to(
       introRef.current,
-      0.75,
+      duration,
       {
         autoAlpha: 0,
-        ease: Power4.easeInOut,
+        ease,
       },
+      isMobile ? 0 : `-=${duration / 1.5}`,
     );
 
     playVideo(true);
   };
 
   const onVideoEnd = () => {
-    if (!introRef.current) {
+    if (
+      !introRef.current ||
+      !topRef.current ||
+      !bottomRef.current ||
+      !leftRef.current ||
+      !rightRef.current
+    ) {
       return;
     }
 
     setScreen('closing');
-    playVideo(false);
+
+    if (!isMobile) {
+      timeline.set(
+        [topRef.current, bottomRef.current],
+        { y: 0 },
+      );
+
+      timeline.set(
+        [rightRef.current, leftRef.current],
+        { x: 0 },
+      );
+    }
 
     timeline.to(
       introRef.current,
-      0.75,
+      duration,
       {
         autoAlpha: 1,
-        ease: Power4.easeInOut,
+        ease,
       },
     );
+
+    timeline.call(() => {
+      playVideo(false);
+    });
   };
 
   const states = [
@@ -92,15 +169,16 @@ export default () => {
   ];
 
   const active = states.find((s) => s.id === screen)!;
+  const refs = { introRef, topRef, rightRef, bottomRef, leftRef };
 
   return (
     <>
       <Helmet title="Tory Satins and friends" />
 
       <Intro
-        introRef={introRef}
         left={active.leftSide.image}
         right={{ ...active.rightSide }}
+        {...refs}
       >
         <Content
           heading={active.leftSide.heading}
