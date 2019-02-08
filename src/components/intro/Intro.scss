@@ -1,55 +1,48 @@
 @import '~styles/config';
 
+$index: 9970;
+
 .intro {
   @include fit;
 
-  z-index: 9970;
+  z-index: $index;
 
   background-color: #fff;
 
-  @media (min-width: $min-768) {
+  @media (min-width: $min-960) {
     background-color: #fda8a3;
-  }
-
-  &__borders {
-    @media (min-width: $min-768) {
-      @include fit;
-
-      z-index: 9990;
-
-      box-shadow: inset 0 0 0 20px #fff;
-
-      pointer-events: none;
-    }
   }
 
   &__top {
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    pointer-events: auto;
 
     position: absolute;
     top: 0;
     right: 0;
     left: 0;
+    z-index: $index;
 
     height: 65px;
 
+    pointer-events: auto;
 
-    background-color: #fff;
+
 
     @media (min-width: $min-420) {
       height: 135px;
     }
 
-    @media (min-width: $min-768) {
+    @media (min-width: $min-960) {
+      background-color: #fff;
       height: 72px;
     }
 
     @media (max-height: $max-480) {
-      background-color: transparent;
       height: 112px;
+
+      background-color: transparent;
     }
 
     &Container {
@@ -59,27 +52,63 @@
     }
   }
 
-  &__logo {
-    display: block;
-    width: 64px;
-  }
-
   &__link {
     @include reset-anchor;
+
     display: inline-flex;
     padding: 15px 15px 15px 0;
 
     cursor: pointer;
   }
 
+  &__logo {
+    display: block;
+    width: 64px;
+  }
+
+  &__left {
+    display: none;
+
+    @media (min-width: $min-960) {
+      display: block;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      z-index: $index;
+
+      width: 20px;
+      height: 100%;
+
+      background-color: #fff;
+    }
+  }
+
+  &__right {
+    display: none;
+
+    @media (min-width: $min-960) {
+      display: block;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      z-index: $index;
+
+      width: 20px;
+      height: 100%;
+
+      background-color: #fff;
+    }
+  }
 
   &__bottom {
-
-    @media (min-width: $min-768) {
+    @media (min-width: $min-960) {
       position: absolute;
       right: 0;
       bottom: 0;
       left: 0;
+      z-index: $index;
 
       height: 72px;
 
@@ -92,6 +121,13 @@
   }
 
   &__container {
+    @include container;
+
+    height: 40%;
+
+    @media (min-width: $min-960) {
+      height: 100%;
+    }
 
     @media (max-height: 823px) {
       .hasTwoButtons & {
@@ -99,11 +135,12 @@
       }
     }
 
-    @include container;
-    height: 40%;
-
-    @media (min-width: $min-768) {
+    @media (max-height: $max-600) and (min-width: $min-560) {
       height: 100%;
+
+      .hasTwoButtons & {
+        height: 100%;
+      }
     }
   }
 
@@ -115,17 +152,13 @@
 
     height: 100%;
 
-    @media (min-width: $min-768) {
+    @media (min-width: $min-960) {
       height: 100vh;
     }
   }
 
   &__imageRight {
-    @media (max-height: 823px) {
-      .hasTwoButtons & {
-        height: 50%;
-      }
-    }
+    @include imgRetina('assets/images/mobile-troy', 'jpg', 767px, 837px, left top);
 
     display: flex;
     align-items: center;
@@ -139,9 +172,6 @@
     width: 100%;
     height: 60%;
 
-
-
-    @include imgRetina('assets/images/mobile-troy', 'jpg', 767px, 837px, left top);
     background-repeat: no-repeat;
     background-size: cover;
     background-color: #eb6860;
@@ -150,13 +180,30 @@
       @include imgRetina('assets/images/tory', 'jpg', 767px, 837px, center top);
     }
 
-    @media (min-width: $min-768) {
-      top: 0;
+    @media (max-height: 823px) {
+      .hasTwoButtons & {
+        height: 50%;
+      }
+    }
 
+    @media (max-height: $max-600) and (min-width: $min-560) {
+      left: 50%;
+      top: 0;
       width: 50%;
       height: 100%;
 
+      .hasTwoButtons & {
+        height: 100%;
+      }
+    }
+
+    @media (min-width: $min-960) {
+      top: 0;
+
       padding-right: 20px;
+
+      width: 50%;
+      height: 100%;
 
       background-image: none;
 
@@ -168,7 +215,7 @@
   }
 
   &__source {
-    box-shadow: 14px 14px 40px 0px rgba(15,15,15,0.22);
+    box-shadow: 14px 14px 40px 0 rgba(15, 15, 15, 0.22);
 
     .hasTwoButtons & {
       box-shadow: none;
@@ -190,7 +237,7 @@
   &__imageLeft {
     display: none;
 
-    @media (min-width: $min-768) {
+    @media (min-width: $min-960) {
       display: block;
 
       position: absolute;

@@ -10,6 +10,7 @@ import Logo from 'assets/svg/logo.svg';
 import { useVideoUpdate } from 'hooks/use-video-update';
 import { useVideoEnd } from 'hooks/use-video-end';
 import { useMouseMove } from 'hooks/use-mousemove';
+import { useResize } from 'hooks/use-resize';
 import { Subtitles, ISubtitles } from 'components/subtitles/Subtitles';
 
 import s from './Video.scss';
@@ -34,8 +35,8 @@ export const Video = ({ src, srcMobile, poster, subtitles, subtitlesMobile, onVi
   const { currentTime, duration, paused } = useVideoUpdate(videoSrcRef);
   const isVideoEnd = useVideoEnd(videoSrcRef);
   const isMouseMoving = useMouseMove(videoRef);
+  const [isMobile] = useResize();
   const timeline = new TimelineLite();
-  const isMobile = window.matchMedia('(max-width: 920px)').matches;
 
   const animateOut = () => {
     if (

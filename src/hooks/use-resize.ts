@@ -15,7 +15,7 @@ export const useResize = () => {
     }
 
     setSizes({ width: window.innerWidth, height: window.innerHeight });
-    setMobile(window.matchMedia('(max-width: 767px)').matches);
+    setMobile(window.matchMedia('(max-width: 960px)').matches);
   };
 
   React.useEffect(() => {

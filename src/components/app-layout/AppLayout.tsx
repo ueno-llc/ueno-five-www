@@ -40,6 +40,9 @@ export default ({ children }: IProps) => (
     </Helmet>
 
     {children}
-    <Devtools />
+
+    {process.env.NODE_ENV === 'development' && (
+      <Devtools />
+    )}
   </div>
 );

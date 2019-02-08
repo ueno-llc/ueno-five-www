@@ -15,30 +15,35 @@ interface IRight {
 
 interface IProps {
   children: React.ReactNode;
-  introRef: any;
   left?: string;
   right: IRight;
+  introRef: React.RefObject<any>;
+  topRef: React.RefObject<any>;
+  rightRef: React.RefObject<any>;
+  bottomRef: React.RefObject<any>;
+  leftRef: React.RefObject<any>;
 }
 
-export const Intro = ({ children, introRef, left, right }: IProps) => {
+export const Intro = ({ children, left, right, introRef, topRef, rightRef, bottomRef, leftRef }: IProps) => {
   const [isMobile] = useResize();
-  const buttonCount = children ? children.props.buttons.length : 0;
+  const buttonCount = children ? (children as any).props.buttons.length : 0;
 
   return (
     <div
       ref={introRef}
       className={s(s.intro, { ['hasTwoButtons']: buttonCount > 1 })}
     >
-      <div className={s.intro__borders}>
-        <div className={s.intro__top}>
-          <div className={s.intro__topContainer}>
-            <a href="https://ueno.co/" className={s.intro__link}>
-              <Logo className={s.intro__logo} />
-            </a>
-          </div>
+      <div className={s.intro__top} ref={topRef}>
+        <div className={s.intro__topContainer}>
+          <a href="https://ueno.co/" className={s.intro__link}>
+            <Logo className={s.intro__logo} />
+          </a>
         </div>
-        <div className={s.intro__bottom} />
       </div>
+
+      <div className={s.intro__right} ref={rightRef} />
+      <div className={s.intro__bottom} ref={bottomRef} />
+      <div className={s.intro__left} ref={leftRef} />
 
       <div className={s.intro__container}>
         <div className={s.intro__row}>
