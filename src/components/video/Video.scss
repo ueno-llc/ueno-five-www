@@ -2,6 +2,7 @@
 
 .video {
   @include fit;
+  position: fixed;
 
   z-index: 9960;
 
