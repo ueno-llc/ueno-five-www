@@ -1,14 +1,18 @@
 @import '~styles/config';
 
 .subtitles {
+  position: absolute;
+  bottom: 70px;
+
+  width: 100%;
+
   @media (max-height: $max-420) {
     bottom: 70px;
   }
 
-  position: absolute;
-  bottom: 140px;
-
-  width: 100%;
+  @media (min-width: $min-960) {
+    bottom: 140px;
+  }
 
   &__text {
     @include reset-paragraph;
