@@ -22,6 +22,7 @@ export default class AppLayout extends React.Component<IProps> {
 
   onTouchMove = (e: any) => {
     e.preventDefault();
+    setTimeout(() => {   window.scrollTo(0, 1); console.log('test'); }, 1000);
   }
 
   render() {
@@ -51,6 +52,7 @@ export default class AppLayout extends React.Component<IProps> {
             { name: 'msapplication-navbutton-color', content: '#000' },
             { name: 'apple-mobile-web-app-status-bar-style', content: 'black' },
             { name: 'viewport', content: 'width=device-width, initial-scale=1.0, viewport-fit=cover' },
+            { name: 'apple-mobile-web-app-capable', content: 'yes' },
           ]}
         >
           <html lang="en" />
