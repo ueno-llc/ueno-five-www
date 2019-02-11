@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { TimelineLite, Linear } from 'gsap';
+import { TimelineLite, Linear, Power4 } from 'gsap';
 import { isEmpty } from 'lodash';
 
 import s from './Subtitles.scss';
@@ -14,6 +14,7 @@ interface ISpan {
   x: number;
   width: number;
   delay: number;
+  span: HTMLSpanElement;
 }
 
 interface ILyrics {
@@ -76,9 +77,10 @@ export class Subtitles extends React.Component<IProps, IState> {
       const delay = (segment[i].end - segment[i].start) / 1000;
 
       return {
-        x,
+        x: i > 0 ? x - 12 : x,
         width,
         delay,
+        span,
       };
     });
 
@@ -107,7 +109,7 @@ export class Subtitles extends React.Component<IProps, IState> {
         },
         ease: Linear.easeNone,
       },
-      `+=${span.delay - 0.1}`,
+      `+=${span.delay - 0.25}`,
     );
 
     return this.timeline;
@@ -124,7 +126,7 @@ export class Subtitles extends React.Component<IProps, IState> {
     if (isEmpty(spans)) {
       this.timeline.set(
         ball,
-        { opacity: 0 },
+        { opacity: 0, x: -50 },
       );
 
       return;
@@ -141,7 +143,36 @@ export class Subtitles extends React.Component<IProps, IState> {
     );
 
     spans.map((span, index) => {
+      this.timeline.to(
+        spans[index].span,
+        0.05,
+        {
+          y: 10,
+          rotationX: 40,
+          ease: Power4.easeIn,
+        },
+        '-=0.1',
+      );
+
+      this.timeline.to(
+        spans[index].span,
+        0.15,
+        {
+          y: 0,
+          rotationX: 0,
+          ease: Power4.easeIn,
+        },
+        '-=0.05',
+      );
+
       if (!spans[index + 1]) {
+        this.timeline.to(
+          ball,
+          0.2,
+          { opacity: 0 },
+          `+=${spans[spans.length - 1].delay - 0.4}`,
+        );
+
         return;
       }
 
@@ -182,6 +213,7 @@ export class Subtitles extends React.Component<IProps, IState> {
                     <span
                       key={`${part}-${ii}`}
                       style={{ color: isCurrent ? '' : '' }}
+                      className={s.subtitles__word}
                     >
                       {`${part} `}
                     </span>
