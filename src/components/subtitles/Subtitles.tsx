@@ -14,6 +14,11 @@ interface ISpan {
   x: number;
   width: number;
   delay: number;
+  ratio: number;
+  text: string;
+  duration: number;
+  postSilence: number;
+  total: number;
   span: HTMLSpanElement;
 }
 
@@ -33,7 +38,8 @@ interface IState {
   currentLyrics: ILyrics;
 }
 
-const OFFSET = -200;
+const OFFSET = 0;
+const ease = Linear.easeNone;
 
 export class Subtitles extends React.Component<IProps, IState> {
   ballRef: React.RefObject<HTMLSpanElement> = React.createRef();
@@ -71,16 +77,25 @@ export class Subtitles extends React.Component<IProps, IState> {
     }
 
     const elms = Array.from(el.querySelectorAll('span'));
+    const total = (segment[segment.length - 1].end - segment[0].start) / 1000;
 
     const spans = elms.map((span, i) => {
       const { x, width } = span.getBoundingClientRect() as any;
       const delay = (segment[i].end - segment[i].start) / 1000;
+      const ratio = delay / total;
+
+      const postSilence = segment[i + 1] ? (segment[i + 1].start - segment[i].end) / 1000 : 0;
 
       return {
         x: i > 0 ? x - 12 : x,
         width,
         delay,
         span,
+        ratio,
+        text: segment[i].part,
+        duration: delay,
+        postSilence,
+        total,
       };
     });
 
@@ -94,22 +109,34 @@ export class Subtitles extends React.Component<IProps, IState> {
   }
 
   onBounce = (ball: React.ReactNode, span: ISpan, spans: ISpan[], index: number) => {
+    const nextSpan = spans[index + 1];
+
+    // vary how the ball goes according to how long a word is said
+    const baseY = 100;
+    const y = 60 + (baseY * nextSpan.ratio);
+
+    const padding = -0.1;
+
+    let animationDuration = span.duration + padding + span.postSilence;
+    if (index === 0) {
+      animationDuration -= 0.1;
+    }
+
     this.timeline.to(
       ball!,
-      0.15,
+      animationDuration,
       {
         bezier: {
           type: 'soft',
           values: [
-            { x: span.x + ((span.width + spans[index + 1].width) / 2), y: -60 },
-            { x: spans[index + 1].x + (spans[index + 1].width / 2), y: 0 },
-            { x: spans[index + 1].x + (spans[index + 1].width / 2), y: 0 },
+            { x: span.x + ((span.width + nextSpan.width) / 2), y: -y },
+            { x: nextSpan.x + (nextSpan.width / 2), y: 0 },
+            { x: nextSpan.x + (nextSpan.width / 2), y: 0 },
           ],
           autoRotate: true,
         },
-        ease: Linear.easeNone,
+        ease,
       },
-      `+=${span.delay - 0.25}`,
     );
 
     return this.timeline;
@@ -134,11 +161,30 @@ export class Subtitles extends React.Component<IProps, IState> {
 
     this.timeline.clear();
 
+    // start the ball off to the side
     this.timeline.set(
       ball,
       {
         opacity: 1,
-        x: spans[0].x + (spans[0].width / 2),
+        x: spans[0].x - 100,
+        y: -60,
+      },
+    );
+
+    // bounce it onto the first word
+    this.timeline.to(
+      ball,
+      0.1,
+      {
+        bezier: {
+          type: 'soft',
+          values: [
+            { x: spans[0].x - 60, y: - 60, opacity: 1 },
+            { x: spans[0].x + (spans[0].width / 2), y: 0 },
+          ],
+          autoRotate: true,
+        },
+        ease,
       },
     );
 
@@ -168,11 +214,19 @@ export class Subtitles extends React.Component<IProps, IState> {
       if (!spans[index + 1]) {
         this.timeline.to(
           ball,
-          0.2,
-          { opacity: 0 },
-          `+=${spans[spans.length - 1].delay - 0.4}`,
+          spans[spans.length - 1].duration,
+          {
+            bezier: {
+              type: 'soft',
+              values: [
+                { x: spans[spans.length - 1].x + (spans[spans.length - 1].width / 2), y: 0, opacity: 1 },
+                { x: spans[spans.length - 1].x + (spans[spans.length - 1].width / 2) + 60, y: -60, opacity: 0 },
+              ],
+              autoRotate: true,
+            },
+            ease,
+          },
         );
-
         return;
       }
 
