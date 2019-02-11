@@ -28,18 +28,43 @@ interface IProps {
   paused: boolean;
 }
 
-export const Subtitles = ({ currentTime, subtitles, paused }: IProps) => {
-  const ballRef = React.useRef<HTMLSpanElement>(null);
-  const timeline = new TimelineLite();
-  const offset = -200;
+interface IState {
+  currentLyrics: ILyrics;
+}
 
-  const [currentLyrics, setCurrentLyrics] = React.useState<ILyrics>({
-    index: -1,
-    spans: [],
-    registered: false,
-  });
+const OFFSET = -200;
 
-  const registerLyrics = (el: HTMLParagraphElement, segment: any, index: number) => {
+export class Subtitles extends React.Component<IProps, IState> {
+  ballRef: React.RefObject<HTMLSpanElement> = React.createRef();
+  timeline = new TimelineLite();
+
+  state = {
+    currentLyrics: {
+      index: -1,
+      spans: [],
+      registered: false,
+    },
+  } as IState;
+
+  componentWillReceiveProps(nextProps: IProps) {
+    if (nextProps.paused !== this.props.paused) {
+      if (nextProps.paused) {
+        this.timeline.pause();
+      } else {
+        this.timeline.play();
+      }
+    }
+  }
+
+  componentDidUpdate(_props: IProps, prevState: IState) {
+    if (prevState.currentLyrics !== this.state.currentLyrics) {
+      this.onPlay();
+    }
+  }
+
+  registerLyrics = (el: HTMLParagraphElement, segment: any, index: number) => {
+    const { currentLyrics } = this.state;
+
     if ((currentLyrics.index === index && currentLyrics.registered) || !el) {
       return;
     }
@@ -57,32 +82,18 @@ export const Subtitles = ({ currentTime, subtitles, paused }: IProps) => {
       };
     });
 
-    setCurrentLyrics({
+    const lyrics = {
       index,
       spans,
       registered: true,
-    });
-  };
+    };
 
-  const onBounce = (ball, span, spans, index) => {
-    // const ball = ballRef.current;
-    // const { spans } = currentLyrics;
+    this.setState({ currentLyrics: lyrics });
+  }
 
-    // if (!ball) {
-    //   return;
-    // }
-
-    // if (isEmpty(spans)) {
-    //   timeline.set(
-    //     ball,
-    //     { opacity: 0 },
-    //   );
-
-    //   return;
-    // }
-
-    timeline.to(
-      ball,
+  onBounce = (ball: React.ReactNode, span: ISpan, spans: ISpan[], index: number) => {
+    this.timeline.to(
+      ball!,
       0.15,
       {
         bezier: {
@@ -99,19 +110,19 @@ export const Subtitles = ({ currentTime, subtitles, paused }: IProps) => {
       `+=${span.delay - 0.1}`,
     );
 
-    return timeline;
-  };
+    return this.timeline;
+  }
 
-  React.useEffect(() => {
-    const ball = ballRef.current;
-    const { spans } = currentLyrics;
+  onPlay = () => {
+    const ball = this.ballRef.current;
+    const { spans } = this.state.currentLyrics;
 
     if (!ball) {
       return;
     }
 
     if (isEmpty(spans)) {
-      timeline.set(
+      this.timeline.set(
         ball,
         { opacity: 0 },
       );
@@ -119,7 +130,7 @@ export const Subtitles = ({ currentTime, subtitles, paused }: IProps) => {
       return;
     }
 
-    timeline.set(
+    this.timeline.set(
       ball,
       {
         opacity: 1,
@@ -132,59 +143,53 @@ export const Subtitles = ({ currentTime, subtitles, paused }: IProps) => {
         return;
       }
 
-      onBounce(ball, span, spans, index);
+      this.onBounce(ball, span, spans, index);
     });
-  }, [currentLyrics]);
+  }
 
-  React.useEffect(() => {
-    console.log('-timeline', timeline);
+  render() {
+    const { currentTime, subtitles } = this.props;
 
-    if (paused) {
-      timeline.pause();
-    } else {
-      timeline.play();
-    }
-  }, [paused]);
+    return (
+      <div className={s.subtitles}>
+        {subtitles.map((segment: ISubtitles[], i: number) => {
+          const [first] = segment;
+          const last = segment[segment.length - 1];
+          const inRange = currentTime >= (first.start + OFFSET) && currentTime <= (last.end + OFFSET);
+          const segments = segment.filter((sub: ISubtitles) => sub.part);
 
-  return (
-    <div className={s.subtitles}>
-      {subtitles.map((segment: ISubtitles[], i: number) => {
-        const [first] = segment;
-        const last = segment[segment.length - 1];
-        const inRange = currentTime >= (first.start + offset) && currentTime <= (last.end + offset);
-        const segments = segment.filter((sub: ISubtitles) => sub.part);
+          if (!inRange) {
+            return null;
+          }
 
-        if (!inRange) {
-          return null;
-        }
+          return (
+            <span key={`${first.part}-${i}`}>
+              <span
+                ref={this.ballRef}
+                className={s.subtitles__pointer}
+              />
 
-        return (
-          <span key={`${first.part}-${i}`}>
-            <span
-              ref={ballRef}
-              className={s.subtitles__pointer}
-            />
+              <p
+                ref={(el: HTMLParagraphElement) => this.registerLyrics(el, segments, i)}
+                className={s.subtitles__text}
+              >
+                {segments.map(({ start, end, part }: ISubtitles, ii: number) => {
+                  const isCurrent = currentTime >= (start + OFFSET) && currentTime <= (end + OFFSET);
 
-            <p
-              ref={(el: HTMLParagraphElement) => registerLyrics(el, segments, i)}
-              className={s.subtitles__text}
-            >
-              {segments.map(({ start, end, part }: ISubtitles, ii: number) => {
-                const isCurrent = currentTime >= (start + offset) && currentTime <= (end + offset);
-
-                return (
-                  <span
-                    key={`${part}-${ii}`}
-                    style={{ color: isCurrent ? '' : '' }}
-                  >
-                    {`${part} `}
-                  </span>
-                );
-              })}
-            </p>
-          </span>
-        );
-      })}
-    </div>
-  );
-};
+                  return (
+                    <span
+                      key={`${part}-${ii}`}
+                      style={{ color: isCurrent ? '' : '' }}
+                    >
+                      {`${part} `}
+                    </span>
+                  );
+                })}
+              </p>
+            </span>
+          );
+        })}
+      </div>
+    );
+  }
+}
