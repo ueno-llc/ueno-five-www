@@ -29,17 +29,43 @@ interface IProps {
   paused: boolean;
 }
 
-export const Subtitles = ({ currentTime, subtitles, paused }: IProps) => {
-  const ballRef = React.useRef<HTMLSpanElement>(null);
-  const offset = -200;
+interface IState {
+  currentLyrics: ILyrics;
+}
 
-  const [currentLyrics, setCurrentLyrics] = React.useState<ILyrics>({
-    index: -1,
-    spans: [],
-    registered: false,
-  });
+const OFFSET = -200;
 
-  const registerLyrics = (el: HTMLParagraphElement, segment: any, index: number) => {
+export class Subtitles extends React.Component<IProps, IState> {
+  ballRef: React.RefObject<HTMLSpanElement> = React.createRef();
+  timeline = new TimelineLite();
+
+  state = {
+    currentLyrics: {
+      index: -1,
+      spans: [],
+      registered: false,
+    },
+  } as IState;
+
+  componentWillReceiveProps(nextProps: IProps) {
+    if (nextProps.paused !== this.props.paused) {
+      if (nextProps.paused) {
+        this.timeline.pause();
+      } else {
+        this.timeline.play();
+      }
+    }
+  }
+
+  componentDidUpdate(_props: IProps, prevState: IState) {
+    if (prevState.currentLyrics !== this.state.currentLyrics) {
+      this.onPlay();
+    }
+  }
+
+  registerLyrics = (el: HTMLParagraphElement, segment: any, index: number) => {
+    const { currentLyrics } = this.state;
+
     if ((currentLyrics.index === index && currentLyrics.registered) || !el) {
       return;
     }
@@ -51,33 +77,54 @@ export const Subtitles = ({ currentTime, subtitles, paused }: IProps) => {
       const delay = (segment[i].end - segment[i].start) / 1000;
 
       return {
-        x: i > 0 ? x - 12 : x, // space in words
+        x: i > 0 ? x - 12 : x,
         width,
         delay,
         span,
       };
     });
 
-    setCurrentLyrics({
+    const lyrics = {
       index,
       spans,
       registered: true,
-    });
+    };
 
-  };
+    this.setState({ currentLyrics: lyrics });
+  }
 
-  React.useEffect(() => {
-    const ball = ballRef.current;
-    const { spans } = currentLyrics;
+  onBounce = (ball: React.ReactNode, span: ISpan, spans: ISpan[], index: number) => {
+    this.timeline.to(
+      ball!,
+      0.15,
+      {
+        bezier: {
+          type: 'soft',
+          values: [
+            { x: span.x + ((span.width + spans[index + 1].width) / 2), y: -60 },
+            { x: spans[index + 1].x + (spans[index + 1].width / 2), y: 0 },
+            { x: spans[index + 1].x + (spans[index + 1].width / 2), y: 0 },
+          ],
+          autoRotate: true,
+        },
+        ease: Linear.easeNone,
+      },
+      `+=${span.delay - 0.25}`,
+    );
+
+    return this.timeline;
+  }
+
+  onPlay = () => {
+    const ball = this.ballRef.current;
+    const { spans } = this.state.currentLyrics;
 
     if (!ball) {
       return;
     }
 
-    const timeline = new TimelineLite();
-
     if (isEmpty(spans)) {
-      timeline.set(
+      this.timeline.set(
         ball,
         { opacity: 0, x: -50 },
       );
@@ -85,16 +132,18 @@ export const Subtitles = ({ currentTime, subtitles, paused }: IProps) => {
       return;
     }
 
-    timeline.set(
+    this.timeline.clear();
+
+    this.timeline.set(
       ball,
       {
         opacity: 1,
-        x:  spans[0].x + (spans[0].width / 2),
+        x: spans[0].x + (spans[0].width / 2),
       },
     );
 
     spans.map((span, index) => {
-      timeline.to(
+      this.timeline.to(
         spans[index].span,
         0.05,
         {
@@ -104,7 +153,8 @@ export const Subtitles = ({ currentTime, subtitles, paused }: IProps) => {
         },
         '-=0.1',
       );
-      timeline.to(
+
+      this.timeline.to(
         spans[index].span,
         0.15,
         {
@@ -116,83 +166,64 @@ export const Subtitles = ({ currentTime, subtitles, paused }: IProps) => {
       );
 
       if (!spans[index + 1]) {
-        timeline.to(ball, 0.2, { opacity: 0 }, `+=${spans[spans.length - 1].delay - 0.4}`);
+        this.timeline.to(
+          ball,
+          0.2,
+          { opacity: 0 },
+          `+=${spans[spans.length - 1].delay - 0.4}`,
+        );
+
         return;
       }
 
-      timeline.to(
-        ball,
-        0.15,
-        {
-          bezier: {
-            type: 'soft',
-            values: [
-              { x: span.x + ((span.width + spans[index + 1].width) / 2), y: -60 },
-              { x: spans[index + 1].x + (spans[index + 1].width / 2), y: 0 },
-              { x: spans[index + 1].x + (spans[index + 1].width / 2), y: 0 },
-            ],
-            autoRotate: true,
-          },
-          ease: Linear.easeNone,
-
-        },
-        `+=${span.delay - 0.25}`,
-      );
+      this.onBounce(ball, span, spans, index);
     });
+  }
 
-    return () => {
-      timeline.pause();
-      timeline.clear();
-    };
-  }, [currentLyrics]);
+  render() {
+    const { currentTime, subtitles } = this.props;
 
-  React.useEffect(() => {
-    // if (paused) {
-    //   timeline.pause();
-    // } else {
-    //   timeline.play();
-    // }
-  }, [paused]);
+    return (
+      <div className={s.subtitles}>
+        {subtitles.map((segment: ISubtitles[], i: number) => {
+          const [first] = segment;
+          const last = segment[segment.length - 1];
+          const inRange = currentTime >= (first.start + OFFSET) && currentTime <= (last.end + OFFSET);
+          const segments = segment.filter((sub: ISubtitles) => sub.part);
 
-  return (
-    <div className={s.subtitles}>
-      {subtitles.map((segment: ISubtitles[], i: number) => {
-        const [first] = segment;
-        const last = segment[segment.length - 1];
-        const inRange = currentTime >= (first.start + offset) && currentTime <= (last.end + offset);
-        const segments = segment.filter((sub: ISubtitles) => sub.part);
+          if (!inRange) {
+            return null;
+          }
 
-        if (!inRange) {
-          return null;
-        }
+          return (
+            <span key={`${first.part}-${i}`}>
+              <span
+                ref={this.ballRef}
+                className={s.subtitles__pointer}
+              />
 
-        return (
-          <span key={`${first.part}-${i}`}>
-            <span
-              ref={ballRef}
-              className={s.subtitles__pointer}
-            />
-            <p
-              ref={(el: HTMLParagraphElement) => registerLyrics(el, segments, i)}
-              className={s.subtitles__text}
-            >
-              {segments.map(({ start, end, part }: ISubtitles, ii: number) => {
-                const isCurrent = currentTime >= (start + offset) && currentTime <= (end + offset);
+              <p
+                ref={(el: HTMLParagraphElement) => this.registerLyrics(el, segments, i)}
+                className={s.subtitles__text}
+              >
+                {segments.map(({ start, end, part }: ISubtitles, ii: number) => {
+                  const isCurrent = currentTime >= (start + OFFSET) && currentTime <= (end + OFFSET);
 
-                return (
-                  <span
-                    key={`${part}-${ii}`}
-                    style={{ color: isCurrent ? '' : '' }}
-                    className={s.subtitles__word}
-                  >
-                    {`${part} `}
-                  </span>
-                );
-              })}
-            </p>
-          </span>
-        );
-      })}
-    </div>
-  );
-};
+                  return (
+                    <span
+                      key={`${part}-${ii}`}
+                      style={{ color: isCurrent ? '' : '' }}
+                      className={s.subtitles__word}
+                    >
+                      {`${part} `}
+                    </span>
+                  );
+                })}
+              </p>
+            </span>
+          );
+        })}
+      </div>
+    );
+  }
+}

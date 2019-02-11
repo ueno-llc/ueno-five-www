@@ -16,20 +16,22 @@ export const useVideoUpdate = (ref: React.RefObject<HTMLVideoElement>) => {
   };
 
   React.useEffect(() => {
-    if (!ref.current) {
+    const video = ref.current;
+
+    if (!video) {
       return;
     }
 
-    ref.current.addEventListener('timeupdate', onUpdate);
-    ref.current.addEventListener('pause', onUpdate);
+    video.addEventListener('timeupdate', onUpdate);
+    video.addEventListener('pause', onUpdate);
 
     return () => {
-      if (!ref.current) {
+      if (!video) {
         return;
       }
 
-      ref.current.removeEventListener('timeupdate', onUpdate);
-      ref.current.addEventListener('pause', onUpdate);
+      video.removeEventListener('timeupdate', onUpdate);
+      video.addEventListener('pause', onUpdate);
     };
   }, []);
 

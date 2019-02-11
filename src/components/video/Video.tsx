@@ -11,6 +11,7 @@ import { useVideoUpdate } from 'hooks/use-video-update';
 import { useVideoEnd } from 'hooks/use-video-end';
 import { useMouseMove } from 'hooks/use-mousemove';
 import { useResize } from 'hooks/use-resize';
+import { useKeyDown } from 'hooks/use-keydown';
 import { Subtitles, ISubtitles } from 'components/subtitles/Subtitles';
 
 import s from './Video.scss';
@@ -36,6 +37,7 @@ export const Video = ({ src, srcMobile, poster, subtitles, subtitlesMobile, onVi
   const isVideoEnd = useVideoEnd(videoSrcRef);
   const isMouseMoving = useMouseMove(videoRef);
   const [isMobile] = useResize();
+  const keys = useKeyDown();
   const timeline = new TimelineLite();
 
   const animateOut = () => {
@@ -174,6 +176,20 @@ export const Video = ({ src, srcMobile, poster, subtitles, subtitlesMobile, onVi
 
     setRangeValue(progress);
   }, [currentTime]);
+
+  React.useEffect(() => {
+    const videoSrc = videoSrcRef.current;
+
+    if (videoSrc) {
+      videoSrc.currentTime = currentTime;
+    }
+  }, [isMobile]);
+
+  React.useEffect(() => {
+    if (keys.includes(32)) {
+      onClick();
+    }
+  }, [keys]);
 
   return (
     <div
