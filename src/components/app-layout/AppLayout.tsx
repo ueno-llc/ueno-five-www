@@ -22,7 +22,6 @@ export default class AppLayout extends React.Component<IProps> {
 
   onTouchMove = (e: any) => {
     e.preventDefault();
-    setTimeout(() => {   window.scrollTo(0, 1); console.log('test'); }, 1000);
   }
 
   render() {
