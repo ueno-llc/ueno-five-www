@@ -6,6 +6,14 @@
 
   width: 100%;
 
+  @media (max-height: $max-420) {
+    bottom: 70px;
+  }
+
+  @media (min-width: $min-960) {
+    bottom: 140px;
+  }
+
   &__text {
     @include reset-paragraph;
     @include responsive-font(32, 46);
