@@ -130,6 +130,8 @@ export class Subtitles extends React.Component<IProps, IState> {
       return;
     }
 
+    this.timeline.clear();
+
     this.timeline.set(
       ball,
       {
