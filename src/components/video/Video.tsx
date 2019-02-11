@@ -175,6 +175,14 @@ export const Video = ({ src, srcMobile, poster, subtitles, subtitlesMobile, onVi
     setRangeValue(progress);
   }, [currentTime]);
 
+  React.useEffect(() => {
+    const videoSrc = videoSrcRef.current;
+
+    if (videoSrc) {
+      videoSrc.currentTime = currentTime;
+    }
+  }, [isMobile]);
+
   return (
     <div
       ref={videoRef}
