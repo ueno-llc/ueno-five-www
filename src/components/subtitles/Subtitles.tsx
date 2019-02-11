@@ -25,9 +25,10 @@ interface ILyrics {
 interface IProps {
   currentTime: number;
   subtitles: ISubtitles[][];
+  paused: boolean;
 }
 
-export const Subtitles = ({ currentTime, subtitles }: IProps) => {
+export const Subtitles = ({ currentTime, subtitles, paused }: IProps) => {
   const ballRef = React.useRef<HTMLSpanElement>(null);
   const timeline = new TimelineLite();
   const offset = -200;
@@ -63,6 +64,44 @@ export const Subtitles = ({ currentTime, subtitles }: IProps) => {
     });
   };
 
+  const onBounce = (ball, span, spans, index) => {
+    // const ball = ballRef.current;
+    // const { spans } = currentLyrics;
+
+    // if (!ball) {
+    //   return;
+    // }
+
+    // if (isEmpty(spans)) {
+    //   timeline.set(
+    //     ball,
+    //     { opacity: 0 },
+    //   );
+
+    //   return;
+    // }
+
+    timeline.to(
+      ball,
+      0.15,
+      {
+        bezier: {
+          type: 'soft',
+          values: [
+            { x: span.x + ((span.width + spans[index + 1].width) / 2), y: -60 },
+            { x: spans[index + 1].x + (spans[index + 1].width / 2), y: 0 },
+            { x: spans[index + 1].x + (spans[index + 1].width / 2), y: 0 },
+          ],
+          autoRotate: true,
+        },
+        ease: Linear.easeNone,
+      },
+      `+=${span.delay - 0.1}`,
+    );
+
+    return timeline;
+  };
+
   React.useEffect(() => {
     const ball = ballRef.current;
     const { spans } = currentLyrics;
@@ -93,25 +132,19 @@ export const Subtitles = ({ currentTime, subtitles }: IProps) => {
         return;
       }
 
-      timeline.to(
-        ball,
-        0.15,
-        {
-          bezier: {
-            type: 'soft',
-            values: [
-              { x: span.x + ((span.width + spans[index + 1].width) / 2), y: -60 },
-              { x: spans[index + 1].x + (spans[index + 1].width / 2), y: 0 },
-              { x: spans[index + 1].x + (spans[index + 1].width / 2), y: 0 },
-            ],
-            autoRotate: true,
-          },
-          ease: Linear.easeNone,
-        },
-        `+=${span.delay - 0.1}`,
-      );
+      onBounce(ball, span, spans, index);
     });
   }, [currentLyrics]);
+
+  React.useEffect(() => {
+    console.log('-timeline', timeline);
+
+    if (paused) {
+      timeline.pause();
+    } else {
+      timeline.play();
+    }
+  }, [paused]);
 
   return (
     <div className={s.subtitles}>
