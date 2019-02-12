@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { TimelineLite, Linear, Power0, Power3 } from 'gsap';
+import { TimelineLite, Linear, Power3 } from 'gsap';
 import { isEmpty } from 'lodash';
 
 import s from './Subtitles.scss';
