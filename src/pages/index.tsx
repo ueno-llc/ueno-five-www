@@ -6,6 +6,7 @@ import { shareTwitter } from 'utils/share-twitter';
 import { Intro } from 'components/intro/Intro';
 import { Content } from 'components/content/Content';
 import { Video } from 'components/video/Video';
+import { ISubtitles } from 'components/subtitles/Subtitles';
 import { useResize } from 'hooks/use-resize';
 
 export default () => {
@@ -170,6 +171,12 @@ export default () => {
 
   const active = states.find((s) => s.id === screen)!;
   const refs = { introRef, topRef, rightRef, bottomRef, leftRef };
+
+  const subtitles = require('subs/subs.json');
+  const offset = -200;
+  subtitles
+    .filter((i: ISubtitles) => Boolean(i.part)) // remove empty words
+    .map((i: ISubtitles) => ({ start: i.start + offset, end: i.end + offset, part: i.part }));
 
   return (
     <>
