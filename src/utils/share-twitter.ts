@@ -1,7 +1,7 @@
 export const shareTwitter = () => {
   const title = 'Tory Satins';
   const description = 'The flowers of my youth';
-  const href = 'https://5.ueno.co';
+  const href = 'https://torysatins.ueno.co';
   const twitter = 'uenodotco';
 
   const popupConfig = 'left=0,top=0,width=626,height=436,personalbar=0,toolbar=0,scrollbars=0,resizable=0';
