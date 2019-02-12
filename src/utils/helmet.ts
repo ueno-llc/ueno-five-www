@@ -2,7 +2,7 @@ import image from 'assets/images/share.jpg';
 
 const domain = 'https://torysatins.ueno.co';
 const title = 'Tory Satins';
-const description = 'The flowers of my youth.';
+const description = 'Tory Satins – Always Be Around';
 
 export const helmet = {
   title,
