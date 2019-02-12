@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { TimelineLite, Linear, Power4 } from 'gsap';
+import { TimelineLite, Linear, Power3 } from 'gsap';
 import { isEmpty } from 'lodash';
 
 import s from './Subtitles.scss';
@@ -83,7 +83,6 @@ export class Subtitles extends React.Component<IProps, IState> {
       const { x, width } = span.getBoundingClientRect() as any;
       const delay = (segment[i].end - segment[i].start) / 1000;
       const ratio = delay / total;
-
       const postSilence = segment[i + 1] ? (segment[i + 1].start - segment[i].end) / 1000 : 0;
 
       return {
@@ -110,16 +109,20 @@ export class Subtitles extends React.Component<IProps, IState> {
 
   onBounce = (ball: React.ReactNode, span: ISpan, spans: ISpan[], index: number) => {
     const nextSpan = spans[index + 1];
-
-    // vary how the ball goes according to how long a word is said
-    const baseY = 100;
+    const baseY = 60; // vary how the ball goes according to how long a word is said
     const y = 60 + (baseY * nextSpan.ratio);
-
     const padding = -0.1;
 
     let animationDuration = span.duration + padding + span.postSilence;
+
     if (index === 0) {
       animationDuration -= 0.1;
+    }
+
+    // Overwrite animationDuration if less than 0.1sec
+    // otherwise it goes too fast and makes the bouncing weird
+    if (animationDuration < 0.1) {
+      animationDuration = 0.15;
     }
 
     this.timeline.to(
@@ -131,11 +134,10 @@ export class Subtitles extends React.Component<IProps, IState> {
           values: [
             { x: span.x + ((span.width + nextSpan.width) / 2), y: -y },
             { x: nextSpan.x + (nextSpan.width / 2), y: 0 },
-            { x: nextSpan.x + (nextSpan.width / 2), y: 0 },
           ],
           autoRotate: true,
         },
-        ease,
+        ease: Power3.easeOut,
       },
     );
 
@@ -195,6 +197,7 @@ export class Subtitles extends React.Component<IProps, IState> {
           spans[spans.length - 1].duration,
           { opacity: 0 },
         );
+
         return;
       }
 
