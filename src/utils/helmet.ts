@@ -1,5 +1,6 @@
 import image from 'assets/images/share.jpg';
 
+const domain = 'https://torysatins.ueno.co';
 const title = 'Tory Satins';
 const description = 'The flowers of my youth.';
 
@@ -24,7 +25,7 @@ export const helmet = {
 
     { name: 'twitter:title', content: title },
     { name: 'twitter:card', content: 'summary_large_image' },
-    { name: 'twitter:image', content: image },
+    { name: 'twitter:image', content: `${domain}${image}` },
     { name: 'twitter:site', content: '@uenodotco' },
     { name: 'twitter:creator', content: '@uenodotco' },
     { name: 'twitter:description', content: description },
