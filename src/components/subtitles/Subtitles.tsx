@@ -189,43 +189,11 @@ export class Subtitles extends React.Component<IProps, IState> {
     );
 
     spans.map((span, index) => {
-      this.timeline.to(
-        spans[index].span,
-        0.05,
-        {
-          y: 10,
-          rotationX: 40,
-          ease: Power4.easeIn,
-        },
-        '-=0.1',
-      );
-
-      this.timeline.to(
-        spans[index].span,
-        0.15,
-        {
-          y: 0,
-          rotationX: 0,
-          ease: Power4.easeIn,
-        },
-        '-=0.05',
-      );
-
       if (!spans[index + 1]) {
         this.timeline.to(
           ball,
           spans[spans.length - 1].duration,
-          {
-            bezier: {
-              type: 'soft',
-              values: [
-                { x: spans[spans.length - 1].x + (spans[spans.length - 1].width / 2), y: 0, opacity: 1 },
-                { x: spans[spans.length - 1].x + (spans[spans.length - 1].width / 2) + 60, y: -60, opacity: 0 },
-              ],
-              autoRotate: true,
-            },
-            ease,
-          },
+          { opacity: 0 },
         );
         return;
       }
