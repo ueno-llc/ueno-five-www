@@ -1,6 +1,6 @@
 export const shareTwitter = () => {
   const title = 'Tory Satins';
-  const description = 'The flowers of my youth';
+  const description = 'Always Be Around';
   const href = 'https://torysatins.ueno.co';
   const twitter = 'uenodotco';
 
