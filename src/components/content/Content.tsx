@@ -18,7 +18,7 @@ interface IProps {
 }
 
 export const Content = ({ heading, subheading, buttons }: IProps) => {
-  const [isMobile] = useResize();
+  const { isMobile } = useResize();
 
   return (
     <div className={s.content}>

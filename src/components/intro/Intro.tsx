@@ -25,7 +25,7 @@ interface IProps {
 }
 
 export const Intro = ({ children, left, right, introRef, topRef, rightRef, bottomRef, leftRef }: IProps) => {
-  const [isMobile] = useResize();
+  const { isMobile } = useResize();
   const buttonCount = children ? (children as any).props.buttons.length : 0;
 
   return (

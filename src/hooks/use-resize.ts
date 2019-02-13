@@ -7,7 +7,7 @@ interface ISizes {
 
 export const useResize = () => {
   const [sizes, setSizes] = React.useState<ISizes>({ width: 0, height: 0 });
-  const [mobile, setMobile] = React.useState<boolean>(false);
+  const [isMobile, setMobile] = React.useState<boolean>(false);
 
   const onResize = () => {
     if (typeof window === undefined) {
@@ -31,8 +31,8 @@ export const useResize = () => {
     };
   }, []);
 
-  return [
-    mobile,
+  return {
+    isMobile,
     sizes,
-  ];
+  };
 };

@@ -10,7 +10,6 @@ import Logo from 'assets/svg/logo.svg';
 import { useVideoUpdate } from 'hooks/use-video-update';
 import { useVideoEnd } from 'hooks/use-video-end';
 import { useMouseMove } from 'hooks/use-mousemove';
-import { useResize } from 'hooks/use-resize';
 import { useKeyDown } from 'hooks/use-keydown';
 import { Subtitles, ISubtitles } from 'components/subtitles/Subtitles';
 
@@ -23,9 +22,10 @@ interface IProps {
   subtitles: ISubtitles[][];
   subtitlesMobile: ISubtitles[][];
   onVideoEnd(): void;
+  isMobile: boolean;
 }
 
-export const Video = ({ src, srcMobile, poster, subtitles, subtitlesMobile, onVideoEnd }: IProps) => {
+export const Video = ({ src, srcMobile, poster, subtitles, subtitlesMobile, onVideoEnd, isMobile }: IProps) => {
   const videoRef = React.useRef<HTMLDivElement>(null);
   const videoSrcRef = React.useRef<HTMLVideoElement>(null);
   const topEl = React.useRef<HTMLDivElement>(null);
@@ -36,7 +36,6 @@ export const Video = ({ src, srcMobile, poster, subtitles, subtitlesMobile, onVi
   const { currentTime, duration, paused } = useVideoUpdate(videoSrcRef);
   const isVideoEnd = useVideoEnd(videoSrcRef);
   const isMouseMoving = useMouseMove(videoRef);
-  const [isMobile] = useResize();
   const keys = useKeyDown();
   const timeline = new TimelineLite();
 
@@ -182,6 +181,12 @@ export const Video = ({ src, srcMobile, poster, subtitles, subtitlesMobile, onVi
 
     if (videoSrc) {
       videoSrc.currentTime = currentTime;
+
+      if (isMobile) {
+        videoSrc.src = srcMobile;
+      } else {
+        videoSrc.src = src;
+      }
     }
   }, [isMobile]);
 
@@ -202,7 +207,6 @@ export const Video = ({ src, srcMobile, poster, subtitles, subtitlesMobile, onVi
       <video
         ref={videoSrcRef}
         className={s.video__src}
-        src={isMobile ? srcMobile : src}
         poster={poster}
         autoPlay
         playsInline
