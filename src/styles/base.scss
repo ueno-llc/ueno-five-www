@@ -65,6 +65,10 @@ html {
   box-sizing: inherit;
 }
 
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
 body {
   @include responsive-font($font-size-min, $font-size);
   position: relative;
