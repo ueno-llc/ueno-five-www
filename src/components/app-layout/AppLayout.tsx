@@ -11,6 +11,7 @@ interface IProps {
 }
 
 export default ({ children }: IProps) => {
+  /*
   const onTouchMove = (e: TouchEvent) => {
     e.preventDefault();
   };
@@ -22,6 +23,7 @@ export default ({ children }: IProps) => {
       document.removeEventListener('touchmove', onTouchMove);
     };
   }, []);
+  */
 
   return (
     <div className={s.layout}>
