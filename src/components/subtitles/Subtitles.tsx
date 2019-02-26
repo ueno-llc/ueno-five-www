@@ -231,19 +231,14 @@ export class Subtitles extends React.Component<IProps, IState> {
                 ref={(el: HTMLParagraphElement) => this.registerLyrics(el, segments, i)}
                 className={s.subtitles__text}
               >
-                {segments.map(({ start, end, part }: ISubtitles, ii: number) => {
-                  const isCurrent = currentTime >= (start + OFFSET) && currentTime <= (end + OFFSET);
-
-                  return (
-                    <span
-                      key={`${part}-${ii}`}
-                      style={{ color: isCurrent ? '' : '' }}
-                      className={s.subtitles__word}
-                    >
-                      {`${part} `}
-                    </span>
-                  );
-                })}
+                {segments.map(({ part }: ISubtitles, ii: number) => (
+                  <span
+                    key={`${part}-${ii}`}
+                    className={s.subtitles__word}
+                  >
+                    {`${part} `}
+                  </span>
+                ))}
               </p>
             </span>
           );

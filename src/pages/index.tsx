@@ -9,6 +9,8 @@ import { Video } from 'components/video/Video';
 import { ISubtitles } from 'components/subtitles/Subtitles';
 import { useResize } from 'hooks/use-resize';
 
+const DURATION = 0.75;
+
 export default () => {
   const introRef = React.useRef<React.ReactNode>(null);
   const topRef = React.useRef<HTMLDivElement>(null);
@@ -19,7 +21,6 @@ export default () => {
   const [screen, setScreen] = React.useState('opening');
   const { isMobile } = useResize();
   const timeline = new TimelineLite();
-  const duration = 0.75;
   const ease = Power4.easeInOut;
 
   const onClick = () => {
@@ -36,7 +37,7 @@ export default () => {
     if (!isMobile) {
       timeline.to(
         topRef.current,
-        duration,
+        DURATION,
         {
           y: -74,
           ease,
@@ -45,43 +46,43 @@ export default () => {
 
       timeline.to(
         bottomRef.current,
-        duration,
+        DURATION,
         {
           y: 74,
           ease,
         },
-        `-=${duration}`,
+        `-=${DURATION}`,
       );
 
       timeline.to(
         rightRef.current,
-        duration,
+        DURATION,
         {
           x: 20,
           ease,
         },
-        `-=${duration}`,
+        `-=${DURATION}`,
       );
 
       timeline.to(
         leftRef.current,
-        duration,
+        DURATION,
         {
           x: -20,
           ease,
         },
-        `-=${duration}`,
+        `-=${DURATION}`,
       );
     }
 
     timeline.to(
       introRef.current,
-      duration,
+      DURATION,
       {
         autoAlpha: 0,
         ease,
       },
-      isMobile ? 0 : `-=${duration / 1.5}`,
+      isMobile ? 0 : `-=${DURATION / 1.5}`,
     );
 
     playVideo(true);
@@ -114,7 +115,7 @@ export default () => {
 
     timeline.to(
       introRef.current,
-      duration,
+      DURATION,
       {
         autoAlpha: 1,
         ease,
@@ -174,6 +175,7 @@ export default () => {
 
   const subtitles = require('subs/subs.json');
   const offset = -200;
+
   subtitles
     .filter((i: ISubtitles) => Boolean(i.part)) // remove empty words
     .map((i: ISubtitles) => ({ start: i.start + offset, end: i.end + offset, part: i.part }));

@@ -10,30 +10,14 @@ interface IProps {
   children: React.ReactNode;
 }
 
-export default ({ children }: IProps) => {
-  /*
-  const onTouchMove = (e: TouchEvent) => {
-    e.preventDefault();
-  };
+const isDev = process.env.NODE_ENV === 'development';
 
-  React.useEffect(() => {
-    document.addEventListener('touchmove', onTouchMove, { passive: false });
+export default ({ children }: IProps) => (
+  <div className={s.layout}>
+    <Helmet {...helmet} />
 
-    return () => {
-      document.removeEventListener('touchmove', onTouchMove);
-    };
-  }, []);
-  */
+    {children}
 
-  return (
-    <div className={s.layout}>
-      <Helmet {...helmet} />
-
-      {children}
-
-      {process.env.NODE_ENV === 'development' && (
-        <Devtools />
-      )}
-    </div>
-  );
-};
+    {isDev && <Devtools />}
+  </div>
+);

@@ -8,7 +8,6 @@ import { TimelineLite, Power4 } from 'gsap';
 import Logo from 'assets/svg/logo.svg';
 
 import { useVideoUpdate } from 'hooks/use-video-update';
-import { useVideoEnd } from 'hooks/use-video-end';
 import { useMouseMove } from 'hooks/use-mousemove';
 import { useKeyDown } from 'hooks/use-keydown';
 import { Subtitles, ISubtitles } from 'components/subtitles/Subtitles';
@@ -25,6 +24,8 @@ interface IProps {
   isMobile: boolean;
 }
 
+const DURATION = 0.7;
+
 export const Video = ({ src, srcMobile, poster, subtitles, subtitlesMobile, onVideoEnd, isMobile }: IProps) => {
   const videoRef = React.useRef<HTMLDivElement>(null);
   const videoSrcRef = React.useRef<HTMLVideoElement>(null);
@@ -33,8 +34,7 @@ export const Video = ({ src, srcMobile, poster, subtitles, subtitlesMobile, onVi
   const leftEl = React.useRef<HTMLDivElement>(null);
   const bottomEl = React.useRef<HTMLDivElement>(null);
   const [rangeValue, setRangeValue] = React.useState(0);
-  const { currentTime, duration, paused } = useVideoUpdate(videoSrcRef);
-  const isVideoEnd = useVideoEnd(videoSrcRef);
+  const { currentTime, duration: videoDuration, paused, end: isVideoEnd } = useVideoUpdate(videoSrcRef);
   const isMouseMoving = useMouseMove(videoRef);
   const keys = useKeyDown();
   const timeline = new TimelineLite();
@@ -49,39 +49,33 @@ export const Video = ({ src, srcMobile, poster, subtitles, subtitlesMobile, onVi
       return;
     }
 
-    const time = 0.7;
-
     timeline.to(
       topEl.current,
-      time,
+      DURATION,
       {
         y: 0,
         ease: Power4.easeInOut,
       },
-    ).to(
+    );
+
+    timeline.to(
       bottomEl.current,
-      time,
+      DURATION,
       {
         y: 0,
         ease: Power4.easeInOut,
       },
-      `-=${time}`,
-    ).to(
-      rightEl.current,
-      time,
+      `-=${DURATION}`,
+    );
+
+    timeline.to(
+      [rightEl.current, leftEl.current],
+      DURATION,
       {
         x: 0,
         ease: Power4.easeInOut,
       },
-      `-=${time}`,
-    ).to(
-      leftEl.current,
-      time,
-      {
-        x: 0,
-        ease: Power4.easeInOut,
-      },
-      `-=${time}`,
+      `-=${DURATION}`,
     );
   };
 
@@ -95,39 +89,43 @@ export const Video = ({ src, srcMobile, poster, subtitles, subtitlesMobile, onVi
       return;
     }
 
-    const time = 0.7;
-
     timeline.to(
       topEl.current,
-      time,
+      DURATION,
       {
         y: 74,
         ease: Power4.easeInOut,
       },
-    ).to(
+    );
+
+    timeline.to(
       bottomEl.current,
-      time,
+      DURATION,
       {
         y: -74,
         ease: Power4.easeInOut,
       },
-      `-=${time}`,
-    ).to(
+      `-=${DURATION}`,
+    );
+
+    timeline.to(
       rightEl.current,
-      time,
+      DURATION,
       {
         x: -20,
         ease: Power4.easeInOut,
       },
-      `-=${time}`,
-    ).to(
+      `-=${DURATION}`,
+    );
+
+    timeline.to(
       leftEl.current,
-      time,
+      DURATION,
       {
         x: 20,
         ease: Power4.easeInOut,
       },
-      `-=${time}`,
+      `-=${DURATION}`,
     );
   };
 
@@ -145,7 +143,7 @@ export const Video = ({ src, srcMobile, poster, subtitles, subtitlesMobile, onVi
     if (video) {
       video.pause();
 
-      const time = (value * duration) / 100;
+      const time = (value * videoDuration) / 100;
 
       video.currentTime = time;
       setRangeValue(value);
@@ -167,7 +165,7 @@ export const Video = ({ src, srcMobile, poster, subtitles, subtitlesMobile, onVi
   }, [isMouseMoving]);
 
   React.useEffect(() => {
-    const progress = (currentTime / duration) * 100;
+    const progress = (currentTime / videoDuration) * 100;
 
     if (isNaN(progress) || progress > 100) {
       return;
@@ -210,7 +208,6 @@ export const Video = ({ src, srcMobile, poster, subtitles, subtitlesMobile, onVi
         poster={poster}
         autoPlay
         playsInline
-        // muted
       />
 
       <div className={s.video__subtitles}>
