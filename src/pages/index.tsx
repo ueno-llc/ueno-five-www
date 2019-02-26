@@ -3,11 +3,10 @@ import Helmet from 'react-helmet';
 import { TimelineLite, Power4 } from 'gsap';
 
 import { shareTwitter } from 'utils/share-twitter';
+import { useResize } from 'hooks/use-resize';
 import { Intro } from 'components/intro/Intro';
 import { Content } from 'components/content/Content';
 import { Video } from 'components/video/Video';
-import { ISubtitles } from 'components/subtitles/Subtitles';
-import { useResize } from 'hooks/use-resize';
 
 const DURATION = 0.75;
 
@@ -157,7 +156,7 @@ export default () => {
 
         buttons: [
           { text: 'Watch again', action: onClick, color: 'pink' },
-          { text: 'Share on Twitter', action: () => shareTwitter() },
+          { text: 'Share on Twitter', action: shareTwitter },
         ],
       },
 
@@ -172,13 +171,6 @@ export default () => {
 
   const active = states.find((s) => s.id === screen)!;
   const refs = { introRef, topRef, rightRef, bottomRef, leftRef };
-
-  const subtitles = require('subs/subs.json');
-  const offset = -200;
-
-  subtitles
-    .filter((i: ISubtitles) => Boolean(i.part)) // remove empty words
-    .map((i: ISubtitles) => ({ start: i.start + offset, end: i.end + offset, part: i.part }));
 
   return (
     <>

@@ -13,13 +13,9 @@ export interface ISubtitles {
 interface ISpan {
   x: number;
   width: number;
-  delay: number;
   ratio: number;
-  text: string;
   duration: number;
   postSilence: number;
-  total: number;
-  span: HTMLSpanElement;
 }
 
 interface ILyrics {
@@ -81,20 +77,16 @@ export class Subtitles extends React.Component<IProps, IState> {
 
     const spans = elms.map((span, i) => {
       const { x, width } = span.getBoundingClientRect() as any;
-      const delay = (segment[i].end - segment[i].start) / 1000;
-      const ratio = delay / total;
+      const duration = (segment[i].end - segment[i].start) / 1000;
+      const ratio = duration / total;
       const postSilence = segment[i + 1] ? (segment[i + 1].start - segment[i].end) / 1000 : 0;
 
       return {
         x: i > 0 ? x - 12 : x,
         width,
-        delay,
-        span,
         ratio,
-        text: segment[i].part,
-        duration: delay,
+        duration,
         postSilence,
-        total,
       };
     });
 
