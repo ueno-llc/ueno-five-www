@@ -16,7 +16,7 @@
     "tslint": "tslint --fix 'src/**/*.{ts,tsx}' -p .",
     "stylelint": "stylelint 'src/**/*.scss' --syntax scss",
     "dev": "gatsby develop",
-    "webvtt-to-json": "node ./src/scripts/webvtt-to-json"
+    "webvtt-to-json": "node ./src/utils/webvtt-to-json"
   },
   "dependencies": {
     "gatsby": "2.0.91",
