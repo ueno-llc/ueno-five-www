@@ -14,15 +14,16 @@ $pink: #ec8d87;
 
   min-width: 175px;
 
+  border-radius: 27px;
+
+  cursor: pointer;
+
   font-size: 14px;
   vertical-align: middle;
   text-align: center;
   text-decoration: none;
+
   color: #fff;
-
-  cursor: pointer;
-
-  border-radius: 27px;
 
   transition: 180ms;
   transition-property: border-color, background-color, color, opacity;

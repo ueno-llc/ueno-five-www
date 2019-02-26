@@ -21,10 +21,11 @@
     margin-top: 16px;
 
     font-family: $font-family-akagi;
-    color: $color-orange;
     font-weight: 700;
     line-height: 0.783;
     text-align: center;
+
+    color: $color-orange;
   }
 
   &__word {
@@ -34,13 +35,14 @@
 
   &__pointer {
     position: absolute;
-    opacity: 0;
 
     width: 8px;
     height: 8px;
 
-    background-color: $color-orange;
     border-radius: 50%;
+
+    background-color: $color-orange;
+    opacity: 0;
 
     @media (min-width: $min-768) {
       top: -28px;
