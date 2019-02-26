@@ -15,6 +15,8 @@
 }
 
 @mixin responsive-font($min-size: $font-size-min, $size: $font-size, $limit: $page-limit) {
+  $scale-font-enable: global-variable-exists(scale);
+
   $unitless-min: strip-unit($min-size);
   $unitless-size: strip-unit($size);
   $baseline: strip-unit($min-mobile);
@@ -26,27 +28,41 @@
   }
 
   font-size: #{$unitless-min}px;
-  font-size: calc(#{$unitless-min}px * #{var(--scale-font)});
+
+  @if $scale-font-enable == true {
+    font-size: calc(#{$unitless-min}px * #{var(--scale-font)});
+  }
 
   @media (min-width: $min-mobile) {
     font-size: #{$unitless-min}px;
-    font-size: calc((#{$font-multiplier} * #{100vw} + (#{$font-baseline}px)) * #{var(--scale-font)});
+
+    @if $scale-font-enable == true {
+      font-size: calc((#{$font-multiplier} * #{100vw} + (#{$font-baseline}px)) * #{var(--scale-font)});
+    }
+
+    @else {
+      font-size: calc((#{$font-multiplier} * #{100vw} + (#{$font-baseline}px)));
+    }
   }
 
   @media (min-width: $limit) {
     font-size: #{$unitless-size}px;
-    font-size: calc(#{$unitless-size}px * #{var(--scale-font)});
+
+    @if $scale-font-enable == true {
+      font-size: calc(#{$unitless-size}px * #{var(--scale-font)});
+    }
   }
 }
 
 @mixin vertically-responsive($property, $number) {
   #{$property}: $number;
 
-  @supports (--css: variables) {
-    #{$property}: calc(#{$number} * var(--scale-element));
+  @if global-variable-exists(scale) {
+    @supports (--css: variables) {
+      #{$property}: calc(#{$number} * var(--scale-element));
+    }
   }
 }
-
 // segment customisable per-component / instance rather than being forced to work around defaults.
 @mixin segment (
   $padding-top: $segment-padding,
@@ -100,7 +116,6 @@
 }
 
 @mixin heading($min: 25, $max: 52) {
-  @include reset-heading;
   @include responsive-font($min, $max);
 
   margin-bottom: (5/52) * 1em;
@@ -114,7 +129,6 @@
 }
 
 @mixin subheading($min: 25, $max: 52) {
-  @include reset-heading;
   @include responsive-font($min, $max);
 
   font-family: $font-family-heading;

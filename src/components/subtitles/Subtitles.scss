@@ -16,7 +16,6 @@
   }
 
   &__text {
-    @include reset-paragraph;
     @include responsive-font(32, 46);
 
     margin-top: 16px;

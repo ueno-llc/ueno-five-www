@@ -6,9 +6,10 @@
 
 .layout {
   @include fit;
-  position: fixed;
 
   display: block;
+
+  position: fixed;
 
   min-height: 100vh;
 }
