@@ -6,6 +6,7 @@ import { shareTwitter } from 'utils/share-twitter';
 import { useResize } from 'hooks/use-resize';
 import { Intro } from 'components/intro/Intro';
 import { Content } from 'components/content/Content';
+import { Player } from 'components/player/Player';
 import { Video } from 'components/video/Video';
 
 const DURATION = 0.75;
@@ -189,15 +190,17 @@ export default () => {
       </Intro>
 
       {play && (
-        <Video
-          src="https://cdn.ueno.co/song.mp4"
-          srcMobile="https://cdn.ueno.co/song_480.mp4"
-          poster={require('assets/images/poster.jpg')}
-          subtitles={require('subs/subs.json')}
-          subtitlesMobile={require('subs/subs-mobile.json')}
-          onVideoEnd={onVideoEnd}
-          isMobile={isMobile}
-        />
+        <Player>
+          <Video
+            src="https://cdn.ueno.co/song.mp4"
+            srcMobile="https://cdn.ueno.co/song_480.mp4"
+            poster={require('assets/images/poster.jpg')}
+            subtitles={require('subs/subs.json')}
+            subtitlesMobile={require('subs/subs-mobile.json')}
+            onVideoEnd={onVideoEnd}
+            isMobile={isMobile}
+          />
+        </Player>
       )}
     </>
   );

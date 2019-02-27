@@ -35,10 +35,6 @@ body {
   background: $color-background;
 }
 
-body.black { // stylelint-disable-line
-  background-color: #000;
-}
-
 html {
   -webkit-overflow-scrolling: touch;
   overflow: hidden;
