@@ -6,13 +6,13 @@ import { Devtools } from 'components/devtools/Devtools';
 
 import s from './AppLayout.scss';
 
-interface IProps {
+interface IAppLayoutProps {
   children: React.ReactNode;
 }
 
 const isDev = process.env.NODE_ENV === 'development';
 
-export default ({ children }: IProps) => (
+export default ({ children }: IAppLayoutProps) => (
   <div className={s.layout}>
     <Helmet {...helmet} />
 

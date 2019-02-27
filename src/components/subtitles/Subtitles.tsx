@@ -24,7 +24,7 @@ interface ILyrics {
   registered: boolean;
 }
 
-interface IProps {
+interface ISubtitlesProps {
   currentTime: number;
   subtitles: ISubtitles[][];
   paused: boolean;
@@ -37,7 +37,7 @@ interface IState {
 const OFFSET = 0;
 const ease = Linear.easeNone;
 
-export class Subtitles extends React.Component<IProps, IState> {
+export class Subtitles extends React.Component<ISubtitlesProps, IState> {
   ballRef: React.RefObject<HTMLSpanElement> = React.createRef();
   timeline = new TimelineLite();
 
@@ -49,7 +49,7 @@ export class Subtitles extends React.Component<IProps, IState> {
     },
   } as IState;
 
-  componentWillReceiveProps(nextProps: IProps) {
+  componentWillReceiveProps(nextProps: ISubtitlesProps) {
     if (nextProps.paused !== this.props.paused) {
       if (nextProps.paused) {
         this.timeline.pause();
@@ -59,7 +59,7 @@ export class Subtitles extends React.Component<IProps, IState> {
     }
   }
 
-  componentDidUpdate(_props: IProps, prevState: IState) {
+  componentDidUpdate(_props: ISubtitlesProps, prevState: IState) {
     if (prevState.currentLyrics !== this.state.currentLyrics) {
       this.onPlay();
     }
@@ -101,8 +101,8 @@ export class Subtitles extends React.Component<IProps, IState> {
 
   onBounce = (ball: React.ReactNode, span: ISpan, spans: ISpan[], index: number) => {
     const nextSpan = spans[index + 1];
-    const baseY = 60; // vary how the ball goes according to how long a word is said
-    const y = 60 + (baseY * nextSpan.ratio);
+    const baseY = 60;
+    const y = 60 + (baseY * nextSpan.ratio); // vary how the ball goes according to how long a word is said
     const padding = -0.1;
 
     let animationDuration = span.duration + padding + span.postSilence;

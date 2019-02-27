@@ -13,7 +13,7 @@ interface IRight {
   image2x: string;
 }
 
-interface IProps {
+interface IIntroProps {
   children: React.ReactNode;
   left?: string;
   right: IRight;
@@ -24,7 +24,7 @@ interface IProps {
   leftRef: React.RefObject<any>;
 }
 
-export const Intro = ({ children, left, right, introRef, topRef, rightRef, bottomRef, leftRef }: IProps) => {
+export const Intro = ({ children, left, right, introRef, topRef, rightRef, bottomRef, leftRef }: IIntroProps) => {
   const { isMobile } = useResize();
   const buttonCount = children ? (children as any).props.buttons.length : 0;
 

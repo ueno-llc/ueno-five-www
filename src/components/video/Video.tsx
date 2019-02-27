@@ -8,7 +8,7 @@ import { Subtitles, ISubtitles } from 'components/subtitles/Subtitles';
 
 import s from './Video.scss';
 
-interface IProps {
+interface IVideoProps {
   src: string;
   srcMobile: string;
   poster: string;
@@ -19,7 +19,7 @@ interface IProps {
 }
 
 export const Video = React.forwardRef((
-  { src, srcMobile, poster, subtitles, subtitlesMobile, onVideoEnd, isMobile }: IProps,
+  { src, srcMobile, poster, subtitles, subtitlesMobile, onVideoEnd, isMobile }: IVideoProps,
   ref: any,
 ) => {
   const { currentTime, paused, end: isVideoEnd } = useVideoUpdate(ref);
