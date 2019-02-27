@@ -12,12 +12,19 @@ interface IAppLayoutProps {
 
 const isDev = process.env.NODE_ENV === 'development';
 
-export default ({ children }: IAppLayoutProps) => (
-  <div className={s.layout}>
-    <Helmet {...helmet} />
+export default ({ children }: IAppLayoutProps) => {
+  const onTouchMove = (e: TouchEvent) => e.preventDefault();
 
-    {children}
+  React.useEffect(() => {
+    document.addEventListener('touchmove', onTouchMove);
+    return () => document.removeEventListener('touchmove', onTouchMove);
+  }, []);
 
-    {isDev && <Devtools />}
-  </div>
-);
+  return (
+    <div className={s.layout}>
+      <Helmet {...helmet} />
+      {children}
+      {isDev && <Devtools />}
+    </div>
+  );
+}
