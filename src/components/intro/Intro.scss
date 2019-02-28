@@ -28,15 +28,14 @@ $index: 9970;
 
     pointer-events: auto;
 
-
-
     @media (min-width: $min-375) {
-      height: 135px;
+      height: 100px;
     }
 
     @media (min-width: $min-960) {
-      background-color: #fff;
       height: 72px;
+
+      background-color: #fff;
     }
 
     @media (max-height: $max-480) {
@@ -53,8 +52,6 @@ $index: 9970;
   }
 
   &__link {
-    @include reset-anchor;
-
     display: inline-flex;
     padding: 15px 15px 15px 0;
 

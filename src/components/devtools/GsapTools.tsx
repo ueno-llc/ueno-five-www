@@ -1,31 +1,24 @@
 import * as React from 'react';
+import GsapDevTools from 'gsap-tools';
 
 import { useKeyDown } from 'hooks/use-keydown';
+import { useLocalStorage } from 'hooks/use-localstorage';
 
 import s from './GsapTools.scss';
 
-interface IProps {
+interface IGsapToolsProps {
   button: boolean;
 }
 
-// tslint:disable-next-line:no-var-requires
-const GsapDevTools = require('gsap-tools').default;
 const LOCAL_STORAGE_GSAPTOOLS = '_uenoDevtoolsGsapTools';
 
-export const GsapTools = ({ button }: IProps) => {
-  const [visible, setVisible] = React.useState(false);
+export const GsapTools = ({ button }: IGsapToolsProps) => {
+  const [isVisible, setVisible] = useLocalStorage(LOCAL_STORAGE_GSAPTOOLS, false);
   const keys = useKeyDown();
 
   const onToggleGsapTools = () => {
-    setVisible(!visible);
-    localStorage.setItem(LOCAL_STORAGE_GSAPTOOLS, String(!visible));
+    setVisible(!isVisible);
   };
-
-  React.useEffect(() => {
-    const isVisible = localStorage.getItem(LOCAL_STORAGE_GSAPTOOLS) === 'true';
-
-    setVisible(isVisible);
-  }, []);
 
   React.useEffect(() => {
     if (keys.includes(17) && keys.includes(71)) {
@@ -36,14 +29,14 @@ export const GsapTools = ({ button }: IProps) => {
   return (
     <>
       {button && (
-        <button className={s(s.button, { visible })} onClick={onToggleGsapTools}>
+        <button className={s(s.button, { visible: isVisible })} onClick={onToggleGsapTools}>
           GSAP
         </button>
       )}
 
       <GsapDevTools
         onClick={onToggleGsapTools}
-        isVisible={visible}
+        isVisible={isVisible}
         isFixed
       />
     </>

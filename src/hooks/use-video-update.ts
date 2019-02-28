@@ -4,6 +4,7 @@ export const useVideoUpdate = (ref: React.RefObject<HTMLVideoElement>) => {
   const [currentTime, setCurrentTime] = React.useState<number>(0);
   const [duration, setDuration] = React.useState<number>(0);
   const [paused, setPaused] = React.useState<boolean>(true);
+  const [end, setEnd] = React.useState<boolean>(false);
 
   const onUpdate = () => {
     if (!ref.current) {
@@ -15,6 +16,14 @@ export const useVideoUpdate = (ref: React.RefObject<HTMLVideoElement>) => {
     setPaused(ref.current.paused);
   };
 
+  const onEnd = () => {
+    if (!ref.current) {
+      return;
+    }
+
+    setEnd(true);
+  };
+
   React.useEffect(() => {
     const video = ref.current;
 
@@ -24,6 +33,7 @@ export const useVideoUpdate = (ref: React.RefObject<HTMLVideoElement>) => {
 
     video.addEventListener('timeupdate', onUpdate);
     video.addEventListener('pause', onUpdate);
+    video.addEventListener('ended', onEnd);
 
     return () => {
       if (!video) {
@@ -32,6 +42,7 @@ export const useVideoUpdate = (ref: React.RefObject<HTMLVideoElement>) => {
 
       video.removeEventListener('timeupdate', onUpdate);
       video.addEventListener('pause', onUpdate);
+      video.removeEventListener('ended', onEnd);
     };
   }, []);
 
@@ -39,5 +50,6 @@ export const useVideoUpdate = (ref: React.RefObject<HTMLVideoElement>) => {
     currentTime,
     duration,
     paused,
+    end,
   };
 };

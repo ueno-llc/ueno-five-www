@@ -13,13 +13,9 @@ export interface ISubtitles {
 interface ISpan {
   x: number;
   width: number;
-  delay: number;
   ratio: number;
-  text: string;
   duration: number;
   postSilence: number;
-  total: number;
-  span: HTMLSpanElement;
 }
 
 interface ILyrics {
@@ -28,7 +24,7 @@ interface ILyrics {
   registered: boolean;
 }
 
-interface IProps {
+interface ISubtitlesProps {
   currentTime: number;
   subtitles: ISubtitles[][];
   paused: boolean;
@@ -41,7 +37,7 @@ interface IState {
 const OFFSET = 0;
 const ease = Linear.easeNone;
 
-export class Subtitles extends React.Component<IProps, IState> {
+export class Subtitles extends React.Component<ISubtitlesProps, IState> {
   ballRef: React.RefObject<HTMLSpanElement> = React.createRef();
   timeline = new TimelineLite();
 
@@ -53,7 +49,7 @@ export class Subtitles extends React.Component<IProps, IState> {
     },
   } as IState;
 
-  componentWillReceiveProps(nextProps: IProps) {
+  componentWillReceiveProps(nextProps: ISubtitlesProps) {
     if (nextProps.paused !== this.props.paused) {
       if (nextProps.paused) {
         this.timeline.pause();
@@ -63,7 +59,7 @@ export class Subtitles extends React.Component<IProps, IState> {
     }
   }
 
-  componentDidUpdate(_props: IProps, prevState: IState) {
+  componentDidUpdate(_props: ISubtitlesProps, prevState: IState) {
     if (prevState.currentLyrics !== this.state.currentLyrics) {
       this.onPlay();
     }
@@ -81,20 +77,16 @@ export class Subtitles extends React.Component<IProps, IState> {
 
     const spans = elms.map((span, i) => {
       const { x, width } = span.getBoundingClientRect() as any;
-      const delay = (segment[i].end - segment[i].start) / 1000;
-      const ratio = delay / total;
+      const duration = (segment[i].end - segment[i].start) / 1000;
+      const ratio = duration / total;
       const postSilence = segment[i + 1] ? (segment[i + 1].start - segment[i].end) / 1000 : 0;
 
       return {
         x: i > 0 ? x - 12 : x,
         width,
-        delay,
-        span,
         ratio,
-        text: segment[i].part,
-        duration: delay,
+        duration,
         postSilence,
-        total,
       };
     });
 
@@ -109,8 +101,8 @@ export class Subtitles extends React.Component<IProps, IState> {
 
   onBounce = (ball: React.ReactNode, span: ISpan, spans: ISpan[], index: number) => {
     const nextSpan = spans[index + 1];
-    const baseY = 60; // vary how the ball goes according to how long a word is said
-    const y = 60 + (baseY * nextSpan.ratio);
+    const baseY = 60;
+    const y = 60 + (baseY * nextSpan.ratio); // vary how the ball goes according to how long a word is said
     const padding = -0.1;
 
     let animationDuration = span.duration + padding + span.postSilence;
@@ -231,19 +223,14 @@ export class Subtitles extends React.Component<IProps, IState> {
                 ref={(el: HTMLParagraphElement) => this.registerLyrics(el, segments, i)}
                 className={s.subtitles__text}
               >
-                {segments.map(({ start, end, part }: ISubtitles, ii: number) => {
-                  const isCurrent = currentTime >= (start + OFFSET) && currentTime <= (end + OFFSET);
-
-                  return (
-                    <span
-                      key={`${part}-${ii}`}
-                      style={{ color: isCurrent ? '' : '' }}
-                      className={s.subtitles__word}
-                    >
-                      {`${part} `}
-                    </span>
-                  );
-                })}
+                {segments.map(({ part }: ISubtitles, ii: number) => (
+                  <span
+                    key={`${part}-${ii}`}
+                    className={s.subtitles__word}
+                  >
+                    {`${part} `}
+                  </span>
+                ))}
               </p>
             </span>
           );

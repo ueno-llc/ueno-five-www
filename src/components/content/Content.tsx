@@ -11,13 +11,13 @@ interface IButton {
   color?: string;
 }
 
-interface IProps {
+interface IContentProps {
   heading: string;
   subheading: string;
   buttons: IButton[];
 }
 
-export const Content = ({ heading, subheading, buttons }: IProps) => {
+export const Content = ({ heading, subheading, buttons }: IContentProps) => {
   const { isMobile } = useResize();
 
   return (

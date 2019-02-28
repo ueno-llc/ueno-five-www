@@ -1,13 +1,6 @@
 @import '~styles/config';
 
 .video {
-  @include fit;
-  position: fixed;
-
-  z-index: 9960;
-
-  overflow: hidden;
-
   &__src {
     width: 100%;
     height: 100%;
@@ -18,115 +11,5 @@
 
   &__subtitles {
     position: relative;
-  }
-
-  &__hover {
-    @media (max-height: $max-420) {
-      display: none;
-    }
-
-    @media (min-width: $min-960) and (pointer: fine) {
-      @include fit;
-
-      display: block;
-    }
-  }
-
-  &__header {
-    display: none;
-
-    @media (min-width: $min-960) {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-
-      position: absolute;
-      top: -74px;
-      right: 0;
-      left: 0;
-
-      width: 100%;
-      height: 74px;
-
-      background-color: #fff;
-    }
-  }
-
-  &__left {
-    display: none;
-
-    @media (min-width: $min-960) {
-      display: block;
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      left: -20px;
-
-      width: 20px;
-      height: 100%;
-
-      background-color: #fff;
-    }
-  }
-
-  &__right {
-    display: none;
-
-    @media (min-width: $min-960) {
-      display: block;
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      right: -20px;
-
-      width: 20px;
-      height: 100%;
-
-      background-color: #fff;
-    }
-  }
-
-  &__container {
-    @include container;
-
-    width: 100%;
-  }
-
-  &__logo {
-    display: block;
-
-    width: 64px;
-  }
-
-  &__link {
-    @include reset-anchor;
-
-    display: inline-flex;
-    padding: 15px 15px 15px 0;
-
-    cursor: pointer;
-  }
-
-  &__controls {
-    display: none;
-
-    @media (min-width: $min-960) {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-
-      position: absolute;
-      right: 0;
-      bottom: -74px;
-      left: 0;
-
-      padding-left: 20px;
-      padding-right: 20px;
-
-      width: 100%;
-      height: 74px;
-
-      background-color: #fff;
-    }
   }
 }

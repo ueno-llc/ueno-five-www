@@ -6,32 +6,25 @@ import { Devtools } from 'components/devtools/Devtools';
 
 import s from './AppLayout.scss';
 
-interface IProps {
+interface IAppLayoutProps {
   children: React.ReactNode;
 }
 
-export default ({ children }: IProps) => {
-  const onTouchMove = (e: TouchEvent) => {
-    e.preventDefault();
-  };
+const isDev = process.env.NODE_ENV === 'development';
+
+export default ({ children }: IAppLayoutProps) => {
+  const onTouchMove = (e: TouchEvent) => e.preventDefault();
 
   React.useEffect(() => {
-    document.addEventListener('touchmove', onTouchMove, { passive: false });
-
-    return () => {
-      document.removeEventListener('touchmove', onTouchMove);
-    };
+    document.addEventListener('touchmove', onTouchMove);
+    return () => document.removeEventListener('touchmove', onTouchMove);
   }, []);
 
   return (
     <div className={s.layout}>
       <Helmet {...helmet} />
-
       {children}
-
-      {process.env.NODE_ENV === 'development' && (
-        <Devtools />
-      )}
+      {isDev && <Devtools />}
     </div>
   );
-};
+}

@@ -7,7 +7,7 @@
   margin-top: 35px;
 
   @media (min-width: $min-375) {
-    margin-top: 85px;
+    margin-top: 65px;
   }
 
   @media (min-width: $min-960) {
@@ -34,7 +34,6 @@
     @include subheading(35, 44);
 
     margin-bottom: (30/44) * 1em;
-
 
     color: #999;
 

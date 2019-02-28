@@ -3,11 +3,13 @@ import Helmet from 'react-helmet';
 import { TimelineLite, Power4 } from 'gsap';
 
 import { shareTwitter } from 'utils/share-twitter';
+import { useResize } from 'hooks/use-resize';
 import { Intro } from 'components/intro/Intro';
 import { Content } from 'components/content/Content';
+import { Player } from 'components/player/Player';
 import { Video } from 'components/video/Video';
-import { ISubtitles } from 'components/subtitles/Subtitles';
-import { useResize } from 'hooks/use-resize';
+
+const DURATION = 0.75;
 
 export default () => {
   const introRef = React.useRef<React.ReactNode>(null);
@@ -19,7 +21,6 @@ export default () => {
   const [screen, setScreen] = React.useState('opening');
   const { isMobile } = useResize();
   const timeline = new TimelineLite();
-  const duration = 0.75;
   const ease = Power4.easeInOut;
 
   const onClick = () => {
@@ -36,7 +37,7 @@ export default () => {
     if (!isMobile) {
       timeline.to(
         topRef.current,
-        duration,
+        DURATION,
         {
           y: -74,
           ease,
@@ -45,43 +46,43 @@ export default () => {
 
       timeline.to(
         bottomRef.current,
-        duration,
+        DURATION,
         {
           y: 74,
           ease,
         },
-        `-=${duration}`,
+        `-=${DURATION}`,
       );
 
       timeline.to(
         rightRef.current,
-        duration,
+        DURATION,
         {
           x: 20,
           ease,
         },
-        `-=${duration}`,
+        `-=${DURATION}`,
       );
 
       timeline.to(
         leftRef.current,
-        duration,
+        DURATION,
         {
           x: -20,
           ease,
         },
-        `-=${duration}`,
+        `-=${DURATION}`,
       );
     }
 
     timeline.to(
       introRef.current,
-      duration,
+      DURATION,
       {
         autoAlpha: 0,
         ease,
       },
-      isMobile ? 0 : `-=${duration / 1.5}`,
+      isMobile ? 0 : `-=${DURATION / 1.5}`,
     );
 
     playVideo(true);
@@ -114,7 +115,7 @@ export default () => {
 
     timeline.to(
       introRef.current,
-      duration,
+      DURATION,
       {
         autoAlpha: 1,
         ease,
@@ -156,7 +157,7 @@ export default () => {
 
         buttons: [
           { text: 'Watch again', action: onClick, color: 'pink' },
-          { text: 'Share on Twitter', action: () => shareTwitter() },
+          { text: 'Share on Twitter', action: shareTwitter },
         ],
       },
 
@@ -171,12 +172,6 @@ export default () => {
 
   const active = states.find((s) => s.id === screen)!;
   const refs = { introRef, topRef, rightRef, bottomRef, leftRef };
-
-  const subtitles = require('subs/subs.json');
-  const offset = -200;
-  subtitles
-    .filter((i: ISubtitles) => Boolean(i.part)) // remove empty words
-    .map((i: ISubtitles) => ({ start: i.start + offset, end: i.end + offset, part: i.part }));
 
   return (
     <>
@@ -195,15 +190,17 @@ export default () => {
       </Intro>
 
       {play && (
-        <Video
-          src="https://cdn.ueno.co/song.mp4"
-          srcMobile="https://cdn.ueno.co/song_480.mp4"
-          poster={require('assets/images/poster.jpg')}
-          subtitles={require('subs/subs.json')}
-          subtitlesMobile={require('subs/subs-mobile.json')}
-          onVideoEnd={onVideoEnd}
-          isMobile={isMobile}
-        />
+        <Player>
+          <Video
+            src="https://cdn.ueno.co/song.mp4"
+            srcMobile="https://cdn.ueno.co/song_480.mp4"
+            poster={require('assets/images/poster.jpg')}
+            subtitles={require('subs/subs.json')}
+            subtitlesMobile={require('subs/subs-mobile.json')}
+            onVideoEnd={onVideoEnd}
+            isMobile={isMobile}
+          />
+        </Player>
       )}
     </>
   );
